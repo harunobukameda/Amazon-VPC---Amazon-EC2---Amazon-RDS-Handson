@@ -1,0 +1,192 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>AWS 体験ハンズオン〜セキュア&amp;スケーラブルウェブサービス構築</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="awshandson20220329"
+                  title="AWS 体験ハンズオン〜セキュア&amp;スケーラブルウェブサービス構築"
+                  environment="web"
+                  feedback-link="https://github.com/otanikohei/Amazon-VPC—Amazon-EC2—Amazon-RDS-Handson">
+    
+      <google-codelab-step label="はじめに" duration="5">
+        <p>Amazon Web Services (AWS) を利用して、セキュアでスケーラブルなウェブサービスの構築手順を体験できるハンズオンを実施いたします。<br> AWS を使ってより安全にサービスを運用する方法、ウェブサービスの規模に合わせて、柔軟にシステムを拡張する方法を体験できる内容です。<br> 本ハンズオンのドキュメントで掲載されているスクリーンキャプチャは 2022年03月時点のもので、現在の画面とは異なる場合がございます。予めご了承ください。</p>
+<h2 is-upgraded>【準備事項】</h2>
+<ul>
+<li>AWS を利用可能なネットワークに接続された PC (Windows, Mac OS, Linux等)</li>
+<li>事前に用意していただいた AWS アカウント</li>
+<li>SSH クライアント (Windows 環境では Teraterm を推奨)</li>
+<li>ブラウザ (Firefox もしくは Chrome を推奨)</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="座学" duration="0">
+        <h2 is-upgraded>AWS のセキュリティやスケーラビリティを 高める機能・サービス</h2>
+<ul>
+<li><strong>セキュリティグループ</strong> = ファイアウォール</li>
+<li><strong>Amazon VPC</strong> = プライベートな仮想ネットワーク</li>
+<li><strong>AWS IAM</strong> = AWS リソースへのアクセス権限の管理</li>
+</ul>
+<p class="image-container"><img alt="ファイアウォール" src="img/dc24275f04163482.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="1.セキュリティグループ" duration="0">
+        <p>インターネットからのトラフィック (インバウンド) をブロックするだけでなく、Amazon EC2 インスタンスからのトラフィック (アウトバウンド) も制限できるファイアウォール機能です。</p>
+<p class="image-container"><img alt="セキュリティグループイメージ画像" src="img/f6d4f9d7c7adac3d.png"></p>
+<p>個々のインスタンスごとに、インバウンド、アウトバウンドに対して下記の許可ルールを定義できます。<br> ルールはステートフルで扱われ、明示ルールが無い通信は拒否されます。</p>
+<ul>
+<li>インバウンド <ul>
+<li>プロトコル (TCP/UDP/ICMP)</li>
+<li>ポート範囲 (ポート番号の範囲)</li>
+<li>送信元 (アクセス元のIPアドレス)</li>
+</ul>
+</li>
+<li>アウトバウンド <ul>
+<li>プロトコル (TCP/UDP/ICMP)</li>
+<li>ポート範囲 (ポート番号の範囲)</li>
+<li>送信先 (アクセス先のIPアドレス)</li>
+</ul>
+</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="2. Amazon VPC (Virtual Private Cloud)" duration="0">
+        <p>クラウド内にお客様専用の <strong>プライベートアドレス</strong> の空間を構築します。<br> 社内ネットワークとインターネット VPN やキャリアの閉域網で接続できます。</p>
+<p class="image-container"><img alt="セキュリティグループのイメージ画像" src="img/e7ee49230460dc01.png"></p>
+<h3 is-upgraded>VPC とサブネットについて</h3>
+<p>1 つの VPC は、1 つのネットワークアドレス (CIDR) で定義します。<br> 1 つの VPC 内には複数のサブネットを作成することができます。<br> サブネットは特定のアベイラビリティゾーン内に配置します。</p>
+<p class="image-container"><img alt="アベイラビリティゾーンのイメージ画像" src="img/d15d660927621765.png"></p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>CIDR</p>
+</td><td colspan="1" rowspan="1"><p>IP アドレス数</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>xxx.xxx.xxx.xxx/16</p>
+</td><td colspan="1" rowspan="1"><p>65,531</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>xxx.xxx.xxx.xxx/20</p>
+</td><td colspan="1" rowspan="1"><p>4,091</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>xxx.xxx.xxx.xxx/24</p>
+</td><td colspan="1" rowspan="1"><p>251</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>xxx.xxx.xxx.xxx/28</p>
+</td><td colspan="1" rowspan="1"><p>11</p>
+</td></tr>
+</table>
+<p>各サブネットにおいて先頭の 4 IP アドレスと最後の 11 IP アドレスは AWS 側で確保されます。</p>
+<h3 is-upgraded>ルートテーブルについて</h3>
+<p>各サブネットはルートテーブルを持っています。<br> 設定を変更することでデータの流れを制御可能です。</p>
+<ul>
+<li>パブリックサブネット ルートテーブル: rtb-XXXXXXXX</li>
+</ul>
+<table>
+<tr><td colspan="1" rowspan="1"><p>送信先</p>
+</td><td colspan="1" rowspan="1"><p>ターゲット</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>10.0.0.0/16</p>
+</td><td colspan="1" rowspan="1"><p>local</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>0.0.0.0/0</p>
+</td><td colspan="1" rowspan="1"><p>igw-XXXXXXXX</p>
+</td></tr>
+</table>
+<p>IGW (インターネット ゲートウェイ) へのルーティングを設定すると、外部とのアクセスが可能になります。</p>
+<ul>
+<li>プライベートサブネット ルートテーブル: rtb-XXXXXXXX</li>
+</ul>
+<table>
+<tr><td colspan="1" rowspan="1"><p>送信先</p>
+</td><td colspan="1" rowspan="1"><p>ターゲット</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>10.0.0.0/16</p>
+</td><td colspan="1" rowspan="1"><p>local</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="ルートテーブルのイメージ画像" src="img/1128ebfc20bb12f3.png"></p>
+<h3 is-upgraded>VPC でのセキュリティーグループと NACL</h3>
+<p class="image-container"><img alt="セキュリティグループとNACLのイメージ画像" src="img/131a18b5f739a6cc.png"></p>
+<h3 is-upgraded>NACL (Network Access Control List)</h3>
+<ul>
+<li>個々の Subnet ごとにアクセス制御が可能</li>
+<li>Inbound, Outbound に対して下記の設定が可能 <ul>
+<li>Inbound <ul>
+<li>Port range (ポート番号)</li>
+<li>Source (アクセス元IPアドレス)</li>
+<li>Allow/Deny</li>
+</ul>
+</li>
+<li>Outbound <ul>
+<li>Port range (ポート番号)</li>
+<li>Destination (アクセス先IPアドレス)</li>
+<li>Allow/Deny</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>制御可能な項目はセキュリティーグループと同じで、ステートフル(SG)かステートレス(NACL)かの違いがあります。<br> NACL は本日は使いません。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="3. AWS IAM (Identity and Access Management)" duration="0">
+        <p>AWS操作をよりセキュアに行うための認証・認可の仕組み<br> AWS利用者の認証とアクセスポリシーを管理 • グループ、ユーザー、ロールで管理</p>
+<ul>
+<li>実行出来る操作を IAM ポリシー規定 • ユーザーごとに認証情報の設定が可能 <ul>
+<li>マネージメントコンソールにはユーザ名とパスワードを使用 さらに、MFA(多要素認証) の利用が推奨</li>
+<li>API にはアクセスキーとシークレットキーを使用</li>
+</ul>
+</li>
+</ul>
+<h2 is-upgraded>IAM ポリシーで必要最小限のみ付与</h2>
+<p class="image-container"><img alt="セキュリティグループとNACLのイメージ画像" src="img/272856f0316cbdc7.png"></p>
+<h2 is-upgraded>備考: MFA (多要素認証) で認証の安全性を高める</h2>
+<ul>
+<li>AWS アカウント (ルートアカウント) • ハードウェアトークンで保護 <ul>
+<li>トークンは金庫などで管理<br><img alt="セキュリティグループとNACLのイメージ画像" src="img/ede240b92d10cd5d.png"></li>
+</ul>
+</li>
+<li>IAMアカウント <ul>
+<li>個人ごとのアカウント</li>
+<li>仮想 MFA 対応のスマホアプリで保護<br><img alt="セキュリティグループとNACLのイメージ画像" src="img/f5ef86bb4c608fd9.png"></li>
+</ul>
+</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
