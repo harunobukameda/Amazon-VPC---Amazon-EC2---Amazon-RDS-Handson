@@ -90,7 +90,10 @@
 </td><td colspan="1" rowspan="1"><p>11</p>
 </td></tr>
 </table>
-<p>各サブネットにおいて先頭の 4 IP アドレスと最後の 1 IP アドレスは AWS 側で確保されます</p>
+<p>上記は払い出される IP アドレス数から、AWS の予約 IP 数を抜いた「ユーザーが利用できる IP 数」です。<br> 各サブネットにおいて先頭の 4 IP アドレスと最後の 1 IP アドレスは AWS 側で確保されます</p>
+<ul>
+<li>AWS &gt; ドキュメント &gt; Amazon VPC &gt; ユーザーガイド &gt; VPC とサブネットの概要 - <a href="https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing" target="_blank">IPv4 用の VPC とサブネットのサイズ設定</a></li>
+</ul>
 
 
       </google-codelab-step>
@@ -294,7 +297,49 @@
       </google-codelab-step>
     
       <google-codelab-step label="フェーズ1　- VPC コンソールにアクセス" duration="2">
-        
+        <p><strong>サービス</strong> をクリックして、表示されたメニューから <strong>ネットワーキングとコンテンツ配信</strong> をクリック、表示された <strong>VPC</strong> を選択します。</p>
+<p>VPC コンソールに画面遷移します。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/3107b94a1edac292.png"></p>
+<p>VPC コンソールが表示されたら、[VPC ウィザードを起動] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/e3cbebbd661c41c5.png"></p>
+<h2 is-upgraded>VPC ウィザード - Step1</h2>
+<p>VPC ウィザードは文字通り、画面の手順に沿ってクリックして進めていくと VPC が構築できる便利なウィザード機能です。<br> 以前は画面が遷移していく形でしたが、2022年4月現在はリニューアルして 1 ページで収まらないほど大きな画面になりました。全貌は以下の画像の通りですが、順番に設定していきます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/63c8c8c6855bee52.png"></p>
+<p>まず <strong>作成するリソース</strong> は「VPC、サブネットなど」を選択します。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/eeaa0dfac2718b35.png"></p>
+<p>次に、名前タグを設定します。「handsonyyyymmdd(今日の日付)」などの名前を入力してみてください。<br> 右側に表示された VPC やサブネット、ルートテーブル、インターネットゲートウェイ、エンドポイントなどの名前タグが動的に設定されます。<br> 以前のウィザードでは手入力だったので便利になりました。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/46b1531a7dbfa13f.png"></p>
+<p>本ハンズオンで作成する VPC のレンジは 10.0.0.0/16 にしますので、</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/23f9303d0e0e70a7.png"></p>
+<p>デフォルトで入力されている「10.0.0.0/16」のまま、次に進んでください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/857960f92e59df7.png"></p>
+<p>アベイラビリティゾーンは <strong>2</strong> のままで大丈夫です。AZ のカスタマイズから、どのアベイラビリティゾーンを利用するか決めることができます。本ハンズオンでは、AZ-a と AZ-c を利用します。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/7eab565e5ca04b7f.png"></p>
+<p>本ハンズオンでは、パブリックサブネットを二つ作ります。<br> それぞれ、10.0.0.0/24、10.0.1.0/24 のアドレス空間を利用しますので、</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/bbd22253cc683f04.png"></p>
+<p>ap-northeast-1a の IP アドレスを「10.0.0.0/24」に、ap-northeast-1c の IP アドレスを「10.0.1.0/24」と入力してください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/c38b1e654472679d.png"></p>
+<p>続いて、プライベートサブネットの IP アドレスも二つ作ります。<br> それぞれ、10.0.2.0/24、10.0.1.3/24 のアドレス空間を利用しますので、</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/2b46f9f5f6bbca44.png"></p>
+<p>ap-northeast-1a の IP アドレスを「10.0.2.0/24」に、ap-northeast-1c の IP アドレスを「10.0.3.0/24」と入力してください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/b067be6a8f94c9ad.png"></p>
+<p>NAT ゲートウェイは利用しません。<br> VPC エンドポイントも今回は利用しないので <strong>なし</strong> にしてください。<br> DNS オプションはどちらもチェックを入れてください。<br> [VPC を作成] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/6112ea1ae1ac3b07.png"></p>
+<p>プレビューにも表示されている通り VPC、サブネット、ルートテーブル、インターネットゲートウェイが作成されます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/f463d8d388335c4b.png"></p>
+<p>VPC が作成されたら [VPC を表示] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/fdc386abb3f602c8.png"></p>
+<aside class="special"><p> 操作する VPC をフィルタリングしておくことで、他の VPC を操作する間違いを防ぐことができます。 </p>
+</aside>
+<p>[VPC を表示] ボタンをクリックすると、作成された VPC の詳細画面に遷移するので、左のメニューペインににある <strong>VPC</strong> のリンクをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/fa31a6bb96ef9d61.png"></p>
+<p>左のメニューペインににある <strong>VPC でフィルタリング:</strong> のテキストボックスをクリックすると、候補が表示されますので、作成した VPC を選択してください。</p>
+<aside class="warning"><p> 既存のVPC と間違わないように注意:  VPC 作成後は表示されないケースもあるので、[F5] キーで画面更新していただくか、自分の VPC が特定できれば作業を割愛して OK です。 </p>
+</aside>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/4e0702194e878544.png"></p>
+<p>作成した VPC だけがフィルタリングされて表示されます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ecc987c584cb3b9e.png"></p>
+
 
       </google-codelab-step>
     
