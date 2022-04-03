@@ -27,43 +27,32 @@
                   environment="web"
                   feedback-link="https://github.com/otanikohei/Amazon-VPC—Amazon-EC2—Amazon-RDS-Handson">
     
-      <google-codelab-step label="はじめに" duration="5">
-        <p>Amazon Web Services (AWS) を利用して、セキュアでスケーラブルなウェブサービスの構築手順を体験できるハンズオンを実施いたします。<br> AWS を使ってより安全にサービスを運用する方法、ウェブサービスの規模に合わせて、柔軟にシステムを拡張する方法を体験できる内容です。<br> 本ハンズオンのドキュメントで掲載されているスクリーンキャプチャは 2022年03月時点のもので、現在の画面とは異なる場合がございます。予めご了承ください。</p>
-<h2 is-upgraded>【準備事項】</h2>
-<ul>
-<li>AWS を利用可能なネットワークに接続された PC (Windows, Mac OS, Linux等)</li>
-<li>事前に用意していただいた AWS アカウント</li>
-<li>SSH クライアント (Windows 環境では Teraterm を推奨)</li>
-<li>ブラウザ (Firefox もしくは Chrome を推奨)</li>
-</ul>
+      <google-codelab-step label="はじめに" duration="2">
+        <p class="image-container"><img alt="タイトル画像" src="img/3941f5ed4cfce84b.png"></p>
+<p>Amazon Web Services (AWS) を利用して、セキュアでスケーラブルなウェブサービスの構築手順を体験できるハンズオンを実施いたします。<br> AWS を使ってより安全にサービスを運用する方法、ウェブサービスの規模に合わせて、柔軟にシステムを拡張する方法を体験できる内容です。<br> 本ハンズオンのドキュメントで掲載されているスクリーンキャプチャは 2022年04月時点のもので、現在の画面とは異なる場合がございます。予めご了承ください。</p>
+<h2 is-upgraded>準備事項</h2>
+<h3 is-upgraded>インターネットに接続可能な PC</h3>
+<p><img alt="PC イメージ図" src="img/8a18f727de870aa1.png"><br> AWS を利用するにはインターネット接続が必要です。Windows、mac、Linux をご準備ください。本ハンズオン資料は mac にて作成しています。</p>
+<h3 is-upgraded>AWS アカウント</h3>
+<p><img alt="PC イメージ図" src="img/a06b78e541fcc9f.png"> AWS アカウントを事前にご準備ください。</p>
+<h3 is-upgraded>SSH クライアント</h3>
+<p><img alt="PC イメージ図" src="img/dfe7ab5eac0834e8.png"> mac は純正のターミナルや、iTerm をご利用ください。Windows 環境では Teraterm を推奨します。</p>
+<h3 is-upgraded>ブラウザ</h3>
+<p><img alt="PC イメージ図" src="img/67c5707b04520011.png"> Firefox もしくは Google Chrome を推奨します。本ハンズオン資料は Google Chrome にて検証しています。</p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="座学" duration="0">
-        <h2 is-upgraded>AWS のセキュリティやスケーラビリティを 高める機能・サービス</h2>
+      <google-codelab-step label="座学 - セキュリティグループ" duration="2">
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 1/6</strong><img alt="PC イメージ図" src="img/e251e418ca5598ae.png"> インターネットからのトラフィック (インバウンド) をブロックするだけでなく、EC2 からのトラフィック (アウトバウンド) も制限できるファイアウォール機能です。 <img alt="セキュリティグループイメージ画像" src="img/38e0903b91e56bfd.png"> 個々のインスタンスごとに、インバウンド、アウトバウンドに対して下記の許可ルールを定義できます。ルールはステートフルで扱われ、明示ルールが無い通信は拒否されます。</p>
 <ul>
-<li><strong>セキュリティグループ</strong> = ファイアウォール</li>
-<li><strong>Amazon VPC</strong> = プライベートな仮想ネットワーク</li>
-<li><strong>AWS IAM</strong> = AWS リソースへのアクセス権限の管理</li>
-</ul>
-<p class="image-container"><img alt="ファイアウォール" src="img/dc24275f04163482.png"></p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="1.セキュリティグループ" duration="0">
-        <p>インターネットからのトラフィック (インバウンド) をブロックするだけでなく、Amazon EC2 インスタンスからのトラフィック (アウトバウンド) も制限できるファイアウォール機能です。</p>
-<p class="image-container"><img alt="セキュリティグループイメージ画像" src="img/f6d4f9d7c7adac3d.png"></p>
-<p>個々のインスタンスごとに、インバウンド、アウトバウンドに対して下記の許可ルールを定義できます。<br> ルールはステートフルで扱われ、明示ルールが無い通信は拒否されます。</p>
-<ul>
-<li>インバウンド <ul>
+<li><strong>インバウンド</strong><ul>
 <li>プロトコル (TCP/UDP/ICMP)</li>
 <li>ポート範囲 (ポート番号の範囲)</li>
 <li>送信元 (アクセス元のIPアドレス)</li>
 </ul>
 </li>
-<li>アウトバウンド <ul>
+<li><strong>アウトバウンド</strong><ul>
 <li>プロトコル (TCP/UDP/ICMP)</li>
 <li>ポート範囲 (ポート番号の範囲)</li>
 <li>送信先 (アクセス先のIPアドレス)</li>
@@ -74,12 +63,16 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="2. Amazon VPC (Virtual Private Cloud)" duration="0">
-        <p>クラウド内にお客様専用の <strong>プライベートアドレス</strong> の空間を構築します。<br> 社内ネットワークとインターネット VPN やキャリアの閉域網で接続できます。</p>
-<p class="image-container"><img alt="セキュリティグループのイメージ画像" src="img/e7ee49230460dc01.png"></p>
-<h3 is-upgraded>VPC とサブネットについて</h3>
-<p>1 つの VPC は、1 つのネットワークアドレス (CIDR) で定義します。<br> 1 つの VPC 内には複数のサブネットを作成することができます。<br> サブネットは特定のアベイラビリティゾーン内に配置します。</p>
-<p class="image-container"><img alt="アベイラビリティゾーンのイメージ画像" src="img/d15d660927621765.png"></p>
+      <google-codelab-step label="座学 - Amazon VPC (Virtual Private Cloud)" duration="2">
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 2/6</strong><img alt="PC イメージ図" src="img/3a54948ea72e5cb9.png"> VPC はプライベートな仮想ネットワークサービスです。VPC  を使うと AWS クラウド内にお客様専用のプライベートアドレスの空間を構築できます。<br> 社内ネットワークとインターネット VPN やキャリアの閉域網で接続ができます。</p>
+<p class="image-container"><img alt="セキュリティグループのイメージ画像" src="img/97d7464e218aa3bf.png"></p>
+<h2 is-upgraded>VPCとサブネットについて</h2>
+<ul>
+<li>1 つの VPC は、1 つのネットワークアドレス (CIDR) で定義します。</li>
+<li>1 つの VPC 内には、複数のサブネットを作成することができます。</li>
+<li>サブネットは特定のアベイラビリティゾーン内に配置します。</li>
+</ul>
+<p class="image-container"><img alt="セキュリティグループのイメージ画像" src="img/1dd5c3c8310c0881.png"></p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>CIDR</p>
 </td><td colspan="1" rowspan="1"><p>IP アドレス数</p>
@@ -97,13 +90,16 @@
 </td><td colspan="1" rowspan="1"><p>11</p>
 </td></tr>
 </table>
-<p>各サブネットにおいて先頭の 4 IP アドレスと最後の 11 IP アドレスは AWS 側で確保されます。</p>
-<h3 is-upgraded>ルートテーブルについて</h3>
-<p>各サブネットはルートテーブルを持っています。<br> 設定を変更することでデータの流れを制御可能です。</p>
+<p>各サブネットにおいて先頭の 4 IP アドレスと最後の 1 IP アドレスは AWS 側で確保されます</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="座学 - ルートテーブル" duration="1">
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 3/6</strong><img alt="ルートテーブルのアイコン" src="img/7f8506b356d8a160.png"></p>
+<p>各サブネットにはルートテーブルがアタッチされます。<br> ルートテーブルの設定を変更することでデータの流れを制御できます。</p>
 <ul>
-<li>パブリックサブネット ルートテーブル: rtb-XXXXXXXX</li>
-</ul>
-<table>
+<li>パブリックサブネット<br> ルートテーブル: rtb-XXXXXXXX <table>
 <tr><td colspan="1" rowspan="1"><p>送信先</p>
 </td><td colspan="1" rowspan="1"><p>ターゲット</p>
 </td></tr>
@@ -114,11 +110,12 @@
 </td><td colspan="1" rowspan="1"><p>igw-XXXXXXXX</p>
 </td></tr>
 </table>
-<p>IGW (インターネット ゲートウェイ) へのルーティングを設定すると、外部とのアクセスが可能になります。</p>
-<ul>
-<li>プライベートサブネット ルートテーブル: rtb-XXXXXXXX</li>
+</li>
 </ul>
-<table>
+<aside class="special"><p> ルーティングテーブルに IGW (インターネット ゲートウェイ) へのルーティングを設定すると、外部とのアクセスが可能になります。 </p>
+</aside>
+<ul>
+<li>プライベートサブネット<br> ルートテーブル: rtb-XXXXXXXX <table>
 <tr><td colspan="1" rowspan="1"><p>送信先</p>
 </td><td colspan="1" rowspan="1"><p>ターゲット</p>
 </td></tr>
@@ -126,47 +123,59 @@
 </td><td colspan="1" rowspan="1"><p>local</p>
 </td></tr>
 </table>
+</li>
+</ul>
 <p class="image-container"><img alt="ルートテーブルのイメージ画像" src="img/1128ebfc20bb12f3.png"></p>
-<h3 is-upgraded>VPC でのセキュリティーグループと NACL</h3>
-<p class="image-container"><img alt="セキュリティグループとNACLのイメージ画像" src="img/131a18b5f739a6cc.png"></p>
-<h3 is-upgraded>NACL (Network Access Control List)</h3>
-<ul>
-<li>個々の Subnet ごとにアクセス制御が可能</li>
-<li>Inbound, Outbound に対して下記の設定が可能 <ul>
-<li>Inbound <ul>
-<li>Port range (ポート番号)</li>
-<li>Source (アクセス元IPアドレス)</li>
-<li>Allow/Deny</li>
-</ul>
-</li>
-<li>Outbound <ul>
-<li>Port range (ポート番号)</li>
-<li>Destination (アクセス先IPアドレス)</li>
-<li>Allow/Deny</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>制御可能な項目はセキュリティーグループと同じで、ステートフル(SG)かステートレス(NACL)かの違いがあります。<br> NACL は本日は使いません。</p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="3. AWS IAM (Identity and Access Management)" duration="0">
-        <p>AWS操作をよりセキュアに行うための認証・認可の仕組み<br> AWS利用者の認証とアクセスポリシーを管理 • グループ、ユーザー、ロールで管理</p>
+      <google-codelab-step label="座学 - NACL (Network Access Control List)" duration="1">
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 4/6</strong><img alt="ルートテーブルのイメージ画像" src="img/33455e4245ef96fc.png"></p>
+<aside class="special"><p> 本日のハンズオンでは、NACL は使いません。 </p>
+</aside>
+<p>制御可能な項目はセキュリティーグループと同じで、ステートフル (SG) かステートレス (NACL) かの違いがあります。</p>
+<p class="image-container"><img alt="セキュリティグループとNACLのイメージ画像" src="img/131a18b5f739a6cc.png"></p>
 <ul>
-<li>実行出来る操作を IAM ポリシー規定 • ユーザーごとに認証情報の設定が可能 <ul>
-<li>マネージメントコンソールにはユーザ名とパスワードを使用 さらに、MFA(多要素認証) の利用が推奨</li>
-<li>API にはアクセスキーとシークレットキーを使用</li>
+<li>個々のサブネットごとにアクセス制御が可能</li>
+<li>インバウンド、アウトバウンドに対して下記の設定が可能</li>
 </ul>
-</li>
+<h2 is-upgraded>インバウンド</h2>
+<ul>
+<li>Port range (ポート番号)</li>
+<li>Source (アクセス元 IP アドレス)</li>
+<li>Allow/Deny</li>
+</ul>
+<h2 is-upgraded>アウトバウンド</h2>
+<ul>
+<li>Port range (ポート番号)</li>
+<li>Destination (アクセス先 IP アドレス)</li>
+<li>Allow/Deny</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="座学 - AWS IAM" duration="1">
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 5/6</strong></p>
+<p>AWS 自体のリソース操作をよりセキュアに行うための認証・認可の仕組みです。<br> AWS 利用者の認証とアクセスポリシーを「グループ」「ユーザー」「ロール」で管理します。</p>
+<ul>
+<li>実行出来る操作を IAM ポリシーで設定</li>
+<li>ユーザーごとに認証情報の設定が可能</li>
+<li>マネージメントコンソールにはユーザ名とパスワードを使用 さらに、MFA (多要素認証) の利用が推奨</li>
+<li>API にはアクセスキーとシークレットキーを使用</li>
 </ul>
 <h2 is-upgraded>IAM ポリシーで必要最小限のみ付与</h2>
 <p class="image-container"><img alt="セキュリティグループとNACLのイメージ画像" src="img/272856f0316cbdc7.png"></p>
-<h2 is-upgraded>備考: MFA (多要素認証) で認証の安全性を高める</h2>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="座学 - 備考 - MFA (多要素認証) で認証の安全性を高める" duration="1">
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 6/6</strong></p>
 <ul>
-<li>AWS アカウント (ルートアカウント) • ハードウェアトークンで保護 <ul>
+<li>AWS アカウント (ルートアカウント) <ul>
+<li>ハードウェアトークンで保護</li>
 <li>トークンは金庫などで管理<br><img alt="セキュリティグループとNACLのイメージ画像" src="img/ede240b92d10cd5d.png"></li>
 </ul>
 </li>
@@ -177,6 +186,115 @@
 </li>
 </ul>
 
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ハンズオン" duration="1">
+        <h2 is-upgraded>ハンズオンの流れ</h2>
+<h3 is-upgraded>フェーズ 1</h3>
+<p>WordPress サイトを最小構成でスタートする。</p>
+<ul>
+<li>サーバー 1 台構成</li>
+</ul>
+<p class="image-container"><img alt="セキュリティグループとNACLのイメージ画像" src="img/75eebb56f56564b0.png"></p>
+<h3 is-upgraded>フェーズ  2</h3>
+<p>スケールできるアーキテクチャに移行する準備をする。</p>
+<ul>
+<li>Web + DB (サーバー 2 台構成)</li>
+</ul>
+<p class="image-container"><img alt="セキュリティグループとNACLのイメージ画像" src="img/b232a4f9cb351d8e.png"></p>
+<h3 is-upgraded>フェーズ 3</h3>
+<p>Web サーバーがスケールできる構成にする。</p>
+<ul>
+<li>LB + Web x 2 + DB (サーバー 3 台構成)</li>
+</ul>
+<p class="image-container"><img alt="セキュリティグループとNACLのイメージ画像" src="img/b6b6ca4f215eed77.png"></p>
+<h3 is-upgraded>オプション</h3>
+<p>DB サーバーを冗長化された構成にする。</p>
+<ul>
+<li>LB + Web x 2 + DB x 2 (サーバー 4 台構成)</li>
+</ul>
+<p class="image-container"><img alt="セキュリティグループとNACLのイメージ画像" src="img/45c252596ed28a18.png"></p>
+<h3 is-upgraded>最終</h3>
+<p>DB サーバーを冗長化された構成にする。</p>
+<ul>
+<li>LB + Web x 2 + DB x 2 (サーバー 4 台構成)</li>
+</ul>
+<p class="image-container"><img alt="セキュリティグループとNACLのイメージ画像" src="img/14d586d192b1f703.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="無料利用枠について" duration="0">
+        <p>【補足】無料利用枠 (個人アカウントでご参加の方向け)</p>
+<aside class="warning"><p> 注意: IAM ユーザーではなく、個人のアカウントでご参加されている方への補足 </p>
+</aside>
+<p>ハンズオンの一部は AWS 無料利用枠の範囲で進めることができます。また、ハンズオンが終了した後で、作成したリソースを全て削除すると課金はされません。</p>
+<h2 is-upgraded>&lt;1年間、以下範囲が毎月無料で利用できます&gt;</h2>
+<ul>
+<li>EC2: Windows/Linux/RedHat など の t2.micro インスタンスを合計約 1ヶ月分</li>
+<li>EBS: 合計 30GB の General Purpose (SSD) と 1GB のスナップショットを合計約 1ヶ月分</li>
+<li>RDS: MySQL/PostgreSQL など を 20GB まで db.t2.micro インスタンスを合計約 1ヶ月分 (シングルAZ構成限定)</li>
+<li>ELB: 合計約 1ヶ月分、15GB の処理 トラフィック:インターネットへのデータ送信 15GB</li>
+</ul>
+<p><a href="https://aws.amazon.com/jp/free/" target="_blank">AWS 無料利用枠</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="始める前に" duration="2">
+        <h2 is-upgraded>スクリーンキャプチャに表示されている情報について</h2>
+<p>リソースの各種 ID (vpc-XXXXXX、subnet-XXXXXX、i-XXXXXX など) は AWS 全体で ユニークとなっており、スクリーンキャプチャに記載の ID と実際に操作されて作成される ID は各自で異なります。<br> Elastic IP (固定IPアドレス) なども各自で異なります。<br> 画面のデザイン等が変更されて実際とは異なっていることがあります。画面の項目名等から判断して操作下さい。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ1　- サインイン" duration="2">
+        <h2 is-upgraded>サーバー 1 台構成</h2>
+<p>最小構成で最も低コストですが、拡張性が低く、性能を一定以上上げることができません。</p>
+<p class="image-container"><img alt="セキュリティグループとNACLのイメージ画像" src="img/75eebb56f56564b0.png"></p>
+<h3 is-upgraded>拡張性: 低</h3>
+<p>拡張するには 1 台のインスタンスタイプを大きくします。</p>
+<h3 is-upgraded>冗長性: 低</h3>
+<p>インスタンスが稼働する物理サーバが壊れると一旦停止になりますが、同じアベイラビリティゾーン内の問題の無いサーバですぐ起動できます。</p>
+<h2 is-upgraded>AWSマネジメントコンソールへのログイン</h2>
+<p>ログイン方法は利用するアカウント種類によって異なります。</p>
+<h4 is-upgraded>IAM アカウントを御利用の場合</h4>
+<aside class="special"><p> 通常はこちらです。 </p>
+</aside>
+<h4 is-upgraded>会社等で、IAM アカウントを本ハンズオン用に準備されているケース</h4>
+<p>事前にログイン情報が記載された csv ファイル (user1.csv 等) を確認してください。そのファイルに、ログイン用の URL、User Name、パスワードが記載されていますので、 それに従ってログインしてください。</p>
+<h4 is-upgraded>AWS のルートアカウント(個人アカウント)を御利用の場合</h4>
+<p><a href="https://console.aws.amazon.com" target="_blank">https://console.aws.amazon.com</a> にブラウザでアクセスして、アカウントの E メールアドレスとパスワードでログインしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/d1cd4612453015a7.png"></p>
+<p>サインインするとホーム画面が表示されます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/d4157c78c9a47794.png"></p>
+<p>左上の AWS アイコンをクリックするとホームに戻ります。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ad0468f0deffadbf.png"></p>
+<p>サービスをクリックすると、EC2 や RDS といった各種 AWS サービス名へのリンクにアクセスできます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/bea4d4153088a88b.png"></p>
+<p>テキストボックスにサービス名を入力することで候補が表示されるので便利です。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/d82a9d6718487459.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ1　- リージョンを変更" duration="2">
+        <h2 is-upgraded>リージョンを変更する (シンガポール)</h2>
+<p>AWS マネジメントコンソールに初めてサインインすると、「バージニア北部」リージョンが表示されます。練習で、シンガポールリージョンに移動してみたいと思います。<br> このリージョン名をクリックして候補から、アジアパシフィック (シンガポール) ap-southeast-1 を選択してください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/8cb6a689cdd20c15.png"></p>
+<h2 is-upgraded>リージョンを変更する (シドニー)</h2>
+<p>画面遷移して「シンガポール」リージョンが表示されたら、次は「シドニー」リージョンに移動してみてください。「シンガポール」をクリックし、「アジアパシフィック (シドニー) ap-southeast-2」を選択してください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/7af25710cb584a24.png"></p>
+<h2 is-upgraded>リージョンを変更する (東京)</h2>
+<p>リージョンの移動は完璧でしょうか。<br> それでは、本日構築する「東京」リージョンに移動してください。「シドニー」をクリックし、「アジアパシフィック (東京) ap-northeast-1」を選択してください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/f5f2374bd72214b4.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ1　- VPC コンソールにアクセス" duration="2">
+        
 
       </google-codelab-step>
     
