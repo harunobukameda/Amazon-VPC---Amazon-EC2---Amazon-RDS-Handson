@@ -70,7 +70,7 @@
 <ul>
 <li>1 つの VPC は、1 つのネットワークアドレス (CIDR) で定義します。</li>
 <li>1 つの VPC 内には、複数のサブネットを作成することができます。</li>
-<li>サブネットは特定のアベイラビリティゾーン内に配置します。</li>
+<li>サブネットは特定のアベイラビリティーゾーン内に配置します。</li>
 </ul>
 <p class="image-container"><img alt="セキュリティグループのイメージ画像" src="img/1dd5c3c8310c0881.png"></p>
 <table>
@@ -259,7 +259,7 @@
 <h3 is-upgraded>拡張性: 低</h3>
 <p>拡張するには 1 台のインスタンスタイプを大きくします。</p>
 <h3 is-upgraded>冗長性: 低</h3>
-<p>インスタンスが稼働する物理サーバが壊れると一旦停止になりますが、同じアベイラビリティゾーン内の問題の無いサーバですぐ起動できます。</p>
+<p>インスタンスが稼働する物理サーバが壊れると一旦停止になりますが、同じアベイラビリティーゾーン内の問題の無いサーバですぐ起動できます。</p>
 <h2 is-upgraded>AWSマネジメントコンソールへのログイン</h2>
 <p>ログイン方法は利用するアカウント種類によって異なります。</p>
 <h4 is-upgraded>IAM アカウントを御利用の場合</h4>
@@ -296,24 +296,29 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="フェーズ1　- VPC コンソールにアクセス" duration="2">
-        <p><strong>サービス</strong> をクリックして、表示されたメニューから <strong>ネットワーキングとコンテンツ配信</strong> をクリック、表示された <strong>VPC</strong> を選択します。</p>
+      <google-codelab-step label="フェーズ1　- VPC" duration="2">
+        <h2 is-upgraded>VPC コンソールにアクセス</h2>
+<p>左上の <strong>サービス</strong> をクリックして、表示されたメニューから <strong>ネットワーキングとコンテンツ配信</strong> をクリック、表示された <strong>VPC</strong> を選択します。</p>
 <p>VPC コンソールに画面遷移します。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/3107b94a1edac292.png"></p>
+<h2 is-upgraded>VPC ウィザードで VPC コンポーネントを作成する</h2>
 <p>VPC コンソールが表示されたら、[VPC ウィザードを起動] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/e3cbebbd661c41c5.png"></p>
-<h2 is-upgraded>VPC ウィザード - Step1</h2>
+<h3 is-upgraded>VPC ウィザード - 全貌</h3>
 <p>VPC ウィザードは文字通り、画面の手順に沿ってクリックして進めていくと VPC が構築できる便利なウィザード機能です。<br> 以前は画面が遷移していく形でしたが、2022年4月現在はリニューアルして 1 ページで収まらないほど大きな画面になりました。全貌は以下の画像の通りですが、順番に設定していきます。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/63c8c8c6855bee52.png"></p>
 <p>まず <strong>作成するリソース</strong> は「VPC、サブネットなど」を選択します。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/eeaa0dfac2718b35.png"></p>
+<h3 is-upgraded>VPC ウィザード - 名前タグ</h3>
 <p>次に、名前タグを設定します。「handsonyyyymmdd(今日の日付)」などの名前を入力してみてください。<br> 右側に表示された VPC やサブネット、ルートテーブル、インターネットゲートウェイ、エンドポイントなどの名前タグが動的に設定されます。<br> 以前のウィザードでは手入力だったので便利になりました。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/46b1531a7dbfa13f.png"></p>
+<h3 is-upgraded>VPC ウィザード - IPv4 CIDR ブロック</h3>
 <p>本ハンズオンで作成する VPC のレンジは 10.0.0.0/16 にしますので、</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/23f9303d0e0e70a7.png"></p>
 <p>デフォルトで入力されている「10.0.0.0/16」のまま、次に進んでください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/857960f92e59df7.png"></p>
-<p>アベイラビリティゾーンは <strong>2</strong> のままで大丈夫です。AZ のカスタマイズから、どのアベイラビリティゾーンを利用するか決めることができます。本ハンズオンでは、AZ-a と AZ-c を利用します。</p>
+<h3 is-upgraded>VPC ウィザード - アベイラビリティーゾーン</h3>
+<p>アベイラビリティーゾーンは <strong>2</strong> のままで大丈夫です。AZ のカスタマイズから、どのアベイラビリティーゾーンを利用するか決めることができます。本ハンズオンでは、AZ-a と AZ-c を利用します。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/7eab565e5ca04b7f.png"></p>
 <p>本ハンズオンでは、パブリックサブネットを二つ作ります。<br> それぞれ、10.0.0.0/24、10.0.1.0/24 のアドレス空間を利用しますので、</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/bbd22253cc683f04.png"></p>
@@ -323,12 +328,14 @@
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/2b46f9f5f6bbca44.png"></p>
 <p>ap-northeast-1a の IP アドレスを「10.0.2.0/24」に、ap-northeast-1c の IP アドレスを「10.0.3.0/24」と入力してください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/b067be6a8f94c9ad.png"></p>
+<h3 is-upgraded>VPC ウィザード - NAT ゲートウェイ、VPC エンドポイント</h3>
 <p>NAT ゲートウェイは利用しません。<br> VPC エンドポイントも今回は利用しないので <strong>なし</strong> にしてください。<br> DNS オプションはどちらもチェックを入れてください。<br> [VPC を作成] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/6112ea1ae1ac3b07.png"></p>
 <p>プレビューにも表示されている通り VPC、サブネット、ルートテーブル、インターネットゲートウェイが作成されます。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/f463d8d388335c4b.png"></p>
 <p>VPC が作成されたら [VPC を表示] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/fdc386abb3f602c8.png"></p>
+<h3 is-upgraded>ウィザードで作成された　VPC を確認</h3>
 <aside class="special"><p> 操作する VPC をフィルタリングしておくことで、他の VPC を操作する間違いを防ぐことができます。 </p>
 </aside>
 <p>[VPC を表示] ボタンをクリックすると、作成された VPC の詳細画面に遷移するので、左のメニューペインににある <strong>VPC</strong> のリンクをクリックしてください。</p>
@@ -339,6 +346,18 @@
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/4e0702194e878544.png"></p>
 <p>作成した VPC だけがフィルタリングされて表示されます。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ecc987c584cb3b9e.png"></p>
+<aside class="special"><p> メニューペインとの境界線にある ◀︎ アイコンをクリックすると、メニューペインを非表示にして操作画面を大きく表示できます。▶︎ アイコンをクリックすると、メニューペインを再表示できます。 </p>
+</aside>
+<p> 先ほど作成した VPC が存在するか (正しく絞り込めているか) を確認してください。   この VPC の IPv4 CIDR が 10.0.0.0/16 であることを確認してください。 </p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/c4078b9ce6da5fae.png"></p>
+<h3 is-upgraded>ウィザードで作成されたサブネットを確認</h3>
+<p>左のメニューペインにあるサブネットをクリックします。<br> サブネット一覧が表示されますので、AZ-a の名前が記載されたリソースにチェックを入れてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/fb60606aaea34ced.png"></p>
+<p>ページ下部のペインに詳細が表示されますので、アベイラビリティゾーンが ap-northeast-1a であること、IPv4 CIDR が 10.0.0.0/24 であることを確認してください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/4a0c4b7a4df85ced.png"></p>
+<h3 is-upgraded>ウィザードで作成されたルートテーブルを確認</h3>
+<p>詳細ペインで、<strong>ルートテーブル</strong> のタブをクリックしてください。<br> VPC のネットワークアドレス 10.0.0.0/16 のターゲットが local に、 デフォルトルートの 0.0.0.0/0 のターゲットがインターネットゲートウェイ (igw-XXXX) になっており、インターネットと通信できる設定になっています。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/61a06a6bb3612364.png"></p>
 
 
       </google-codelab-step>
