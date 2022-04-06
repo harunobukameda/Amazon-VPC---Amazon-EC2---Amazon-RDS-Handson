@@ -362,6 +362,335 @@
 
       </google-codelab-step>
     
+      <google-codelab-step label="フェーズ1 - セッションマネージャー" duration="0">
+        <h2 is-upgraded>IAM ロールを作成する</h2>
+<p>EC2 インスタンスには、Linux OS の場合は SSH で、Windows OS の場合は RDP で接続しますが、本ハンズオンでは SSH ポートを開放せずに AWS Systems Manager のセッションマネージャー経由で接続をします。</p>
+<aside class="special"><p> セッションマネージャーを利用するには、IAM ロールが必要です。   </p>
+</aside>
+<p><strong>サービス</strong> から、<strong>セキュリティ、ID、およびコンプライアンス</strong> をクリックし、<strong>IAM</strong> を選択します。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/3b1ee63875870db7.png"></p>
+<p>IAM コンソールに画面遷移したら、左側のメニューメインから <strong>ロール</strong> をクリックします。<br> ロール画面に遷移したら [<strong>ロールを作成</strong>] ボタンをクリックします。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/4ec4284ab7947d2f.png"></p>
+<p>信頼されたエンティティタイプが <strong>AWS のサービス</strong> が選択されていること、ユースケースは <strong>EC2</strong> が選択されていることを確認して、[<strong>次へ</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/c934f1d44072eb3a.png"></p>
+<p><strong>許可を追加</strong> 画面に推移するので、テキストボックスに <code>AmazonSSMManagedInstanceCore</code> を入力し、表示された <strong>AmazonSSMManagedInstanceCore</strong> のチェックボックスにチェックを入れて、[<strong>次へ</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/b4e60d7b8abc5e79.png"></p>
+<p><strong>ロール名</strong> には識別しやすい任意のロール名を入力してください。<br> ここでは、<code>handson-ec2-role</code> とします。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/e3e3ae1145e5417a.png"></p>
+<p>最下部まで進み、[<strong>ロールを作成</strong>] ボタンをクリックします。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/fa9494d99b34627e.png"></p>
+<p>ロールが作成されたら、本ロールを SSM Agent が利用できるように設定します。<br> テキストボックスにロール名を入力し、ENTER キーを押下します。<br> ロールが表示されたら、リンクをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/bf5f57824133acf7.png"></p>
+<p>ロールの詳細画面に遷移したら、[<strong>信頼関係</strong>] タブをクリックし、[<strong>信頼ポリシーを編集</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/56f9a66c1b8b91cd.png"></p>
+<p>以下のような形でポリシーが表示されるので、</p>
+<pre><code>{
+    &#34;Version&#34;: &#34;2012-10-17&#34;,
+    &#34;Statement&#34;: [
+        {
+            &#34;Effect&#34;: &#34;Allow&#34;,
+            &#34;Principal&#34;: {
+                &#34;Service&#34;: &#34;ec2.amazonaws.com&#34;
+            },
+            &#34;Action&#34;: &#34;sts:AssumeRole&#34;
+        }
+    ]
+}
+</code></pre>
+<p><code>	"Service": ["ec2.amazonaws.com","ssm.amazonaws.com"]</code> に書き換えてください。</p>
+<pre><code>{
+	&#34;Version&#34;: &#34;2012-10-17&#34;,
+	&#34;Statement&#34;: [
+		{
+			&#34;Effect&#34;: &#34;Allow&#34;,
+			&#34;Principal&#34;: {
+				&#34;Service&#34;: [&#34;ec2.amazonaws.com&#34;,&#34;ssm.amazonaws.com&#34;]
+			},
+			&#34;Action&#34;: &#34;sts:AssumeRole&#34;
+		}
+	]
+}
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ1 - EC2 インスタンスの作成" duration="0">
+        <h2 is-upgraded>EC2 コンソールを開く</h2>
+<p>左上のサービスボタンをクリックして、コンピューティングから EC2 を選択してください。<br> テキストボックスに入れていただいても候補が表示されます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ee9715accd89672e.png"></p>
+<p>EC2 コンソールに画面遷移したら [<strong>インスタンスを起動</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/61e7efa4ae81ea2d.png"></p>
+<p>[インスタンスを起動] のボタンが展開されるのでクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/fccb4785e61e5e0b.png"></p>
+<h2 is-upgraded>ステップ1: Amazon マシンイメージ(AMI)</h2>
+<p>本ハンズオンでは、Amazon Linux 2022 の AMI を利用します。<br> テキストボックスに以下 AMI ID を入力して、ENTER キーをクリックしてください。</p>
+<pre><code>AMI 名:
+al2022-ami-2022.0.20220315.0-kernel-5.15-x86_64
+AMI ID:
+ami-082c70eb5ed5441a1
+</code></pre>
+<p>左側のペインで <strong>コミュニティ AMI (1)</strong> をクリックして、左側の詳細ペインに表示された [<strong>選択</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/4c0fdaed74b15666.png"></p>
+<h2 is-upgraded>ステップ2: インスタンスタイプの選択</h2>
+<p>インスタンスタイプが <strong>t2.micro</strong> であることを確認して、[<strong>次のステップ:インスタンスの詳細の設定</strong>] ボタンをクリックしてください。</p>
+<aside class="special"><p> t2.micro は無料利用枠でご利用いただけます。 </p>
+</aside>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/cf0e7a2c217ee3c7.png"></p>
+<h2 is-upgraded>ステップ３: インスタンスタイプの詳細の設定</h2>
+<p>このページでは、インスタンスの詳細設定を行います。<br> ネットワークで、ご自身で作成された VPC を選択してください。<br> ネットワークにて VPC を選択すると、サブネットの項目が「選択した VPC でフィルタリング」されます。<br> 10.0.0.0/24 に設定したサブネットを選択してください。<br> 自動割り当てパブリック IP は有効にしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/5f926d6a08927e0a.png"></p>
+<aside class="special"><p> どちらのパブリックサブネットが 10.0.0.0/24 か、わからない場合は、新しいタブ (別ウィンドウ) で VPC コンソールを開き、サブネットから Subnet ID を確認してください。 </p>
+</aside>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/96376ec248ed708a.png"></p>
+<p>中断にあるロールは、先の手順で作成したロールを選択してください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/343343f3df6ebd74.png"></p>
+<p>ページ下部まで進み、ユーザーデータに以下をコピペしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/341e937d301e8925.png"></p>
+<p>ユーザーデータを流し込んだら、[<strong>次のステップ:ストレージの追加</strong>] ボタンをクリックしてください。</p>
+<pre><code>#!/bin/bash
+dnf -y update
+# SELinux 無効化
+setenforce 0
+# タイムゾーンを東京に変更
+timedatectl set-timezone Asia/Tokyo
+localectl set-locale LANG=ja_JP.utf8
+# SSM Agent インストール
+dnf install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+systemctl enable amazon-ssm-agent
+systemctl start amazon-ssm-agent
+# Nginx インストール
+dnf install -y nginx.x86_64
+
+# php インストール
+dnf install -y php
+dnf install -y php-mbstring php-devel php-gd php-pdo php-xml php-mysqlnd php-json
+
+# PHP FastCGI インストール
+dnf install -y php-fpm
+#php-fpm 設定変更
+sed -i -e &#34;s/user = apache/user = nginx/g&#34; /etc/php-fpm.d/www.conf
+sed -i -e &#34;s/group = apache/group = nginx/g&#34; /etc/php-fpm.d/www.conf
+systemctl start php-fpm.service
+# mariadb インストール
+dnf install -y mariadb105-server
+# MySQL (MariaDB) インストール
+sudo systemctl start mariadb
+# WordPress インストール
+cd /tmp
+wget https://ja.wordpress.org/latest-ja.tar.gz
+tar -xzf latest-ja.tar.gz
+mv wordpress /usr/share/nginx/html
+chown -R nginx. /usr/share/nginx/html
+
+# WordPress ディレクトリとフォルダーの権限設定
+find /usr/share/nginx/html/wordpress -type d -exec chmod 705 {} +
+find /usr/share/nginx/html/wordpress -type f -exec chmod 604 {} +
+
+# Nginx スタート
+systemctl enable nginx.service
+systemctl start nginx.service
+</code></pre>
+<h2 is-upgraded>ステップ4: ストレージの追加</h2>
+<p>選択した AMI は、8GB のストレージを利用します。<br> また、汎用 SSD (gp3) が選択されます。<br> ストレージは、特に変更せずに、次に進みます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/85948b230e4f6616.png"></p>
+<h2 is-upgraded>ステップ5: タグの追加</h2>
+<p>インスタンスを区別できるようにタグに名前を設定します。<br> IAM ユーザを利用している場合、他ユーザと区別が付くように -user1 等ユーザ名を付けると良いでしょう。</p>
+<p>ここでは、<code>handson-ec2-wordpress</code> とします。<br> □ <strong>インスタンス</strong> と □ <strong>ボリューム</strong> と □ <strong>ネットワークインターフェイス</strong> のチェックボックスにチェックを入れると、それぞれのリソースに名前タグが設定されます。<br> [<strong>次のステップ:セキュリティグループの設定</strong>] をクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/db6d73d24e11072f.png"></p>
+<h2 is-upgraded>ステップ6: セキュリティグループの設定</h2>
+<p><strong>新しいセキュリティグループを作成する</strong> のオプションボタンにチェックが入っていることを確認してください。<br> セキュリティグループ名と説明は任意の名称を設定してください。本ハンズオンでは、<code>web-sg</code> としました。<br><strong>タイプ</strong> を「SSH」から「HTTP」に変更してください。<br> 下部に警告メッセージが表示されますが、セッションマネージャー経由で接続するので問題ありません。<br><strong>ソース</strong> を「任意の場所」にしたら [<strong>確認と作成</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/32132f461f1e4135.png"></p>
+<h2 is-upgraded>ステップ6: インスタンス作成の確認</h2>
+<p>確認画面が表示されます。内容確認して間違えなければ [<strong>起動</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/c014b8392aa16c97.png"></p>
+<p>キーペアを指定する画面になります。セッションマネージャーを利用するため、本ハンズオンでは利用しません。<br> [<strong>キーペアなしで続行</strong>] を選択し、チェックボックスにチェックを入れて、[<strong>インスタンスの作成</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/99f131c3bc5ce652.png"></p>
+<p>EC2 インスタンスの作成が始まりました。<br> [<strong>インスタンスの表示</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/b1d796c6f8d3ddc.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ1 - セッションマネージャーでアクセスする" duration="0">
+        <p>起動したインスタンスは、AMI (Amazon マシンイメージ) から復元されたあと、ユーザーデータに入力したスクリプトによって、インストールが行われていきます。<br> 下図の通り、</p>
+<ul>
+<li>インスタンスの状態が <strong>実行中</strong> になること</li>
+<li>ステータスチェックが 2/2 のチェックに合格しました</li>
+</ul>
+<p>になることを確認してください。(これには数分かかります。)</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/49343a84ccb7706.png"></p>
+<p>また、並行してユーザーデータによるインストールが進行していきます。完了まで少し時間がかかりますが、インストールの途中でセッションマネージャーが利用できる状態になります。</p>
+<aside class="warning"><p> Amazon Linux 2022 には 2022 年 4 月の段階で、セッションマネージャーを利用するための Systems Manager Agent がプリインストールされていません。 </p>
+</aside>
+<h2 is-upgraded>ユーザーデータで行う処理</h2>
+<ol type="1">
+<li><strong>SELinux 無効化<br></strong> Amazon Linux 2022 は Fedora ベースの OS で SELinux が有効になっています。<br> SELinux が有効だと Nginx が正しく動かないため無効化します。</li>
+<li><strong>タイムゾーンを東京に変更<br></strong> EC2 インスタンスは大抵 UTC にて稼働します。そのため、起動後にタイムゾーンを Asia/Tokyo にします。</li>
+<li><strong>ロケールを日本語に変更</strong></li>
+<li><strong>SSM エージェントのインストール<br></strong> SSM エージェントをインストールすると、セッションマネージャーが利用できるようになります。</li>
+<li><strong>Nginx インストール<br></strong> Web サーバーとして稼働させるため、Nginx をインストールします。</li>
+<li><strong>php インストール<br></strong> WordPress の稼働に必要な PHP と PHP モジュールをインストールします。</li>
+<li><strong>MariaDB インストール<br></strong> WordPress で利用する MariaDB をインストールします。</li>
+<li><strong>WordPress インストール<br></strong> 最新版の WordPress をダウンロードしてインストールします。</li>
+</ol>
+<h2 is-upgraded>セッションマネージャーによる接続</h2>
+<p>インスタンスが起動したらセッションマネージャーで接続してみましょう。<br> EC2 コンソールの左側のメニューペインにある <strong>インスタンス</strong> をクリックして、右側に表示されるインスタンス一覧から、起動したインスタンスを見つけてください。<br> インスタンスの左側にあるチェックボックスにチェックを入れて、[<strong>接続</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/5c544564437577e8.png"></p>
+<p>インスタンスが複数表示されている場合は、テキストボックスにインスタンス名を入れたり、ステータスを <strong>running</strong> でフィルタリングするなどすると効率的に見つけることができます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/96bed309a2a85261.png"></p>
+<p>[<strong>セッションマネージャー</strong>] タブを選択し、[<strong>接続</strong>] ボタンをクリックします。</p>
+<aside class="special"><p> 接続ボタンがアクティブでない場合は、IAM ロールをアタッチし損ねたか、SSM エージェントのインストールがまだ完了していない可能性があります。 </p>
+</aside>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/967ed6d00dec0d77.png"></p>
+<p>接続が成功すると、ブラウザの新しいタブが開いて以下のようなプロンプトで停止します。</p>
+<pre><code>sh-5.1$
+</code></pre>
+<p>スイッチユーザーして、root ユーザーに昇格してください。</p>
+<pre><code>sh-5.1$ sudo -i
+#
+</code></pre>
+<p>本ウインドウは閉じずにそのままにしておいてください。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ1 - ブラウザで　http アクセスする" duration="0">
+        <p>次はブラウザから Web ページにアクセスしてみます。<br> EC2 コンソールでインスタンスを選択したら、下部の詳細ペインに表示された <strong>パブリック IPv4 アドレス</strong> を見つけて、アドレスの左側にあるアイコンをクリックしてください。IP アドレスがクリップボードにコピーされます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/254b856f9eb105dd.png"></p>
+<p>Chrome タブを追加して、アドレスバーに貼り付けて、ENTER キーを押下しアクセスしてください。Nginx のウェルカムページが表示されます。</p>
+<aside class="warning"><p> ページが表示されない場合は、セキュリティグループの設定に誤りがある可能性があります。 </p>
+</aside>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/b04605a28ff1d40d.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ1 - Elastic IP の割り当て" duration="0">
+        <h2 is-upgraded>Elastic IP (EIP) を取得</h2>
+<p>インスタンスを停止/開始した後も、同じ IP アドレスが使用できるよう、固定 IP アドレスであるElastic IP を取得します。<br> EC2 コンソールにて、左側のメニューペインから <strong>Elastic IP</strong> をクリックし、ページ上部に表示された [<strong>Elastic IP アドレスを割り当てる</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/96c72e35256cc83a.png"></p>
+<p><strong>Elastic IP アドレスを割り当てる</strong> の画面に遷移するので、Name タグを設定してください。<br> こちらも任意ですが、EC2 インスタンスのタグと揃えると識別しやすいです。</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>キー</p>
+</td><td colspan="1" rowspan="1"><p>値</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Name</p>
+</td><td colspan="1" rowspan="1"><p>handson-ec2-wordpress</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/d676960772599a07.png"></p>
+<p>Elastic IP アドレスが割り当てられたら、割り当てられた IPv4 アドレスを控えておいてください。<br> メモできたら [<strong>この Elastic IP アドレスを関連づける</strong>] をクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/93efe8bbfbc23855.png"></p>
+<p><strong>インスタンス</strong> に起動した EC2 インスタンスを指定し、プライベート IP アドレスを選択して、[<strong>関連付ける</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/dbeb27f094770b30.png"></p>
+<aside class="warning"><p> 前述の作業で取得した自分の IP アドレスが表示されている事を確認の上、選択してください。 EC2 インスタンスが複数ある場合は誤ったインスタンスにアタッチしないようにご注意ください。 </p>
+</aside>
+<p>アタッチしたアドレスは、EC2 の詳細画面からも確認できますので再度チェックしておいてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/254b856f9eb105dd.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ1 - WordPress の構成" duration="0">
+        
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="MySQL と Nginx が動いていることを確認" duration="0">
+        <p>先ほど接続したセッションマネージャーのブラウザタブに戻り、MySQL と Nginx が動いていることを確認したいと思います。<br> 以下の root 権限にて、</p>
+<pre><code>sh-5.1$ sudo -i
+#
+</code></pre>
+<p>以下コマンドを入力してください。</p>
+<p><code>systemctl status mariadb</code></p>
+<p>以下のような <code>running</code> ステータスが返れば正常に起動しています。<br> [Q] キーを押下すると、抜けることができます。</p>
+<pre><code># systemctl status mariadb
+● mariadb.service - MariaDB 10.5 database server
+     Loaded: loaded (/usr/lib/systemd/system/mariadb.service; disabled; vendor preset: disabled)
+     Active: active (running) since Wed 2022-04-06 21:16:03 JST; 1h 48min ago
+       Docs: man:mariadbd(8)
+             https://mariadb.com/kb/en/library/systemd/
+   Main PID: 29016 (mariadbd)
+     Status: &#34;Taking your SQL requests now...&#34;
+      Tasks: 8 (limit: 1096)
+     Memory: 64.7M
+        CPU: 1.324s
+     CGroup: /system.slice/mariadb.service
+             └─29016 /usr/libexec/mariadbd --basedir=/usr
+
+ 4月 06 21:16:03 ip-10-0-0-44.ap-northeast-1.compute.internal mariadb-prepare-db-dir[28974]: See the MariaDB Knowledgebase at&gt;
+
+ (中略)
+
+ 4月 06 21:16:03 ip-10-0-0-44.ap-northeast-1.compute.internal systemd[1]: Started MariaDB 10.5 database server.
+lines 1-23/23 (END)
+</code></pre>
+<p>続いて、Nginx サーバーを確認します。<br> 以下コマンドを入力してください。</p>
+<p><code>systemctl status nginx</code></p>
+<p>以下のような <code>running</code> ステータスが返れば正常に起動しています。<br> [Q] キーを押下すると、抜けることができます。</p>
+<pre><code># systemctl status nginx
+● nginx.service - The nginx HTTP and reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; vendor preset: disabled)
+    Drop-In: /usr/lib/systemd/system/nginx.service.d
+             └─php-fpm.conf
+     Active: active (running) since Wed 2022-04-06 21:16:16 JST; 1h 47min ago
+    Process: 29098 ExecStartPre=/usr/bin/rm -f /run/nginx.pid (code=exited, status=0/SUCCESS)
+    Process: 29099 ExecStartPre=/usr/sbin/nginx -t (code=exited, status=0/SUCCESS)
+    Process: 29100 ExecStart=/usr/sbin/nginx (code=exited, status=0/SUCCESS)
+   Main PID: 29101 (nginx)
+      Tasks: 3 (limit: 1096)
+     Memory: 5.9M
+        CPU: 61ms
+     CGroup: /system.slice/nginx.service
+             ├─29101 nginx: master process /usr/sbin/nginx
+             ├─29102 nginx: worker process
+             └─29103 nginx: worker process
+
+ 4月 06 21:16:16 ip-10-0-0-44.ap-northeast-1.compute.internal systemd[1]: Starting The nginx HTTP and reverse proxy server...
+ 
+ (中略)
+ 
+ 4月 06 21:16:16 ip-10-0-0-44.ap-northeast-1.compute.internal systemd[1]: Started The nginx HTTP and reverse proxy server.
+lines 1-21/21 (END)
+</code></pre>
+<h2 is-upgraded>セッションマネージャーによる接続がうまくいかない場合</h2>
+<ul>
+<li>インスタンスは完全に起動完了していますでしょうか。ステータスチェックは 2/2 になっていますか？</li>
+<li>起動時に指定した内容どおりに起動しているでしょうか?</li>
+<li>接続先のインスタンス ID は正しいですか？</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ1 - WordPress の初期設定" duration="0">
+        <p>http://&lt;Elastic IPアドレス&gt;/wordpress/ を開いて、WordPressの初期設定を始めます。<br> 上記 URL にアクセスすると、自動で setup-config.php にリダイレクトします。</p>
+<p>[さあ、始めましょう!] ボタンをクリックします。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/7ad69039a6b76952.png"></p>
+<h2 is-upgraded>作成した MySQL の DB 設定に基づき、設定します。</h2>
+<table>
+<tr><td colspan="1" rowspan="1"><p>項目</p>
+</td><td colspan="1" rowspan="1"><p>値</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>ユーザー名</p>
+</td><td colspan="1" rowspan="1"><p>admin</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>パスワード</p>
+</td><td colspan="1" rowspan="1"><p>wordpress</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>データベースのホスト名</p>
+</td><td colspan="1" rowspan="1"><p>localhost</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>テーブル接頭辞</p>
+</td><td colspan="1" rowspan="1"><p>wp_</p>
+</td></tr>
+</table>
+<p>上記を入力し、[<strong>送信</strong>] ボタンをクリックしてください。</p>
+
+
+      </google-codelab-step>
+    
   </google-codelab>
 
   <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
