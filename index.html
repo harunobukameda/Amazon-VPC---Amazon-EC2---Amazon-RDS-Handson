@@ -421,7 +421,7 @@
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ee9715accd89672e.png"></p>
 <p>EC2 コンソールに画面遷移したら [<strong>インスタンスを起動</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/61e7efa4ae81ea2d.png"></p>
-<p>[インスタンスを起動] のボタンが展開されるのでクリックしてください。</p>
+<p>[<strong>インスタンスを起動</strong>] のボタンが展開されるのでクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/fccb4785e61e5e0b.png"></p>
 <h2 is-upgraded>ステップ1: Amazon マシンイメージ(AMI)</h2>
 <p>本ハンズオンでは、Amazon Linux 2022 の AMI を利用します。<br> テキストボックスに以下 AMI ID を入力して、ENTER キーをクリックしてください。</p>
@@ -447,7 +447,7 @@ ami-082c70eb5ed5441a1
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/343343f3df6ebd74.png"></p>
 <p>ページ下部まで進み、ユーザーデータに以下をコピペしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/341e937d301e8925.png"></p>
-<p>ユーザーデータを流し込んだら、[<strong>次のステップ:ストレージの追加</strong>] ボタンをクリックしてください。</p>
+<p>以下のユーザーデータを流し込んだら、[<strong>次のステップ:ストレージの追加</strong>] ボタンをクリックしてください。</p>
 <pre><code>#!/bin/bash
 dnf -y update
 # SELinux 無効化
@@ -468,14 +468,17 @@ dnf install -y php-mbstring php-devel php-gd php-pdo php-xml php-mysqlnd php-jso
 
 # PHP FastCGI インストール
 dnf install -y php-fpm
+
 #php-fpm 設定変更
 sed -i -e &#34;s/user = apache/user = nginx/g&#34; /etc/php-fpm.d/www.conf
 sed -i -e &#34;s/group = apache/group = nginx/g&#34; /etc/php-fpm.d/www.conf
 systemctl start php-fpm.service
+
 # mariadb インストール
 dnf install -y mariadb105-server
-# MySQL (MariaDB) インストール
 sudo systemctl start mariadb
+mysql -u root -e &#34;create database wp_database; grant all privileges on wp_database.* to wp_admin@localhost identified by &#39;wordpress&#39;;&#34;
+
 # WordPress インストール
 cd /tmp
 wget https://ja.wordpress.org/latest-ja.tar.gz
@@ -486,6 +489,27 @@ chown -R nginx. /usr/share/nginx/html
 # WordPress ディレクトリとフォルダーの権限設定
 find /usr/share/nginx/html/wordpress -type d -exec chmod 705 {} +
 find /usr/share/nginx/html/wordpress -type f -exec chmod 604 {} +
+
+# WordPress 用の Nginx 設定ファイル
+cat &lt;&lt; EOS &gt;&gt; /etc/nginx/conf.d/wordpress.conf
+server {
+        index index.php index.html;
+        root /usr/share/nginx/html/wordpress;
+
+        location ~* /wp-config.php {
+                deny all;
+        }
+
+        location / {
+                try_files \$uri \$uri/ /index.php\$is_args$args;
+        }
+
+        location ~ \.php\$ {
+                include fastcgi.conf;
+                fastcgi_pass   unix:/run/php-fpm/www.sock;
+        }
+}
+EOS
 
 # Nginx スタート
 systemctl enable nginx.service
@@ -520,7 +544,7 @@ systemctl start nginx.service
 </ul>
 <p>になることを確認してください。(これには数分かかります。)</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/49343a84ccb7706.png"></p>
-<p>また、並行してユーザーデータによるインストールが進行していきます。完了まで少し時間がかかりますが、インストールの途中でセッションマネージャーが利用できる状態になります。</p>
+<p>また、バックグラウンドでは並行してユーザーデータによるインストールが進行していきます。<br> インストールが完了まで少し時間がかかりますが、このインストールの途中でセッションマネージャーが利用できる状態になります。</p>
 <aside class="warning"><p> Amazon Linux 2022 には 2022 年 4 月の段階で、セッションマネージャーを利用するための Systems Manager Agent がプリインストールされていません。 </p>
 </aside>
 <h2 is-upgraded>ユーザーデータで行う処理</h2>
@@ -558,10 +582,10 @@ systemctl start nginx.service
       <google-codelab-step label="フェーズ1 - ブラウザで　http アクセスする" duration="0">
         <p>次はブラウザから Web ページにアクセスしてみます。<br> EC2 コンソールでインスタンスを選択したら、下部の詳細ペインに表示された <strong>パブリック IPv4 アドレス</strong> を見つけて、アドレスの左側にあるアイコンをクリックしてください。IP アドレスがクリップボードにコピーされます。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/254b856f9eb105dd.png"></p>
-<p>Chrome タブを追加して、アドレスバーに貼り付けて、ENTER キーを押下しアクセスしてください。Nginx のウェルカムページが表示されます。</p>
+<p>Chrome タブを追加して、アドレスバーに貼り付けて、ENTER キーを押下しアクセスしてください。WordPress のセットアップ・ウェルカムページが表示されます。</p>
 <aside class="warning"><p> ページが表示されない場合は、セキュリティグループの設定に誤りがある可能性があります。 </p>
 </aside>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/b04605a28ff1d40d.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/943301a1761a6903.png"></p>
 
 
       </google-codelab-step>
@@ -593,12 +617,8 @@ systemctl start nginx.service
       </google-codelab-step>
     
       <google-codelab-step label="フェーズ1 - WordPress の構成" duration="0">
-        
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="MySQL と Nginx が動いていることを確認" duration="0">
-        <p>先ほど接続したセッションマネージャーのブラウザタブに戻り、MySQL と Nginx が動いていることを確認したいと思います。<br> 以下の root 権限にて、</p>
+        <h2 is-upgraded>MySQL と Nginx が動いていることを確認</h2>
+<p>先ほど接続したセッションマネージャーのブラウザタブに戻り、MySQL と Nginx が動いていることを確認したいと思います。<br> 以下の root 権限にて、</p>
 <pre><code>sh-5.1$ sudo -i
 #
 </code></pre>
@@ -673,20 +693,43 @@ lines 1-21/21 (END)
 <tr><td colspan="1" rowspan="1"><p>項目</p>
 </td><td colspan="1" rowspan="1"><p>値</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p>ユーザー名</p>
-</td><td colspan="1" rowspan="1"><p>admin</p>
+<tr><td colspan="1" rowspan="1"><p><strong>データベース名</strong></p>
+</td><td colspan="1" rowspan="1"><p>wp_database</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p>パスワード</p>
+<tr><td colspan="1" rowspan="1"><p><strong>ユーザー名</strong></p>
+</td><td colspan="1" rowspan="1"><p>wp_admin</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>パスワード</strong></p>
 </td><td colspan="1" rowspan="1"><p>wordpress</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p>データベースのホスト名</p>
+<tr><td colspan="1" rowspan="1"><p><strong>データベースのホスト名</strong></p>
 </td><td colspan="1" rowspan="1"><p>localhost</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p>テーブル接頭辞</p>
+<tr><td colspan="1" rowspan="1"><p><strong>テーブル接頭辞</strong></p>
 </td><td colspan="1" rowspan="1"><p>wp_</p>
 </td></tr>
 </table>
-<p>上記を入力し、[<strong>送信</strong>] ボタンをクリックしてください。</p>
+<p>以下の画面が表示されるので、上記の値を入力して、[<strong>送信</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/83194f3776a544e1.png"></p>
+<p>以下画面に遷移するので、[<strong>インストール実行</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/592c12573ebca0a4.png"></p>
+<p>以下画面に遷移するので、画像の通り入力してください。<br> [<strong>WordPress をインストール</strong>] ボタンをクリックしたあと、20 秒程度かかります。<br> ブラウザのローディングが終わるまで、リロードなど行わずに少々お待ちください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/3acdc45d40ef1337.png"></p>
+<p>以下の画面が表示されたらセットアップ完了です。<br> [<strong>ログイン</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/6862e74858626cb4.png"></p>
+<h2 is-upgraded>WordPress ログイン画面</h2>
+<p>以下、ログイン画面が表示されるので先ほど入力したユーザー名とパスワードを入力してください。<br> [<strong>ログイン</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/1373a94d6c1078f3.png"></p>
+<h2 is-upgraded>WordPress 管理者画面</h2>
+<p>ユーザー名とパスワードが正しく入力され、認証が通れば WordPress の管理者画面が表示されます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/6220fcb768cde64e.png"></p>
+<ol type="1">
+<li>[<strong>投稿</strong>] をクリックして、任意の新規ブログポストを書くことができます。<br><img alt="AWS マネジメントコンソール サインイン画面" src="img/3aa723538d49ec82.png"></li>
+<li>ブログタイトルをクリックするとブログが表示できます。<br><img alt="AWS マネジメントコンソール サインイン画面" src="img/e96895860b03e507.png"></li>
+</ol>
+<h2 is-upgraded>ブログの起動確認</h2>
+<p>Wordpress ブログが実行できていることを確認します。<br> (nginxの画面が出る場合はリロードしてみてください)<br> 前ページの管理画面に戻るには http://EIPアドレス/wp-admin/ にアクセスします。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/5531fb079bb06157.png"></p>
 
 
       </google-codelab-step>
