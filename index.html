@@ -385,7 +385,8 @@
 <p>ロールの詳細画面に遷移したら、[<strong>信頼関係</strong>] タブをクリックし、[<strong>信頼ポリシーを編集</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/56f9a66c1b8b91cd.png"></p>
 <p>以下のような形でポリシーが表示されるので、</p>
-<pre><code>{
+<pre><code>＜変更前＞
+{
     &#34;Version&#34;: &#34;2012-10-17&#34;,
     &#34;Statement&#34;: [
         {
@@ -399,7 +400,8 @@
 }
 </code></pre>
 <p><code>	"Service": ["ec2.amazonaws.com","ssm.amazonaws.com"]</code> に書き換えてください。</p>
-<pre><code>{
+<pre><code>＜変更後＞
+{
 	&#34;Version&#34;: &#34;2012-10-17&#34;,
 	&#34;Statement&#34;: [
 		{
@@ -521,11 +523,13 @@ systemctl start nginx.service
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/85948b230e4f6616.png"></p>
 <h2 is-upgraded>ステップ5: タグの追加</h2>
 <p>インスタンスを区別できるようにタグに名前を設定します。<br> IAM ユーザを利用している場合、他ユーザと区別が付くように -user1 等ユーザ名を付けると良いでしょう。</p>
-<p>ここでは、<code>handson-ec2-wordpress</code> とします。<br> □ <strong>インスタンス</strong> と □ <strong>ボリューム</strong> と □ <strong>ネットワークインターフェイス</strong> のチェックボックスにチェックを入れると、それぞれのリソースに名前タグが設定されます。<br> [<strong>次のステップ:セキュリティグループの設定</strong>] をクリックしてください。</p>
+<p>ここでは、<code>handson-ec2-wordpress</code> とします。</p>
+<p>□ <strong>インスタンス</strong> と<br> □ <strong>ボリューム</strong> と<br> □ <strong>ネットワークインターフェイス</strong></p>
+<p>のチェックボックスにチェックを入れると、それぞれのリソースに名前タグが設定されます。<br> [<strong>次のステップ:セキュリティグループの設定</strong>] をクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/db6d73d24e11072f.png"></p>
 <h2 is-upgraded>ステップ6: セキュリティグループの設定</h2>
-<p><strong>新しいセキュリティグループを作成する</strong> のオプションボタンにチェックが入っていることを確認してください。<br> セキュリティグループ名と説明は任意の名称を設定してください。本ハンズオンでは、<code>web-sg</code> としました。<br><strong>タイプ</strong> を「SSH」から「HTTP」に変更してください。<br> 下部に警告メッセージが表示されますが、セッションマネージャー経由で接続するので問題ありません。<br><strong>ソース</strong> を「任意の場所」にしたら [<strong>確認と作成</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/32132f461f1e4135.png"></p>
+<p><strong>新しいセキュリティグループを作成する</strong> のオプションボタンにチェックが入っていることを確認してください。<br> セキュリティグループ名と説明は任意の名称を設定してください。本ハンズオンでは、<code>web-sg</code> としました。<br><strong>タイプ</strong> を「SSH」から「HTTP」に変更して、ソースを「<strong>マイ IP</strong>」にしてください。<br> 下部に警告メッセージが表示されますが、セッションマネージャー経由で接続するので問題ありません。<br><strong>ソース</strong> を「任意の場所」にしたら [<strong>確認と作成</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/3d6900af9d8c2a52.png"></p>
 <h2 is-upgraded>ステップ6: インスタンス作成の確認</h2>
 <p>確認画面が表示されます。内容確認して間違えなければ [<strong>起動</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/c014b8392aa16c97.png"></p>
@@ -731,6 +735,16 @@ lines 1-21/21 (END)
 <h2 is-upgraded>ブログの起動確認</h2>
 <p>Wordpress ブログが実行できていることを確認します。<br> (nginxの画面が出る場合はリロードしてみてください)<br> 前ページの管理画面に戻るには http://EIPアドレス/wp-admin/ にアクセスします。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/5531fb079bb06157.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="座学 - Amazon Aurora RDS" duration="0">
+        <h2 is-upgraded>Amazon Aurora</h2>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/834f3a8671e444f1.png"></p>
+<p>Amazon Aurora は、標準的な MySQL データベースと比べて最大で 5 倍、標準的な PostgreSQL データベースと比べて最大で 3 倍高速です。また、商用データベースと同等のセキュリティ、可用性、信頼性を、10 分の 1 のコストで実現します。</p>
+<h2 is-upgraded>Amazon RDS</h2>
+<p>Amazon Relational Database Service (RDS) は、AWS にて運用管理されるマネージドRDBMS サービスです。　　 MySQL、Oracle、SQL Server、PostgreSQL、MariaDB、Aurora が提供されています。<br> バックアップやフェイルオーバーに対応した DB を数クリックで利用可能にします。<br> メンテナンスフリーで、自動バックアップや、パッチ当てなどが自動で行われます。</p>
 
 
       </google-codelab-step>
