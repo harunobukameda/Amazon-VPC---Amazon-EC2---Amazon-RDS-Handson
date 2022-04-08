@@ -241,7 +241,15 @@
     
       <google-codelab-step label="始める前に" duration="2">
         <h2 is-upgraded>スクリーンキャプチャに表示されている情報について</h2>
-<p>リソースの各種 ID (vpc-XXXXXX、subnet-XXXXXX、i-XXXXXX など) は AWS 全体で ユニークとなっており、スクリーンキャプチャに記載の ID と実際に操作されて作成される ID は各自で異なります。<br> Elastic IP (固定IPアドレス) なども各自で異なります。<br> 画面のデザイン等が変更されて実際とは異なっていることがあります。画面の項目名等から判断して操作下さい。</p>
+<p>リソースの各種 ID (vpc-XXXXXX、subnet-XXXXXX、i-XXXXXX など) は AWS 全体で ユニークとなっており、スクリーンキャプチャに記載の ID と実際に操作されて作成される ID は各自で異なります。<br> Elastic IP (固定IPアドレス) なども各自で異なります。</p>
+<h2 is-upgraded>GUI インターフェイスデザインの変更について</h2>
+<p>画面のデザイン等が変更されて実際とは異なっていることがあります。画面の項目名等から判断して操作下さい。</p>
+<p>ホーム画面は、少し前まで ↓ のデザインでしたが、</p>
+<p class="image-container"><img alt="少し前のコンソール" src="img/2c8c2811cbc00fe9.png"></p>
+<p>↓ のようなデザインに変わりました。</p>
+<p class="image-container"><img alt="2022年4月の最新コンソール" src="img/17640a1f7d422d7f.png"></p>
+<p>↓ もっと前はこのような画面の頃もありました。</p>
+<p class="image-container"><img alt="随分前のコンソール" src="img/d16aa47064933e34.png"></p>
 
 
       </google-codelab-step>
@@ -443,8 +451,13 @@ ami-082c70eb5ed5441a1
 <aside class="special"><p> どちらのパブリックサブネットが 10.0.0.0/24 か、わからない場合は、新しいタブ (別ウィンドウ) で VPC コンソールを開き、サブネットから Subnet ID を確認してください。 </p>
 </aside>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/8ed7671ba7d0aa57.png"></p>
+<h3 is-upgraded>IAM ロール</h3>
 <p>中断にあるロールは、先の手順で作成したロールを選択してください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/66b2f9cc36991203.png"></p>
+<h3 is-upgraded>CPU クレジット</h3>
+<p>少し下段まで進み、<strong>クレジット仕様</strong> の □無制限 のチェックボックスのチェックを外してください。<br> このチェックが入っていると、t 系インスタンスで CPU クレジットが枯渇した際に予想以上のコストがかかる場合があります。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/d5f664d6de614225.png"></p>
+<h3 is-upgraded>ユーザーデータ</h3>
 <p>ページ下部まで進み、ユーザーデータに以下をコピペしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/c927249d459cc048.png"></p>
 <p>以下のユーザーデータを流し込んだら、[<strong>次のステップ:ストレージの追加</strong>] ボタンをクリックしてください。</p>
@@ -527,9 +540,10 @@ systemctl start nginx.service
 <h2 is-upgraded>ステップ6: セキュリティグループの設定</h2>
 <p><strong>新しいセキュリティグループを作成する</strong> のオプションボタンにチェックが入っていることを確認してください。<br> セキュリティグループ名と説明は任意の名称を設定してください。本ハンズオンでは、<code>web-sg</code> としました。<br><strong>タイプ</strong> を「SSH」から「HTTP」に変更して、ソースを「<strong>マイ IP</strong>」にしてください。<br> 下部に警告メッセージが表示されますが、セッションマネージャー経由で接続するので問題ありません。<br><strong>ソース</strong> を「任意の場所」にしたら [<strong>確認と作成</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/8f54b7fddf929fae.png"></p>
-<h2 is-upgraded>ステップ6: インスタンス作成の確認</h2>
+<h2 is-upgraded>ステップ7: インスタンス作成の確認</h2>
 <p>確認画面が表示されます。内容確認して間違えなければ [<strong>起動</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/d72c29ee435f2492.png"></p>
+<h3 is-upgraded>キーペア</h3>
 <p>キーペアを指定する画面になります。セッションマネージャーを利用するため、本ハンズオンでは利用しません。<br> [<strong>キーペアなしで続行</strong>] を選択し、チェックボックスにチェックを入れて、[<strong>インスタンスの作成</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/5b7d55458bc6fde9.png"></p>
 <p>EC2 インスタンスの作成が始まりました。<br> [<strong>インスタンスの表示</strong>] ボタンをクリックしてください。</p>
@@ -777,12 +791,39 @@ lines 1-21/21 (END)
 <p>各サーバーの WordPress 管理画面からプラグイン、テーマのバージョンアップや変更を行えますが、変更内容が各サーバのローカルディスク上に反映されて、そのサーバー以外の全サーバーに適用されない課題があります。解決方法としては、以下が挙げられます。</p>
 <ol type="1">
 <li><strong>Web サーバ間のローカルディスクを同期する仕組みを実装する<br></strong> 例えば、管理機能部分を特定の Web サーバ 1 台に Proxy して、rsyncd + lsyncd で残りのサーバーに配布する方法が考えられます。<br> ALB のルールで <strong>管理画面の URL パス</strong> (/wp-admin/*) が含まれた場合はマスターサーバーにルーティングする。といった実装も可能です。<br><img alt="AWS マネジメントコンソール サインイン画面" src="img/3cf26fc5455bb77e.png"></li>
+<li><strong>変更したプログラム・コンテンツをイメージとして別途作成してデプロイする方式にする<br></strong> ゴールデンイメージを作成して、展開する方法です。手間ですが、Auto Scaling を実装する場合は有効です。</li>
+<li><strong>Amazon EFS を利用して、各サーバで共有ストレージをマウントする<br></strong> こちらも読み込みのオーバーヘッドを考慮して、キャッシュ設定を考慮する必要があります。</li>
 </ol>
-<ul>
-<li>変更したプログラム・コンテンツをイメージとして別途作成してデプロイする方式にする ゴールデンイメージを作成して、展開する方法です。手間ですが、Auto Scaling を実装する場合は有効です。</li>
-<li>Amazon EFS を利用して、各サーバで共有ストレージをマウントする こちらも読み込みのオーバーヘッドを考慮して、キャッシュ設定を考慮する必要があります。</li>
-</ul>
 <h2 is-upgraded>WordPress の cron 機能が全体で実行されてしまう</h2>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="補足 - MySQL の root パスワードを忘れた場合の復旧方法" duration="0">
+        <p>MariaDB の root パスワードを忘れた場合は、以下の手順で root パスワードを更新できます。</p>
+<ol type="1">
+<li>MariaDB が稼働しているサーバーにログインします。</li>
+<li>以下の手順を実行します。</li>
+<li>MariaDB をセーフモードで起動します。</li>
+</ol>
+<pre><code>$ sudo service mysqld stop
+$ mysqld_safe --skip-grant-tables &amp;
+</code></pre>
+<ol type="1" start="4">
+<li>MySQL に接続して、root のパスワードを変更します。</li>
+</ol>
+<pre><code>$ mysql -u root
+mysql&gt; use mysql;
+mysql&gt; update user set password=PASSWORD(&#34;ここに新しいパスワードを指定&#34;) where User=&#39;root&#39;; mysql&gt; commit;
+mysql&gt; flush privileges;
+mysql&gt; ¥q
+</code></pre>
+<ol type="1" start="5">
+<li>MariaDB を再起動します。</li>
+</ol>
+<pre><code>$ sudo systemctl stop mariadb
+$ sudo systemctl start mariadb
+</code></pre>
 
 
       </google-codelab-step>
