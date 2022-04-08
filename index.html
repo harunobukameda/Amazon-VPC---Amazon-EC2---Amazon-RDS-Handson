@@ -380,7 +380,7 @@
 <p>ロールが作成されたら、本ロールを SSM Agent が利用できるように設定します。<br> テキストボックスにロール名を入力し、ENTER キーを押下します。<br> ロールが表示されたら、リンクをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/5df67c1147cdb46.png"></p>
 <p>ロールの詳細画面に遷移したら、[<strong>信頼関係</strong>] タブをクリックし、[<strong>信頼ポリシーを編集</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/a10bfbb8da53fb9c.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/784dd0669cc9d50f.png"></p>
 <p>以下のような形でポリシーが表示されるので、</p>
 <pre><code>＜変更前＞
 {
@@ -535,7 +535,7 @@ systemctl start nginx.service
 <p>EC2 インスタンスの作成が始まりました。<br> [<strong>インスタンスの表示</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/13652e520a9ce569.png"></p>
 <p>インスタンスの作成が完了するのを待ちます。<br> ステータスが「利用可能」になるまで数分かかります。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール  リージョン移動 - 東京" src="img/e1cc42cce1e6cb66.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール  リージョン移動 - 東京" src="img/39f48ad0d48e1537.png"></p>
 
 
       </google-codelab-step>
@@ -732,7 +732,7 @@ lines 1-21/21 (END)
 <li>ブログタイトルをクリックするとブログが表示できます。<br><img alt="AWS マネジメントコンソール サインイン画面" src="img/97d0ac91af2d5c06.png"></li>
 </ol>
 <h2 is-upgraded>ブログの起動確認</h2>
-<p>Wordpress ブログが実行できていることを確認します。<br> (nginxの画面が出る場合はリロードしてみてください)<br> 前ページの管理画面に戻るには http://EIPアドレス/wp-admin/ にアクセスします。</p>
+<p>Wordpress ブログが実行できていることを確認します。<br> (nginxの画面が出る場合はリロードしてみてください)<br> 前ページの管理画面に戻るには <code>http://EIPアドレス/wp-admin/</code> にアクセスします。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/6070997e65add016.png"></p>
 
 
@@ -744,6 +744,45 @@ lines 1-21/21 (END)
 <p>Amazon Aurora は、標準的な MySQL データベースと比べて最大で 5 倍、標準的な PostgreSQL データベースと比べて最大で 3 倍高速です。また、商用データベースと同等のセキュリティ、可用性、信頼性を、10 分の 1 のコストで実現します。</p>
 <h2 is-upgraded>Amazon RDS</h2>
 <p>Amazon Relational Database Service (RDS) は、AWS にて運用管理されるマネージドRDBMS サービスです。　　 MySQL、Oracle、SQL Server、PostgreSQL、MariaDB、Aurora が提供されています。<br> バックアップやフェイルオーバーに対応した DB を数クリックで利用可能にします。<br> メンテナンスフリーで、自動バックアップや、パッチ当てなどが自動で行われます。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="更に拡張性を高める" duration="0">
+        <p>ハンズオン構築ここまでお疲れ様でした！<br> ここからは、一旦、WordPress を考慮せずに一般的な更に拡張性を高める方法を解説します。</p>
+<h2 is-upgraded>Web サーバーとしての拡張性</h2>
+<h3 is-upgraded>▼ Auto Scaling を実装して負荷調整を自動で行う</h3>
+<p>Auto Scaling は CPU 負荷やリクエスト数上昇などをトリガーに、需要に合わせてインスタンスを自動で起動したり、削除したりする機能です。<br> フェーズ2 で作成した Amazon マシンイメージを使って、インスタンスを起動することができます。</p>
+<h3 is-upgraded>▼ 静的コンテンツに Amazon S3 の Web サイト希望を使用する</h3>
+<p>Amazon S3 はオブジェクトストレージとしてファイルを保存するだけでなく、静的ウェブホスティング html ファイルといった静的コンテンツを使って Web サイトを配信できます。<br> Amazon S3 は 99.99% の可用性があり、堅牢なサイトを低コストで提供できます。 <strong>静的ウェブホスティング</strong> は s3 バケットのプロパティにあります。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ed4bee18952bf80.png"></p>
+<h3 is-upgraded>▼ CloudFront でコンテンツをキャッシュする</h3>
+<p>CloudFront は Web サーバーの前段でコンテンツをキャッシュする CDN (コンテンツデリバリーネットワーク) サービスです。<br> 世界中にある Amazon の Edge サーバーにてコンテンツをキャッシュするので、高速で安全なウェブサイトを提供できます。<br> ALB の前段に配置することで、ALB と EC2 へのアクセス負荷を軽減することができますし、ALB や EC2 に直接アクセスするルートを遮断して、CloudFront からの経路に限定することでオリジンコンテンツを保護できます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/9fa026ef00ddab0b.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="WordPress を実際に複数台で構成する場合の留意点" duration="0">
+        <p>本ハンズオンで構築したアーキテクチャーでは、複数台構成の WordPress を適切に使用できない点があります。</p>
+<h2 is-upgraded>アップロードしたファイルの表示</h2>
+<p>アップロードされたメディアファイルは各サーバのローカルに保存されます。<br> 例えば、以下の図のようにユーザーが画像をアップロードしたとします。このとき、ALB が 10.0.0.0/24 にて稼働する WordPress サーバーにデータをアップロードした場合は、10.0.1.0/24 のサーバーには画像がないため、画像が表示されたり、されなかったりといった不具合が起きます。<br> 解決法としては以下が挙げられます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ce0f38ca2a6a26a3.gif"></p>
+<ol type="1">
+<li>WordPress のプラグインを利用する<br> 「<strong>Amazon S3 and Cloudfront</strong>」などの WordPress プラグインを使って、メディアファイルを S3 に保管するような仕組みを導入します。</li>
+<li><strong>EFS を利用する<br></strong> Amazon EFS を利用して、各サーバで共有ストレージとしてマウントします。<br> この方法は読み込みのオーバーヘッドが発生するため、キャッシュ設定を考慮する必要があります。<br><img alt="AWS マネジメントコンソール サインイン画面" src="img/fd8fb4359898ef83.png"></li>
+<li><strong>EBS 間で rsync を実装する<br></strong> EC2 サーバーで rsync を設定して、別サーバーにデータを送信するようにします。<br> この場合は、データが削除された場合の考慮が必要です。 <img alt="AWS マネジメントコンソール サインイン画面" src="img/a53d5802ea236bf0.png"></li>
+</ol>
+<h2 is-upgraded>サーバー間のアップグレードが同期できない</h2>
+<p>各サーバーの WordPress 管理画面からプラグイン、テーマのバージョンアップや変更を行えますが、変更内容が各サーバのローカルディスク上に反映されて、そのサーバー以外の全サーバーに適用されない課題があります。解決方法としては、以下が挙げられます。</p>
+<ol type="1">
+<li><strong>Web サーバ間のローカルディスクを同期する仕組みを実装する<br></strong> 例えば、管理機能部分を特定の Web サーバ 1 台に Proxy して、rsyncd + lsyncd で残りのサーバーに配布する方法が考えられます。<br> ALB のルールで <strong>管理画面の URL パス</strong> (/wp-admin/*) が含まれた場合はマスターサーバーにルーティングする。といった実装も可能です。<br><img alt="AWS マネジメントコンソール サインイン画面" src="img/3cf26fc5455bb77e.png"></li>
+</ol>
+<ul>
+<li>変更したプログラム・コンテンツをイメージとして別途作成してデプロイする方式にする ゴールデンイメージを作成して、展開する方法です。手間ですが、Auto Scaling を実装する場合は有効です。</li>
+<li>Amazon EFS を利用して、各サーバで共有ストレージをマウントする こちらも読み込みのオーバーヘッドを考慮して、キャッシュ設定を考慮する必要があります。</li>
+</ul>
+<h2 is-upgraded>WordPress の cron 機能が全体で実行されてしまう</h2>
 
 
       </google-codelab-step>
