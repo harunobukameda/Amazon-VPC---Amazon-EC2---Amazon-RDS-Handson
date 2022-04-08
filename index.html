@@ -28,7 +28,7 @@
                   feedback-link="https://github.com/otanikohei/Amazon-VPC—Amazon-EC2—Amazon-RDS-Handson">
     
       <google-codelab-step label="はじめに" duration="2">
-        <p class="image-container"><img alt="タイトル画像" src="img/80242d30d15201f5.png"></p>
+        <p class="image-container"><img alt="タイトル画像" src="img/f755787aade4c158.gif"></p>
 <p>Amazon Web Services (AWS) を利用して、セキュアでスケーラブルなウェブサービスの構築手順を体験できるハンズオンを実施いたします。<br> AWS を使ってより安全にサービスを運用する方法、ウェブサービスの規模に合わせて、柔軟にシステムを拡張する方法を体験できる内容です。</p>
 <aside class="warning"><p> 本ハンズオンのドキュメントで掲載されているスクリーンキャプチャは 2022年04月時点のもので、現在の画面とは異なる場合がございます。予めご了承ください。 </p>
 </aside>
@@ -37,8 +37,6 @@
 <p><img alt="PC イメージアイコン" src="img/8a18f727de870aa1.png"><br> AWS を利用するにはインターネット接続が必要です。Windows、mac、Linux をご準備ください。本ハンズオン資料は mac にて作成しています。</p>
 <h3 is-upgraded>AWS アカウント</h3>
 <p><img alt="AWS アイコン" src="img/a06b78e541fcc9f.png"> AWS アカウントを事前にご準備ください。</p>
-<h3 is-upgraded>SSH クライアント</h3>
-<p><img alt="SSH クライアントイメージアイコン" src="img/dfe7ab5eac0834e8.png"> mac は純正のターミナルや、iTerm をご利用ください。Windows 環境では Teraterm を推奨します。</p>
 <h3 is-upgraded>ブラウザ</h3>
 <p><img alt="ブラウザ イメージアイコン" src="img/67c5707b04520011.png"> Firefox もしくは Google Chrome を推奨します。本ハンズオン資料は Google Chrome にて検証しています。</p>
 
@@ -46,20 +44,18 @@
       </google-codelab-step>
     
       <google-codelab-step label="座学 - セキュリティグループ" duration="2">
-        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 1/6</strong><img alt="Firewall イメージアイコン" src="img/e251e418ca5598ae.png"> インターネットからのトラフィック (インバウンド) をブロックするだけでなく、EC2 からのトラフィック (アウトバウンド) も制限できるファイアウォール機能です。 <img alt="セキュリティグループイメージ画像" src="img/ab5306a2cf09b4fa.png"> 個々のインスタンスごとに、インバウンド、アウトバウンドに対して下記の許可ルールを定義できます。ルールはステートフルで扱われ、明示ルールが無い通信は拒否されます。</p>
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 1/6</strong><img alt="Firewall イメージアイコン" src="img/e251e418ca5598ae.png"> インターネットからのトラフィック (インバウンド) をブロックするだけでなく、EC2 からのトラフィック (アウトバウンド) も制限できるファイアウォール機能です。 <img alt="セキュリティグループイメージ画像" src="img/ab5306a2cf09b4fa.png"> 個々のインスタンスごとに、インバウンド、アウトバウンドに対して下記の許可ルールを定義できます。ルールは <strong>ステートフル</strong> で扱われ、明示ルールが無い通信は拒否されます。</p>
+<p><strong>インバウンド</strong></p>
 <ul>
-<li><strong>インバウンド</strong><ul>
 <li>プロトコル (TCP/UDP/ICMP)</li>
 <li>ポート範囲 (ポート番号の範囲)</li>
 <li>送信元 (アクセス元のIPアドレス)</li>
 </ul>
-</li>
-<li><strong>アウトバウンド</strong><ul>
+<p><strong>アウトバウンド</strong></p>
+<ul>
 <li>プロトコル (TCP/UDP/ICMP)</li>
 <li>ポート範囲 (ポート番号の範囲)</li>
 <li>送信先 (アクセス先のIPアドレス)</li>
-</ul>
-</li>
 </ul>
 
 
@@ -67,7 +63,7 @@
     
       <google-codelab-step label="座学 - Amazon VPC (Virtual Private Cloud)" duration="2">
         <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 2/6</strong><img alt="VPC のアイコン" src="img/3a54948ea72e5cb9.png"> VPC はプライベートな仮想ネットワークサービスです。VPC  を使うと AWS クラウド内にお客様専用のプライベートアドレスの空間を構築できます。<br> 社内ネットワークとインターネット VPN やキャリアの閉域網で接続ができます。</p>
-<p class="image-container"><img alt="VPC のイメージ画像" src="img/97d7464e218aa3bf.png"></p>
+<p class="image-container"><img alt="VPC のイメージ画像" src="img/40519e92608d46d4.png"></p>
 <h2 is-upgraded>VPCとサブネットについて</h2>
 <ul>
 <li>1 つの VPC は、1 つのネットワークアドレス (CIDR) で定義します。</li>
@@ -103,10 +99,11 @@
       <google-codelab-step label="座学 - ルートテーブル" duration="1">
         <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 3/6</strong><img alt="ルートテーブルのアイコン" src="img/7f8506b356d8a160.png"></p>
 <p>各サブネットにはルートテーブルがアタッチされます。<br> ルートテーブルの設定を変更することでデータの流れを制御できます。</p>
-<ul>
-<li>パブリックサブネット<br> ルートテーブル: rtb-XXXXXXXX <table>
-<tr><td colspan="1" rowspan="1"><p>送信先</p>
-</td><td colspan="1" rowspan="1"><p>ターゲット</p>
+<h2 is-upgraded>パブリックサブネット</h2>
+<p>ルートテーブル: rtb-XXXXXXXX</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>送信先</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>ターゲット</strong></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>10.0.0.0/16</p>
 </td><td colspan="1" rowspan="1"><p>local</p>
@@ -115,22 +112,19 @@
 </td><td colspan="1" rowspan="1"><p>igw-XXXXXXXX</p>
 </td></tr>
 </table>
-</li>
-</ul>
 <aside class="special"><p> ルーティングテーブルに IGW (インターネット ゲートウェイ) へのルーティングを設定すると、外部とのアクセスが可能になります。 </p>
 </aside>
-<ul>
-<li>プライベートサブネット<br> ルートテーブル: rtb-XXXXXXXX <table>
-<tr><td colspan="1" rowspan="1"><p>送信先</p>
-</td><td colspan="1" rowspan="1"><p>ターゲット</p>
+<h2 is-upgraded>プライベートサブネット</h2>
+<p>ルートテーブル: rtb-XXXXXXXX</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>送信先</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>ターゲット</strong></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>10.0.0.0/16</p>
 </td><td colspan="1" rowspan="1"><p>local</p>
 </td></tr>
 </table>
-</li>
-</ul>
-<p class="image-container"><img alt="ルートテーブルのイメージ画像" src="img/fad30f193c4f2dc9.png"></p>
+<p class="image-container"><img alt="ルートテーブルのイメージ画像" src="img/eb1de3cde87262e9.png"></p>
 
 
       </google-codelab-step>
@@ -141,6 +135,7 @@
 </aside>
 <p>制御可能な項目はセキュリティーグループと同じで、ステートフル (SG) かステートレス (NACL) かの違いがあります。</p>
 <p class="image-container"><img alt="セキュリティグループと NACL のイメージ画像" src="img/18fe3e06a186e2b5.png"></p>
+<h2 is-upgraded>Network Access Control List</h2>
 <ul>
 <li>個々のサブネットごとにアクセス制御が可能</li>
 <li>インバウンド、アウトバウンドに対して下記の設定が可能</li>
@@ -157,6 +152,7 @@
 <li>Destination (アクセス先 IP アドレス)</li>
 <li>Allow/Deny</li>
 </ul>
+<p>制御可能な項目はセキュリティグループと同じです。<br> セキュリティグループは、ステートフルで動作し、NACL はステートレスで動作します。</p>
 
 
       </google-codelab-step>
@@ -179,18 +175,14 @@
     
       <google-codelab-step label="座学 - 備考 - MFA (多要素認証) で認証の安全性を高める" duration="1">
         <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 6/6</strong></p>
-<ul>
-<li>AWS アカウント (ルートアカウント) <ul>
-<li>ハードウェアトークンで保護</li>
-<li>トークンは金庫などで管理<br><img alt="ハードウェアトークンの画像" src="img/e0894e02a75855a9.png"></li>
-</ul>
-</li>
-<li>IAMアカウント <ul>
-<li>個人ごとのアカウント</li>
-<li>仮想 MFA 対応のスマホアプリで保護<br><img alt="スマートフォンの画像" src="img/c31eeaaede4424c3.png"></li>
-</ul>
-</li>
-</ul>
+<h2 is-upgraded>AWS アカウント (ルートアカウント) の保護</h2>
+<p>AWS アカウント (ルートアカウント) は、ハードウェアトークンで保護することが推奨されています。<br> また、ハードウェアトークンは金庫などで管理することが推奨されています。</p>
+<p class="image-container"><img alt="IAM のアイコン" src="img/42bf5ecb502dd20b.jpg"></p>
+<h2 is-upgraded>IAM アカウントの保護</h2>
+<p>IAM アカウントは、個人で利用するアカウントです。<br> こちらは、仮想 MFA 対応のスマホアプリにて保護すると効率的にご利用いただけます。</p>
+<p class="image-container"><img alt="IAM のアイコン" src="img/997264992b77e6ea.jpg"></p>
+<p>MFA (多要素認証) を設定すると、AWS アカウントサインイン時に <strong>6 桁</strong> のコードを求められるようになります。</p>
+<p class="image-container"><img alt="IAM のアイコン" src="img/b4f8900749472245.png"></p>
 
 
       </google-codelab-step>
@@ -265,12 +257,12 @@
 <p>インスタンスが稼働する物理サーバが壊れると一旦停止になりますが、同じアベイラビリティーゾーン内の問題の無いサーバですぐ起動できます。</p>
 <h2 is-upgraded>AWSマネジメントコンソールへのログイン</h2>
 <p>ログイン方法は利用するアカウント種類によって異なります。</p>
-<h4 is-upgraded>IAM アカウントを御利用の場合</h4>
+<h4 is-upgraded>IAM アカウントをご利用の場合</h4>
 <aside class="special"><p> 通常はこちらです。 </p>
 </aside>
 <h4 is-upgraded>会社等で、IAM アカウントを本ハンズオン用に準備されているケース</h4>
 <p>事前にログイン情報が記載された csv ファイル (user1.csv 等) を確認してください。そのファイルに、ログイン用の URL、User Name、パスワードが記載されていますので、 それに従ってログインしてください。</p>
-<h4 is-upgraded>AWS のルートアカウント(個人アカウント)を御利用の場合</h4>
+<h4 is-upgraded>AWS のルートアカウント(個人アカウント)をご利用の場合</h4>
 <p><a href="https://console.aws.amazon.com" target="_blank">https://console.aws.amazon.com</a> にブラウザでアクセスして、アカウントの E メールアドレスとパスワードでログインしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/a4dc7a53baf24c00.png"></p>
 <p>サインインするとホーム画面が表示されます。</p>
@@ -287,16 +279,16 @@
     
       <google-codelab-step label="フェーズ1　- リージョンを変更" duration="2">
         <h2 is-upgraded>リージョンを変更する (シンガポール)</h2>
-<p>AWS マネジメントコンソールに初めてサインインすると、「バージニア北部」リージョンが表示されます。練習で、シンガポールリージョンに移動してみたいと思います。<br> このリージョン名をクリックして候補から、アジアパシフィック (シンガポール) ap-southeast-1 を選択してください。</p>
+<p>AWS マネジメントコンソールに初めてサインインすると、「<strong>バージニア北部</strong>」リージョンが表示されます。練習で、シンガポールリージョンに移動してみたいと思います。<br> このリージョン名をクリックして候補から、<strong>アジアパシフィック (シンガポール) ap-southeast-1</strong> を選択してください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール リージョン移動 - シンガポール" src="img/565e22e02420af65.png"></p>
 <h2 is-upgraded>リージョンを変更する (シドニー)</h2>
-<p>画面遷移して「シンガポール」リージョンが表示されたら、次は「シドニー」リージョンに移動してみてください。「シンガポール」をクリックし、「アジアパシフィック (シドニー) ap-southeast-2」を選択してください。</p>
+<p>画面遷移して「<strong>シンガポール</strong>」リージョンが表示されたら、次は「<strong>シドニー</strong>」リージョンに移動してみてください。「<strong>シンガポール</strong>」をクリックし、「<strong>アジアパシフィック (シドニー) ap-southeast-2</strong>」を選択してください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール リージョン移動 - シドニー" src="img/3b1bd16d070886df.png"></p>
 <h2 is-upgraded>リージョンを変更する (東京)</h2>
-<p>リージョンの移動は完璧でしょうか。<br> それでは、本日構築する「東京」リージョンに移動してください。「シドニー」をクリックし、「アジアパシフィック (東京) ap-northeast-1」を選択してください。</p>
+<p>リージョンの移動は完璧でしょうか。<br> それでは、本日構築する「<strong>東京</strong>」リージョンに移動してください。「<strong>シドニー</strong>」をクリックし、「<strong>アジアパシフィック (東京) ap-northeast-1</strong>」を選択してください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール  リージョン移動 - 東京" src="img/3089ed7774828837.png"></p>
 <h2 is-upgraded>デフォルトリージョンを設定する</h2>
-<p>AWS マネジメントコンソールは「最後に利用したリージョン」を表示するようになっています。<br> これを変更するには、[<strong>設定</strong>] を開き、<strong>デフォルトリージョン</strong> の「最後に使用したリージョン」から希望のリージョンに変更してください。</p>
+<p>AWS マネジメントコンソールは「<strong>最後に利用したリージョン</strong>」を表示するようになっています。<br> これを変更するには、[<strong>設定</strong>] を開き、<strong>デフォルトリージョン</strong> の「<strong>最後に使用したリージョン</strong>」から希望のリージョンに変更してください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール  リージョン移動 - 東京" src="img/51d0e2b20f88baf6.png"></p>
 
 
