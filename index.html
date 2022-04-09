@@ -482,7 +482,7 @@ ami-082c70eb5ed5441a1
 <pre><code>#!/bin/bash
 dnf -y update
 # SELinux 無効化
-setenforce 0
+sed -i -e &#34;s/SELINUX=enforcing/SELINUX=disabled/g&#34; /etc/selinux/config
 # タイムゾーンを東京に変更
 timedatectl set-timezone Asia/Tokyo
 localectl set-locale LANG=ja_JP.utf8
