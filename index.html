@@ -22,7 +22,7 @@
 <body>
   <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
   <google-codelab codelab-gaid=""
-                  id="awshandson20220329"
+                  id="awshandson20220425"
                   title="AWS 体験ハンズオン〜セキュア&amp;スケーラブルウェブサービス構築"
                   environment="web"
                   feedback-link="https://github.com/otanikohei/Amazon-VPC—Amazon-EC2—Amazon-RDS-Handson">
@@ -92,6 +92,16 @@
 <ul>
 <li>AWS &gt; ドキュメント &gt; Amazon VPC &gt; ユーザーガイド &gt; VPC とサブネットの概要 - <a href="https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing" target="_blank">IPv4 用の VPC とサブネットのサイズ設定</a></li>
 </ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="座学 - リージョンとアベイラビリティゾーン (AZ)" duration="0">
+        <h2 is-upgraded>リージョン</h2>
+<p>AWS クラウドは、2022年4月現在、全世界 26 の地域にある 84 のアベイラビリティーゾーンにまたがっており、24 アベイラビリティーゾーンと 8 AWS リージョンを追加する計画が発表されています。</p>
+<p>AWS のリージョンは必ず複数のデータセンタークラスタ（=AZ）で構成されています。 各 AZ 間は数十キロ離れ、電源やネットワークが独立しており、高い耐障害性を提供できる設計になっています。</p>
+<p><a href="https://aws.amazon.com/jp/about-aws/global-infrastructure/" target="_blank">AWS グローバルインフラストラクチャマップ</a></p>
+<p class="image-container"><img alt="ルートテーブルのアイコン" src="img/5b0eab0829453a5d.png"></p>
 
 
       </google-codelab-step>
@@ -235,6 +245,10 @@
 <li>ELB: 合計約 1ヶ月分、15GB の処理 トラフィック:インターネットへのデータ送信 15GB</li>
 </ul>
 <p><a href="https://aws.amazon.com/jp/free/" target="_blank">AWS 無料利用枠</a></p>
+<h2 is-upgraded>【補足】 IAM でのハンズオンについて</h2>
+<p>このハンズオンは 1 つの AWS アカウント内に複数の IAM ユーザーを作成して、IAM ユーザーで実施することが可能です。<br> 同じアカウント内なので、他の IAM ユーザーが作成した EC2 インスタンスなどが一覧に表示されます。<br> 他のユーザーが作成したリソースと、自分のリソースを区別するため、ハンズオン内では各ユーザーで異なる名前をつけるようにしましょう。</p>
+<h3 is-upgraded>命名規則の例</h3>
+<p class="image-container"><img alt="少し前のコンソール" src="img/4db77ad4b9b0595c.png"></p>
 
 
       </google-codelab-step>
@@ -250,6 +264,10 @@
 <p class="image-container"><img alt="2022年4月の最新コンソール" src="img/17640a1f7d422d7f.png"></p>
 <p>↓ もっと前はこのような画面の頃もありました。</p>
 <p class="image-container"><img alt="随分前のコンソール" src="img/d16aa47064933e34.png"></p>
+<h2 is-upgraded>コマンドライン</h2>
+<p>コマンドライン文は、なるべくコピペするようにしてください。</p>
+<pre><code>mysql * from wp
+</code></pre>
 
 
       </google-codelab-step>
@@ -458,7 +476,7 @@ ami-082c70eb5ed5441a1
 <p>少し下段まで進み、<strong>クレジット仕様</strong> の □無制限 のチェックボックスのチェックを外してください。<br> このチェックが入っていると、t 系インスタンスで CPU クレジットが枯渇した際に予想以上のコストがかかる場合があります。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/d5f664d6de614225.png"></p>
 <h3 is-upgraded>ユーザーデータ</h3>
-<p>ページ下部まで進み、ユーザーデータに以下をコピペしてください。</p>
+<p>ページ下部まで進み、ユーザーデータに...</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/c927249d459cc048.png"></p>
 <p>以下のユーザーデータを流し込んだら、[<strong>次のステップ:ストレージの追加</strong>] ボタンをクリックしてください。</p>
 <pre><code>#!/bin/bash
@@ -533,10 +551,10 @@ systemctl start nginx.service
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/4e18a35f88d53930.png"></p>
 <h2 is-upgraded>ステップ5: タグの追加</h2>
 <p>インスタンスを区別できるようにタグに名前を設定します。<br> IAM ユーザを利用している場合、他ユーザと区別が付くように -user1 等ユーザ名を付けると良いでしょう。</p>
-<p>ここでは、<code>handson-ec2-wordpress</code> とします。</p>
+<p>ここでは、<code>handson-ec2-wordpress-1</code> とします。</p>
 <p>□ <strong>インスタンス</strong> と<br> □ <strong>ボリューム</strong> と<br> □ <strong>ネットワークインターフェイス</strong></p>
 <p>のチェックボックスにチェックを入れると、それぞれのリソースに名前タグが設定されます。<br> [<strong>次のステップ:セキュリティグループの設定</strong>] をクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/5d3e2757f0e22104.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/d3c33afbf0e89fe2.png"></p>
 <h2 is-upgraded>ステップ6: セキュリティグループの設定</h2>
 <p><strong>新しいセキュリティグループを作成する</strong> のオプションボタンにチェックが入っていることを確認してください。<br> セキュリティグループ名と説明は任意の名称を設定してください。本ハンズオンでは、<code>web-sg</code> としました。<br><strong>タイプ</strong> を「SSH」から「HTTP」に変更して、ソースを「<strong>マイ IP</strong>」にしてください。<br> 下部に警告メッセージが表示されますが、セッションマネージャー経由で接続するので問題ありません。<br><strong>ソース</strong> を「任意の場所」にしたら [<strong>確認と作成</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/8f54b7fddf929fae.png"></p>
@@ -561,7 +579,7 @@ systemctl start nginx.service
 <li>ステータスチェックが 2/2 のチェックに合格しました</li>
 </ul>
 <p>になることを確認してください。(これには数分かかります。)</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/73912de2afb951c3.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/683d80064eff149a.png"></p>
 <p>また、バックグラウンドでは並行してユーザーデータによるインストールが進行していきます。<br> インストールが完了まで少し時間がかかりますが、このインストールの途中でセッションマネージャーが利用できる状態になります。</p>
 <aside class="warning"><p> Amazon Linux 2022 には 2022 年 4 月の段階で、セッションマネージャーを利用するための Systems Manager Agent がプリインストールされていません。 </p>
 </aside>
@@ -597,9 +615,9 @@ systemctl start nginx.service
 
       </google-codelab-step>
     
-      <google-codelab-step label="フェーズ1 - ブラウザで　http アクセスする" duration="0">
+      <google-codelab-step label="フェーズ1 - ブラウザで http アクセスする" duration="0">
         <p>次はブラウザから Web ページにアクセスしてみます。<br> EC2 コンソールでインスタンスを選択したら、下部の詳細ペインに表示された <strong>パブリック IPv4 アドレス</strong> を見つけて、アドレスの左側にあるアイコンをクリックしてください。IP アドレスがクリップボードにコピーされます。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/5da8d1b776512961.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/aaa17fc4445f3365.png"></p>
 <p>Chrome タブを追加して、アドレスバーに貼り付けて、ENTER キーを押下しアクセスしてください。WordPress のセットアップ・ウェルカムページが表示されます。</p>
 <aside class="warning"><p> ページが表示されない場合は、セキュリティグループの設定に誤りがある可能性があります。 </p>
 </aside>
@@ -618,18 +636,18 @@ systemctl start nginx.service
 </td><td colspan="1" rowspan="1"><p>値</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>Name</p>
-</td><td colspan="1" rowspan="1"><p>handson-ec2-wordpress</p>
+</td><td colspan="1" rowspan="1"><p>handson-ec2-wordpress-1</p>
 </td></tr>
 </table>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/27fbd97677ca56ec.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ea102acb923a2e9d.png"></p>
 <p>Elastic IP アドレスが割り当てられたら、割り当てられた IPv4 アドレスを控えておいてください。<br> メモできたら [<strong>この Elastic IP アドレスを関連づける</strong>] をクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/f5fa9b3883959b7f.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/4b436d4566177381.png"></p>
 <p><strong>インスタンス</strong> に起動した EC2 インスタンスを指定し、プライベート IP アドレスを選択して、[<strong>関連付ける</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ce18a47aaa9bd2ed.png"></p>
 <aside class="warning"><p> 前述の作業で取得した自分の IP アドレスが表示されている事を確認の上、選択してください。 EC2 インスタンスが複数ある場合は誤ったインスタンスにアタッチしないようにご注意ください。 </p>
 </aside>
 <p>アタッチしたアドレスは、EC2 の詳細画面からも確認できますので再度チェックしておいてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/5da8d1b776512961.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/aaa17fc4445f3365.png"></p>
 
 
       </google-codelab-step>
