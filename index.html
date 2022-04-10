@@ -486,7 +486,7 @@ ami-082c70eb5ed5441a1
 <p>以下のユーザーデータを流し込んだら、[<strong>次のステップ:ストレージの追加</strong>] ボタンをクリックしてください。</p>
 <pre><code>#!/bin/bash
 dnf -y update
-# SELinux 一時的に無効化
+# WordPress のインストールを完了させるため、SELinux を一時的に無効化
 setenforce 0
 # タイムゾーンを東京に変更
 timedatectl set-timezone Asia/Tokyo
@@ -496,7 +496,7 @@ dnf install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/li
 systemctl enable amazon-ssm-agent
 systemctl start amazon-ssm-agent
 # Nginx インストール
-dnf install -y nginx.x86_64
+dnf install -y nginx
 
 # php インストール
 dnf install -y php
@@ -510,9 +510,13 @@ sed -i -e &#34;s/user = apache/user = nginx/g&#34; /etc/php-fpm.d/www.conf
 sed -i -e &#34;s/group = apache/group = nginx/g&#34; /etc/php-fpm.d/www.conf
 systemctl start php-fpm.service
 
+# SELinux で PHP からリモートで RDS へ接続するための設定
+setsebool -P httpd_can_network_connect 1
+
 # mariadb インストール
 dnf install -y mariadb105-server
-sudo systemctl start mariadb
+systemctl start mariadb
+systemctl enable mariadb
 mysql -u root -e &#34;create database wp_database; grant all privileges on wp_database.* to wp_admin@localhost identified by &#39;wordpress&#39;;&#34;
 
 # WordPress インストール
@@ -521,6 +525,12 @@ wget https://ja.wordpress.org/latest-ja.tar.gz
 tar -xzf latest-ja.tar.gz
 mv wordpress /usr/share/nginx/html
 chown -R nginx. /usr/share/nginx/html
+
+# WordPress が SELinux の制限を受けないように設定
+setsebool -P httpd_can_network_connect_db 1
+setsebool -P httpd_can_network_connect 1
+semanage fcontext -a -t httpd_sys_rw_content_t &#34;/usr/share/nginx/html/wordpress/wp-content(/.*)?&#34;
+restorecon -R -v /usr/share/nginx/html/wordpress/wp-content
 
 # WordPress ディレクトリとフォルダーの権限設定
 find /usr/share/nginx/html/wordpress -type d -exec chmod 705 {} +
