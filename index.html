@@ -44,7 +44,7 @@
       </google-codelab-step>
     
       <google-codelab-step label="座学 - セキュリティグループ" duration="2">
-        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 1/6</strong><img alt="Firewall イメージアイコン" src="img/e251e418ca5598ae.png"> インターネットからのトラフィック (インバウンド) をブロックするだけでなく、EC2 からのトラフィック (アウトバウンド) も制限できるファイアウォール機能です。 <img alt="セキュリティグループイメージ画像" src="img/ab5306a2cf09b4fa.png"> 個々のインスタンスごとに、インバウンド、アウトバウンドに対して下記の許可ルールを定義できます。ルールは <strong>ステートフル</strong> で扱われ、明示ルールが無い通信は拒否されます。</p>
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 1/6</strong><img alt="Firewall イメージアイコン" src="img/e251e418ca5598ae.png"> インターネットからのトラフィック (インバウンド) をブロックするだけでなく、EC2 からのトラフィック (アウトバウンド) も制限できるファイアウォール機能です。 <img alt="セキュリティグループイメージ画像" src="img/f052e2651edb7e5d.gif"> 個々のインスタンスごとに、インバウンド、アウトバウンドに対して下記の許可ルールを定義できます。ルールは <strong>ステートフル</strong> で扱われ、明示ルールが無い通信は拒否されます。</p>
 <p><strong>インバウンド</strong></p>
 <ul>
 <li>プロトコル (TCP/UDP/ICMP)</li>
@@ -101,7 +101,7 @@
 <p>AWS クラウドは、2022年4月現在、全世界 26 の地域にある 84 のアベイラビリティーゾーンにまたがっており、24 アベイラビリティーゾーンと 8 AWS リージョンを追加する計画が発表されています。</p>
 <p>AWS のリージョンは必ず複数のデータセンタークラスタ（=AZ）で構成されています。 各 AZ 間は数十キロ離れ、電源やネットワークが独立しており、高い耐障害性を提供できる設計になっています。</p>
 <p><a href="https://aws.amazon.com/jp/about-aws/global-infrastructure/" target="_blank">AWS グローバルインフラストラクチャマップ</a></p>
-<p class="image-container"><img alt="ルートテーブルのアイコン" src="img/5b0eab0829453a5d.png"></p>
+<p class="image-container"><img alt="ルートテーブルのアイコン" src="img/1d06a553c563f54f.gif"></p>
 
 
       </google-codelab-step>
@@ -246,6 +246,8 @@
 </ul>
 <p><a href="https://aws.amazon.com/jp/free/" target="_blank">AWS 無料利用枠</a></p>
 <h2 is-upgraded>【補足】 IAM でのハンズオンについて</h2>
+<aside class="warning"><p> 注意: 予め払い出された IAM ユーザーを利用してハンズオンにご参加されている方への補足 </p>
+</aside>
 <p>このハンズオンは 1 つの AWS アカウント内に複数の IAM ユーザーを作成して、IAM ユーザーで実施することが可能です。<br> 同じアカウント内なので、他の IAM ユーザーが作成した EC2 インスタンスなどが一覧に表示されます。<br> 他のユーザーが作成したリソースと、自分のリソースを区別するため、ハンズオン内では各ユーザーで異なる名前をつけるようにしましょう。</p>
 <h3 is-upgraded>命名規則の例</h3>
 <p class="image-container"><img alt="少し前のコンソール" src="img/4db77ad4b9b0595c.png"></p>
@@ -265,8 +267,11 @@
 <p>↓ もっと前はこのような画面の頃もありました。</p>
 <p class="image-container"><img alt="随分前のコンソール" src="img/d16aa47064933e34.png"></p>
 <h2 is-upgraded>コマンドライン</h2>
-<p>コマンドライン文は、なるべくコピペするようにしてください。</p>
-<pre><code>mysql * from wp
+<p>コマンドライン文は、なるべくコピペするようにしてください。<br> 例えば、以下の SQL コードは <strong>wp_option</strong> テーブルにある <strong>option_name</strong> のカラムが「siteurl」か「home」のレコードだけ表示するコマンドですが、</p>
+<pre><code>select * from wp_options where option_name=&#39;siteurl&#39; or option_name=&#39;home&#39;;
+</code></pre>
+<p>誤って以下のように入力してしまうと、テーブルのデータが全部表示されてしまいます。</p>
+<pre><code>select * from wp_options;
 </code></pre>
 
 
@@ -481,8 +486,8 @@ ami-082c70eb5ed5441a1
 <p>以下のユーザーデータを流し込んだら、[<strong>次のステップ:ストレージの追加</strong>] ボタンをクリックしてください。</p>
 <pre><code>#!/bin/bash
 dnf -y update
-# SELinux 無効化
-sed -i -e &#34;s/SELINUX=enforcing/SELINUX=disabled/g&#34; /etc/selinux/config
+# SELinux 一時的に無効化
+setenforce 0
 # タイムゾーンを東京に変更
 timedatectl set-timezone Asia/Tokyo
 localectl set-locale LANG=ja_JP.utf8
@@ -511,7 +516,7 @@ sudo systemctl start mariadb
 mysql -u root -e &#34;create database wp_database; grant all privileges on wp_database.* to wp_admin@localhost identified by &#39;wordpress&#39;;&#34;
 
 # WordPress インストール
-cd /tmp
+cd /usr/share/nginx/html/
 wget https://ja.wordpress.org/latest-ja.tar.gz
 tar -xzf latest-ja.tar.gz
 mv wordpress /usr/share/nginx/html
@@ -585,7 +590,7 @@ systemctl start nginx.service
 </aside>
 <h2 is-upgraded>ユーザーデータで行う処理</h2>
 <ol type="1">
-<li><strong>SELinux 無効化<br></strong> Amazon Linux 2022 は Fedora ベースの OS で SELinux が有効になっています。<br> SELinux が有効だと Nginx が正しく動かないため無効化します。</li>
+<li><strong>SELinux 無効化<br></strong> Amazon Linux 2022 は Fedora ベースの OS で SELinux が有効になっています。<br> SELinux が有効だとセットアップ時に Nginx が正しく動かないため一時的に無効化します。</li>
 <li><strong>タイムゾーンを東京に変更<br></strong> EC2 インスタンスは大抵 UTC にて稼働します。そのため、起動後にタイムゾーンを Asia/Tokyo にします。</li>
 <li><strong>ロケールを日本語に変更</strong></li>
 <li><strong>SSM エージェントのインストール<br></strong> SSM エージェントをインストールすると、セッションマネージャーが利用できるようになります。</li>
@@ -600,7 +605,7 @@ systemctl start nginx.service
 <p>インスタンスが複数表示されている場合は、テキストボックスにインスタンス名を入れたり、ステータスを <strong>running</strong> でフィルタリングするなどすると効率的に見つけることができます。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/b34e06d3965d7296.png"></p>
 <p>[<strong>セッションマネージャー</strong>] タブを選択し、[<strong>接続</strong>] ボタンをクリックします。</p>
-<aside class="special"><p> 接続ボタンがアクティブでない場合は、IAM ロールをアタッチし損ねたか、SSM エージェントのインストールがまだ完了していない可能性があります。 </p>
+<aside class="warning"><p> 接続ボタンがアクティブでない場合は、IAM ロールをアタッチし損ねたか、パブリック IP アドレスをつけ忘れたか、SSM エージェントのインストールがまだ完了していないなどの可能性があります。 </p>
 </aside>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/720d7102152fe523.png"></p>
 <p>接続が成功すると、ブラウザの新しいタブが開いて以下のようなプロンプトで停止します。</p>
@@ -611,6 +616,8 @@ systemctl start nginx.service
 #
 </code></pre>
 <p>本ウインドウは閉じずにそのままにしておいてください。</p>
+<aside class="warning"><p> バックグラウンドでインストールが継続している可能性があります。再起動などは実施しないでください。   次の手順 (ブラウザからアクセス) で、WordPress のウェルカム画面が表示されれば、インストールは一通り終わっています。 </p>
+</aside>
 
 
       </google-codelab-step>
@@ -621,13 +628,15 @@ systemctl start nginx.service
 <p>Chrome タブを追加して、アドレスバーに貼り付けて、ENTER キーを押下しアクセスしてください。WordPress のセットアップ・ウェルカムページが表示されます。</p>
 <aside class="warning"><p> ページが表示されない場合は、セキュリティグループの設定に誤りがある可能性があります。 </p>
 </aside>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/943301a1761a6903.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/4889d18248777bd0.png"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="フェーズ1 - Elastic IP の割り当て" duration="0">
         <h2 is-upgraded>Elastic IP (EIP) を取得</h2>
+<aside class="warning"><p> バックグラウンドでインストールが継続している可能性があります。インストール中に ElasticIP アドレスを付与すると処理エラーが発生する可能性があります。   前の手順 (ブラウザからアクセス) で、WordPress のウェルカム画面が表示されれば、インストールは一通り終わっています。 </p>
+</aside>
 <p>インスタンスを停止/開始した後も、同じ IP アドレスが使用できるよう、固定 IP アドレスであるElastic IP を取得します。<br> EC2 コンソールにて、左側のメニューペインから <strong>Elastic IP</strong> をクリックし、ページ上部に表示された [<strong>Elastic IP アドレスを割り当てる</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/cfbc1dbc65483dec.png"></p>
 <p><strong>Elastic IP アドレスを割り当てる</strong> の画面に遷移するので、Name タグを設定してください。<br> こちらも任意ですが、EC2 インスタンスのタグと揃えると識別しやすいです。</p>
@@ -798,8 +807,9 @@ lines 1-21/21 (END)
       <google-codelab-step label="WordPress を実際に複数台で構成する場合の留意点" duration="0">
         <p>本ハンズオンで構築したアーキテクチャーでは、複数台構成の WordPress を適切に使用できない点があります。</p>
 <h2 is-upgraded>アップロードしたファイルの表示</h2>
-<p>アップロードされたメディアファイルは各サーバのローカルに保存されます。<br> 例えば、以下の図のようにユーザーが画像をアップロードしたとします。このとき、ALB が 10.0.0.0/24 にて稼働する WordPress サーバーにデータをアップロードした場合は、10.0.1.0/24 のサーバーには画像がないため、画像が表示されたり、されなかったりといった不具合が起きます。<br> 解決法としては以下が挙げられます。</p>
+<p>アップロードされたメディアファイルは各サーバのローカルに保存されます。<br> 例えば、以下の図のようにユーザーがクライアント PC から写真をアップロードしたとします。このとき、1 台の WordPress サーバーにデータをアップロードされますが、もう一台の WordPress サーバーには写真がない状態になります。<br> この状態でクライアント PC からブラウザでページにアクセスすると、画像が表示されたり、されなかったりといった不具合が起きます。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ce0f38ca2a6a26a3.gif"></p>
+<p>解決法としては以下が挙げられます。</p>
 <ol type="1">
 <li>WordPress のプラグインを利用する<br> 「<strong>Amazon S3 and Cloudfront</strong>」などの WordPress プラグインを使って、メディアファイルを S3 に保管するような仕組みを導入します。</li>
 <li><strong>EFS を利用する<br></strong> Amazon EFS を利用して、各サーバで共有ストレージとしてマウントします。<br> この方法は読み込みのオーバーヘッドが発生するため、キャッシュ設定を考慮する必要があります。<br><img alt="AWS マネジメントコンソール サインイン画面" src="img/fd8fb4359898ef83.png"></li>
