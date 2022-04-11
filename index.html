@@ -525,7 +525,7 @@ mysql -u root -e &#34;create database wp_database; grant all privileges on wp_da
 cd /usr/share/nginx/html/
 wget https://ja.wordpress.org/latest-ja.tar.gz
 tar -xzf latest-ja.tar.gz
-rm -f wordpress /usr/share/nginx/html/latest-ja.tar.gz
+rm -f latest-ja.tar.gz
 chown -R nginx. /usr/share/nginx/html
 
 # WordPress が SELinux の制限を受けないように設定
