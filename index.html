@@ -460,8 +460,11 @@
 al2022-ami-2022.0.20220315.0-kernel-5.15-x86_64
 AMI ID:
 ami-082c70eb5ed5441a1
+※ 東京リージョンの AMI ID です。
 </code></pre>
 <p>左側のペインで <strong>コミュニティ AMI (1)</strong> をクリックして、左側の詳細ペインに表示された [<strong>選択</strong>] ボタンをクリックしてください。</p>
+<aside class="special"><p> クイックスタートカタログ で &#34;ami-082c70eb5ed5441a1&#34; に一致する結果が見つかりませんでした。が表示された場合は、コミュニティ AMI が選択されているか確認してください。東京リージョンの AMI ID なので、別リージョンで作業されている場合は、AMI 名で検索してみてください。 </p>
+</aside>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/b7ee9e5d88e459f2.png"></p>
 <h2 is-upgraded>ステップ2: インスタンスタイプの選択</h2>
 <p>インスタンスタイプが <strong>t2.micro</strong> であることを確認して、[<strong>次のステップ:インスタンスの詳細の設定</strong>] ボタンをクリックしてください。</p>
@@ -491,10 +494,12 @@ setenforce 0
 # タイムゾーンを東京に変更
 timedatectl set-timezone Asia/Tokyo
 localectl set-locale LANG=ja_JP.utf8
+
 # SSM Agent インストール
 dnf install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
 systemctl enable amazon-ssm-agent
 systemctl start amazon-ssm-agent
+
 # Nginx インストール
 dnf install -y nginx
 
@@ -510,9 +515,6 @@ sed -i -e &#34;s/user = apache/user = nginx/g&#34; /etc/php-fpm.d/www.conf
 sed -i -e &#34;s/group = apache/group = nginx/g&#34; /etc/php-fpm.d/www.conf
 systemctl start php-fpm.service
 
-# SELinux で PHP からリモートで RDS へ接続するための設定
-setsebool -P httpd_can_network_connect 1
-
 # mariadb インストール
 dnf install -y mariadb105-server
 systemctl start mariadb
@@ -523,7 +525,7 @@ mysql -u root -e &#34;create database wp_database; grant all privileges on wp_da
 cd /usr/share/nginx/html/
 wget https://ja.wordpress.org/latest-ja.tar.gz
 tar -xzf latest-ja.tar.gz
-mv wordpress /usr/share/nginx/html
+rm -f wordpress /usr/share/nginx/html/latest-ja.tar.gz
 chown -R nginx. /usr/share/nginx/html
 
 # WordPress が SELinux の制限を受けないように設定
@@ -567,6 +569,14 @@ systemctl start nginx.service
 <h2 is-upgraded>ステップ5: タグの追加</h2>
 <p>インスタンスを区別できるようにタグに名前を設定します。<br> IAM ユーザを利用している場合、他ユーザと区別が付くように -user1 等ユーザ名を付けると良いでしょう。</p>
 <p>ここでは、<code>handson-ec2-wordpress-1</code> とします。</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>キー</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>値</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Name</p>
+</td><td colspan="1" rowspan="1"><p>handson-ec2-wordpress-1</p>
+</td></tr>
+</table>
 <p>□ <strong>インスタンス</strong> と<br> □ <strong>ボリューム</strong> と<br> □ <strong>ネットワークインターフェイス</strong></p>
 <p>のチェックボックスにチェックを入れると、それぞれのリソースに名前タグが設定されます。<br> [<strong>次のステップ:セキュリティグループの設定</strong>] をクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/d3c33afbf0e89fe2.png"></p>
