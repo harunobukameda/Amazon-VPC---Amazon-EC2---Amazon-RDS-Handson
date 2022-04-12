@@ -43,26 +43,8 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="座学 - セキュリティグループ" duration="2">
-        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 1/6</strong><img alt="Firewall イメージアイコン" src="img/e251e418ca5598ae.png"> インターネットからのトラフィック (インバウンド) をブロックするだけでなく、EC2 からのトラフィック (アウトバウンド) も制限できるファイアウォール機能です。 <img alt="セキュリティグループイメージ画像" src="img/f052e2651edb7e5d.gif"> 個々のインスタンスごとに、インバウンド、アウトバウンドに対して下記の許可ルールを定義できます。ルールは <strong>ステートフル</strong> で扱われ、明示ルールが無い通信は拒否されます。</p>
-<p><strong>インバウンド</strong></p>
-<ul>
-<li>プロトコル (TCP/UDP/ICMP)</li>
-<li>ポート範囲 (ポート番号の範囲)</li>
-<li>送信元 (アクセス元の IP アドレス)</li>
-</ul>
-<p><strong>アウトバウンド</strong></p>
-<ul>
-<li>プロトコル (TCP/UDP/ICMP)</li>
-<li>ポート範囲 (ポート番号の範囲)</li>
-<li>送信先 (アクセス先の IP アドレス)</li>
-</ul>
-
-
-      </google-codelab-step>
-    
       <google-codelab-step label="座学 - Amazon VPC (Virtual Private Cloud)" duration="2">
-        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 2/6</strong><img alt="VPC のアイコン" src="img/3a54948ea72e5cb9.png"> VPC はプライベートな仮想ネットワークサービスです。VPC  を使うと AWS クラウド内にお客様専用のプライベートアドレスの空間を構築できます。<br> 社内ネットワークとインターネット VPN やキャリアの閉域網で接続ができます。</p>
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 1/6</strong><img alt="VPC のアイコン" src="img/3a54948ea72e5cb9.png"> VPC はプライベートな仮想ネットワークサービスです。VPC  を使うと AWS クラウド内にお客様専用のプライベートアドレスの空間を構築できます。<br> 社内ネットワークとインターネット VPN やキャリアの閉域網で接続ができます。</p>
 <p class="image-container"><img alt="VPC のイメージ画像" src="img/fc692d5337f61f45.png"></p>
 <h2 is-upgraded>VPCとサブネットについて</h2>
 <ul>
@@ -97,7 +79,8 @@
       </google-codelab-step>
     
       <google-codelab-step label="座学 - リージョンとアベイラビリティゾーン (AZ)" duration="0">
-        <h2 is-upgraded>リージョン</h2>
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 2/6</strong></p>
+<h2 is-upgraded>リージョン</h2>
 <p>AWS クラウドは、2022年4月現在、全世界 26 の地域にある 84 のアベイラビリティーゾーンにまたがっており、24 アベイラビリティーゾーンと 8 AWS リージョンを追加する計画が発表されています。</p>
 <p>AWS のリージョンは必ず複数のデータセンタークラスタ（=AZ）で構成されています。 各 AZ 間は数十キロ離れ、電源やネットワークが独立しており、高い耐障害性を提供できる設計になっています。</p>
 <p><a href="https://aws.amazon.com/jp/about-aws/global-infrastructure/" target="_blank">AWS グローバルインフラストラクチャマップ</a></p>
@@ -139,8 +122,26 @@
 
       </google-codelab-step>
     
+      <google-codelab-step label="座学 - セキュリティグループ" duration="2">
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 4/6</strong><img alt="Firewall イメージアイコン" src="img/e251e418ca5598ae.png"> インターネットからのトラフィック (インバウンド) をブロックするだけでなく、EC2 からのトラフィック (アウトバウンド) も制限できるファイアウォール機能です。 <img alt="セキュリティグループイメージ画像" src="img/f052e2651edb7e5d.gif"> 個々のインスタンスごとに、インバウンド、アウトバウンドに対して下記の許可ルールを定義できます。ルールは <strong>ステートフル</strong> で扱われ、明示ルールが無い通信は拒否されます。</p>
+<p><strong>インバウンド</strong></p>
+<ul>
+<li>プロトコル (TCP/UDP/ICMP)</li>
+<li>ポート範囲 (ポート番号の範囲)</li>
+<li>送信元 (アクセス元の IP アドレス)</li>
+</ul>
+<p><strong>アウトバウンド</strong></p>
+<ul>
+<li>プロトコル (TCP/UDP/ICMP)</li>
+<li>ポート範囲 (ポート番号の範囲)</li>
+<li>送信先 (アクセス先の IP アドレス)</li>
+</ul>
+
+
+      </google-codelab-step>
+    
       <google-codelab-step label="座学 - NACL (Network Access Control List)" duration="1">
-        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 4/6</strong><img alt="NACL のアイコン" src="img/33455e4245ef96fc.png"></p>
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 5/6</strong><img alt="NACL のアイコン" src="img/33455e4245ef96fc.png"></p>
 <aside class="special"><p> 本日のハンズオンでは、NACL は使いません。 </p>
 </aside>
 <p>制御可能な項目はセキュリティグループと同じです。<br> セキュリティグループは、ステートフルで動作し、NACL はステートレスで動作します。</p>
@@ -167,7 +168,7 @@
       </google-codelab-step>
     
       <google-codelab-step label="座学 - AWS IAM" duration="1">
-        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 5/6</strong></p>
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 6/6</strong></p>
 <p class="image-container"><img alt="IAM のアイコン" src="img/52a5b64cfe33128c.png"></p>
 <p>AWS 自体のリソース操作をよりセキュアに扱うための認証・認可の仕組みです。<br> AWS 利用者の認証とアクセスポリシーを「グループ」「ユーザー」「ロール」で管理します。</p>
 <ul>
@@ -182,8 +183,8 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="座学 - 備考 - MFA (多要素認証) で認証の安全性を高める" duration="1">
-        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 6/6</strong></p>
+      <google-codelab-step label="座学 - MFA (多要素認証) で認証の安全性を高める" duration="1">
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス - 備考</strong></p>
 <h2 is-upgraded>AWS アカウント (ルートアカウント) の保護</h2>
 <p>AWS アカウント (ルートアカウント) は、ハードウェアトークンで保護することが推奨されています。<br> また、ハードウェアトークンは金庫などで管理することが推奨されています。</p>
 <p class="image-container"><img alt="IAM のアイコン" src="img/42bf5ecb502dd20b.jpg"></p>
@@ -203,31 +204,31 @@
 <ul>
 <li>サーバー 1 台構成</li>
 </ul>
-<p class="image-container"><img alt="Phase1 完成図" src="img/59c47d2b8093890e.png"></p>
+<p>パブリックサブネットに <strong>Amazon EC2</strong> インスタンス (サーバー) を起動します。<br> サーバーには SSH ではなく、<strong>AWS Systems Manager</strong> の <strong>セッションマネージャー</strong> 経由でセキュアに接続します。<br> WordPress をホスティングして、ユーザーがブラウザ経由で Web サイトを閲覧できるようにします。<br> フェーズ 1 は、サーバー 1 台構成のため、スケールするには <strong>インスタンスファミリー</strong> を変更してサイズアップする必要があります。</p>
+<p class="image-container"><img alt="Phase1 完成図" src="img/6eefc7b858788b64.png"></p>
 <h3 is-upgraded>フェーズ  2</h3>
-<p>スケールできるアーキテクチャに移行する準備をする。</p>
+<p>スケールできるアーキテクチャーに移行する準備をする。</p>
 <ul>
 <li>Web + DB (サーバー 2 台構成)</li>
 </ul>
-<p class="image-container"><img alt="Phase2 完成図" src="img/5f779975236e979.png"></p>
+<p><strong>Amazon Aurora MySQL</strong> インスタンスを起動して、データベースにします。<br> サーバーにて稼働させていたデータベースを停止して、Aurora データベースに切り替えます。 フェーズ 2 の状態はまだスケールするための準備で、スケールはインスタンスファミリーを変更してサイズアップする必要があります。</p>
+<p class="image-container"><img alt="Phase2 完成図" src="img/23bb216d9e7c5fcf.png"></p>
 <h3 is-upgraded>フェーズ 3</h3>
 <p>Web サーバーがスケールできる構成にする。</p>
 <ul>
 <li>LB + Web x 2 + DB (サーバー 3 台構成)</li>
 </ul>
-<p class="image-container"><img alt="Phase3 完成図" src="img/f54bdbcea826b4a8.png"></p>
+<p>Web サーバーを複製できるように <strong>Amazon Machine Image (AMI)</strong> を取得します。<br> AMI から Web サーバーを複製して 2 台構成にします。<br> 2 台のサーバーに Web リクエストがバランシングされるように、前段に <strong>Application Load Balancer</strong> を起動します。<br> フェーズ 3 になると、Web リクエストが増えた際に 1 台のサーバーをスペックアップする方法 (スケールアップ) に加えて、台数を増やす (スケールアウト) ができるようになります。</p>
+<p class="image-container"><img alt="Phase3 完成図" src="img/28cac83a6e8aff35.png"></p>
 <h3 is-upgraded>オプション</h3>
 <p>DB サーバーを冗長化された構成にする。</p>
 <ul>
 <li>LB + Web x 2 + DB x 2 (サーバー 4 台構成)</li>
 </ul>
-<p class="image-container"><img alt="Phase オプション完成図" src="img/5108246d98864acd.png"></p>
-<h3 is-upgraded>最終</h3>
-<p>DB サーバーを冗長化された構成にする。</p>
-<ul>
-<li>LB + Web x 2 + DB x 2 (サーバー 4 台構成)</li>
-</ul>
-<p class="image-container"><img alt="最終構成図" src="img/31a41ae7ef24c7e8.png"></p>
+<p>データベースに障害が発生した際に、フェイルオーバーするようにスタンバイインスタンスを起動して、Multi-AZ 構成にします。</p>
+<p class="image-container"><img alt="Phase オプション完成図" src="img/c9f49d0b34c17034.png"></p>
+<h3 is-upgraded>最終構成図</h3>
+<p class="image-container"><img alt="最終構成図" src="img/1a4b2e6047a262fc.png"></p>
 
 
       </google-codelab-step>
@@ -280,7 +281,7 @@
       <google-codelab-step label="フェーズ1　- サインイン" duration="2">
         <h2 is-upgraded>サーバー 1 台構成</h2>
 <p>最小構成で最も低コストですが、拡張性が低く、性能を一定以上上げることができません。</p>
-<p class="image-container"><img alt="Phase1 完成図" src="img/59c47d2b8093890e.png"></p>
+<p class="image-container"><img alt="Phase1 完成図" src="img/6eefc7b858788b64.png"></p>
 <h3 is-upgraded>拡張性: 低</h3>
 <p>拡張するには 1 台のインスタンスタイプを大きくします。</p>
 <h3 is-upgraded>冗長性: 低</h3>
@@ -391,8 +392,8 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="フェーズ1 - セッションマネージャー" duration="0">
-        <h2 is-upgraded>IAM ロールを作成する</h2>
+      <google-codelab-step label="フェーズ1 - IAM ロールを作成する" duration="0">
+        <h2 is-upgraded>EC2 インスタンスにアタッチする IAM ロールを作成する</h2>
 <p>EC2 インスタンスには、Linux OS の場合は SSH で、Windows OS の場合は RDP で接続しますが、本ハンズオンでは SSH ポートを開放せずに AWS Systems Manager のセッションマネージャー経由で接続をします。</p>
 <aside class="special"><p> セッションマネージャーを利用するには、IAM ロールが必要です。   </p>
 </aside>
@@ -489,8 +490,12 @@ ami-082c70eb5ed5441a1
 <p>以下のユーザーデータを流し込んだら、[<strong>次のステップ:ストレージの追加</strong>] ボタンをクリックしてください。</p>
 <pre><code>#!/bin/bash
 dnf -y update
-# WordPress のインストールを完了させるため、SELinux を一時的に無効化
+# WordPress のインストールを完了させるため、SELinux を一時的にPermissive に変更
 setenforce 0
+
+# WordPress のRDS切り替えを完了させるため、SELinux を恒久的に Permissive に変更
+grubby --update-kernel ALL --args enforcing=0
+
 # タイムゾーンを東京に変更
 timedatectl set-timezone Asia/Tokyo
 localectl set-locale LANG=ja_JP.utf8
@@ -513,6 +518,7 @@ dnf install -y php-fpm
 #php-fpm 設定変更
 sed -i -e &#34;s/user = apache/user = nginx/g&#34; /etc/php-fpm.d/www.conf
 sed -i -e &#34;s/group = apache/group = nginx/g&#34; /etc/php-fpm.d/www.conf
+systemctl enable php-fpm.service
 systemctl start php-fpm.service
 
 # mariadb インストール
@@ -527,12 +533,6 @@ wget https://ja.wordpress.org/latest-ja.tar.gz
 tar -xzf latest-ja.tar.gz
 rm -f latest-ja.tar.gz
 chown -R nginx. /usr/share/nginx/html
-
-# WordPress が SELinux の制限を受けないように設定
-setsebool -P httpd_can_network_connect_db 1
-setsebool -P httpd_can_network_connect 1
-semanage fcontext -a -t httpd_sys_rw_content_t &#34;/usr/share/nginx/html/wordpress/wp-content(/.*)?&#34;
-restorecon -R -v /usr/share/nginx/html/wordpress/wp-content
 
 # WordPress ディレクトリとフォルダーの権限設定
 find /usr/share/nginx/html/wordpress -type d -exec chmod 705 {} +
@@ -577,11 +577,12 @@ systemctl start nginx.service
 </td><td colspan="1" rowspan="1"><p>handson-ec2-wordpress-1</p>
 </td></tr>
 </table>
-<p>□ <strong>インスタンス</strong> と<br> □ <strong>ボリューム</strong> と<br> □ <strong>ネットワークインターフェイス</strong></p>
+<p><img alt="AWS マネジメントコンソール サインイン画面" src="img/d3c33afbf0e89fe2.png"> □ <strong>インスタンス</strong> と<br> □ <strong>ボリューム</strong> と<br> □ <strong>ネットワークインターフェイス</strong></p>
 <p>のチェックボックスにチェックを入れると、それぞれのリソースに名前タグが設定されます。<br> [<strong>次のステップ:セキュリティグループの設定</strong>] をクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/d3c33afbf0e89fe2.png"></p>
 <h2 is-upgraded>ステップ6: セキュリティグループの設定</h2>
-<p><strong>新しいセキュリティグループを作成する</strong> のオプションボタンにチェックが入っていることを確認してください。<br> セキュリティグループ名と説明は任意の名称を設定してください。本ハンズオンでは、<code>web-sg</code> としました。<br><strong>タイプ</strong> を「SSH」から「HTTP」に変更して、ソースを「<strong>マイ IP</strong>」にしてください。<br> 下部に警告メッセージが表示されますが、セッションマネージャー経由で接続するので問題ありません。<br><strong>ソース</strong> を「任意の場所」にしたら [<strong>確認と作成</strong>] ボタンをクリックしてください。</p>
+<p><strong>新しいセキュリティグループを作成する</strong> のオプションボタンにチェックが入っていることを確認してください。<br> セキュリティグループ名と説明は任意の名称を設定してください。本ハンズオンでは、<code>web-sg</code> とします。</p>
+<p><strong>タイプ</strong> を「SSH」から「HTTP」に変更して、ソースを「<strong>マイ IP</strong>」にしてください。<br> 下部に警告メッセージが表示されますが、セッションマネージャー経由で接続するので問題ありません。</p>
+<p><strong>ソース</strong> を「任意の場所」にしたら [<strong>確認と作成</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/8f54b7fddf929fae.png"></p>
 <h2 is-upgraded>ステップ7: インスタンス作成の確認</h2>
 <p>確認画面が表示されます。内容確認して間違えなければ [<strong>起動</strong>] ボタンをクリックしてください。</p>
@@ -597,8 +598,9 @@ systemctl start nginx.service
 
       </google-codelab-step>
     
-      <google-codelab-step label="フェーズ1 - セッションマネージャーでアクセスする" duration="0">
-        <p>起動したインスタンスは、AMI (Amazon マシンイメージ) から復元されたあと、ユーザーデータに入力したスクリプトによって、インストールが行われていきます。<br> 下図の通り、</p>
+      <google-codelab-step label="フェーズ1 - セッションマネージャー" duration="0">
+        <h2 is-upgraded>セッションマネージャー経由で EC2 インスタンスにアクセスする</h2>
+<p>起動したインスタンスは、AMI (Amazon マシンイメージ) から復元されたあと、ユーザーデータに入力したスクリプトによって、インストールが行われていきます。<br> 下図の通り、</p>
 <ul>
 <li>インスタンスの状態が <strong>実行中</strong> になること</li>
 <li>ステータスチェックが 2/2 のチェックに合格しました</li>
@@ -606,12 +608,12 @@ systemctl start nginx.service
 <p>になることを確認してください。(これには数分かかります。)</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/683d80064eff149a.png"></p>
 <p>また、バックグラウンドでは並行してユーザーデータによるインストールが進行していきます。<br> インストールが完了まで少し時間がかかりますが、このインストールの途中でセッションマネージャーが利用できる状態になります。</p>
-<aside class="warning"><p> Amazon Linux 2022 には 2022 年 4 月の段階で、セッションマネージャーを利用するための Systems Manager Agent がプリインストールされていません。 </p>
+<aside class="warning"><p> Amazon Linux 2022 には 2022 年 4 月の段階で、セッションマネージャーを利用するための Systems Manager Agent がプリインストールされていません。そのため、本ハンズオンではユーザーデーターを使って Agent をインストールしています。 </p>
 </aside>
 <h2 is-upgraded>ユーザーデータで行う処理</h2>
 <ol type="1">
-<li><strong>SELinux 無効化<br></strong> Amazon Linux 2022 は Fedora ベースの OS で SELinux が有効になっています。<br> SELinux が有効だとセットアップ時に Nginx が正しく動かないため一時的に無効化します。</li>
-<li><strong>タイムゾーンを東京に変更<br></strong> EC2 インスタンスは大抵 UTC にて稼働します。そのため、起動後にタイムゾーンを Asia/Tokyo にします。</li>
+<li><strong>SELinux 無効化<br></strong> Amazon Linux 2022 は Fedora ベースの OS で SELinux が有効になっています。<br> SELinux が有効だとセットアップ時に Nginx が正しく動作しません。<br> 本番環境では SELinux を有効化して http などのポリシーの設定を行う必要がありますが、本ハンズオンでは無効化します。</li>
+<li><strong>タイムゾーンを東京に変更<br></strong> Amazon Linux 2022 の AMI は UTC 時刻にて稼働します。そのため、起動後にタイムゾーンを Asia/Tokyo にします。</li>
 <li><strong>ロケールを日本語に変更</strong></li>
 <li><strong>SSM エージェントのインストール<br></strong> SSM エージェントをインストールすると、セッションマネージャーが利用できるようになります。</li>
 <li><strong>Nginx インストール<br></strong> Web サーバーとして稼働させるため、Nginx をインストールします。</li>
@@ -619,6 +621,8 @@ systemctl start nginx.service
 <li><strong>MariaDB インストール<br></strong> WordPress で利用する MariaDB をインストールします。</li>
 <li><strong>WordPress インストール<br></strong> 最新版の WordPress をダウンロードしてインストールします。</li>
 </ol>
+<aside class="special"><p>SELinux は、Passive という警告モードにしています。</p>
+</aside>
 <h2 is-upgraded>セッションマネージャーによる接続</h2>
 <p>インスタンスが起動したらセッションマネージャーで接続してみましょう。<br> EC2 コンソールの左側のメニューペインにある <strong>インスタンス</strong> をクリックして、右側に表示されるインスタンス一覧から、起動したインスタンスを見つけてください。<br> インスタンスの左側にあるチェックボックスにチェックを入れて、[<strong>接続</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/1bd36727d14fa10f.png"></p>
@@ -659,7 +663,7 @@ systemctl start nginx.service
 </aside>
 <p>インスタンスを停止/開始した後も、同じ IP アドレスが使用できるよう、固定 IP アドレスであるElastic IP を取得します。<br> EC2 コンソールにて、左側のメニューペインから <strong>Elastic IP</strong> をクリックし、ページ上部に表示された [<strong>Elastic IP アドレスを割り当てる</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/cfbc1dbc65483dec.png"></p>
-<p><strong>Elastic IP アドレスを割り当てる</strong> の画面に遷移するので、Name タグを設定してください。<br> こちらも任意ですが、EC2 インスタンスのタグと揃えると識別しやすいです。</p>
+<p><strong>Elastic IP アドレスを割り当てる</strong> の画面に遷移するので、Name タグを設定してください。 ページの下部にある <strong>タグ - オプション</strong> に進み、[<strong>新規タグ追加</strong>] ボタンをクリックします。 キーと値に以下を入力してください。</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>キー</p>
 </td><td colspan="1" rowspan="1"><p>値</p>
@@ -669,6 +673,8 @@ systemctl start nginx.service
 </td></tr>
 </table>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ea102acb923a2e9d.png"></p>
+<aside class="special"><p>タグは任意ですが、EC2 インスタンスのタグと揃えると識別しやすいです。 </p>
+</aside>
 <p>Elastic IP アドレスが割り当てられたら、割り当てられた IPv4 アドレスを控えておいてください。<br> メモできたら [<strong>この Elastic IP アドレスを関連づける</strong>] をクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/4b436d4566177381.png"></p>
 <p><strong>インスタンス</strong> に起動した EC2 インスタンスを指定し、プライベート IP アドレスを選択して、[<strong>関連付ける</strong>] ボタンをクリックしてください。</p>
