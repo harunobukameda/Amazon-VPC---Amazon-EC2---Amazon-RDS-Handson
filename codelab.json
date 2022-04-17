@@ -3,24 +3,15 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2022-04-12T10:17:51+09:00",
-  "id": "awshandson20220425",
-  "duration": 19,
-  "title": "AWS 体験ハンズオン〜セキュア\u0026スケーラブルウェブサービス構築",
-  "summary": "AWS 体験ハンズオン〜セキュア\u0026スケーラブルウェブサービス構築",
-  "source": "01.handson.md",
+  "updated": "2022-04-18T07:03:20Z",
+  "id": "",
+  "duration": 0,
+  "title": "",
+  "summary": "",
+  "source": "1-KGlA8Wp33s6TgrdAcOOmdGn1CRjJ4PHs6sf-2gFtgc",
   "theme": "",
-  "status": [
-    "making"
-  ],
-  "category": [
-    "aws",
-    "handson",
-    "markdown"
-  ],
-  "tags": [
-    "web"
-  ],
-  "feedback": "https://github.com/otanikohei/Amazon-VPC—Amazon-EC2—Amazon-RDS-Handson",
-  "url": "awshandson20220425"
+  "status": null,
+  "category": null,
+  "tags": [],
+  "url": ""
 }

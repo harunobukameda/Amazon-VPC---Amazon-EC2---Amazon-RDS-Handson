@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
-  <title>AWS 体験ハンズオン〜セキュア&amp;スケーラブルウェブサービス構築</title>
+  <title></title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
@@ -22,40 +22,45 @@
 <body>
   <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
   <google-codelab codelab-gaid=""
-                  id="awshandson20220425"
-                  title="AWS 体験ハンズオン〜セキュア&amp;スケーラブルウェブサービス構築"
+                  id=""
+                  title=""
                   environment="web"
-                  feedback-link="https://github.com/otanikohei/Amazon-VPC—Amazon-EC2—Amazon-RDS-Handson">
+                  feedback-link="">
     
-      <google-codelab-step label="はじめに" duration="2">
-        <p class="image-container"><img alt="タイトル画像" src="img/f755787aade4c158.gif"></p>
-<p>Amazon Web Services (AWS) を利用して、セキュアでスケーラブルなウェブサービスの構築手順を体験できるハンズオンを実施いたします。<br> AWS を使ってより安全にサービスを運用する方法、ウェブサービスの規模に合わせて、柔軟にシステムを拡張する方法を体験できる内容です。</p>
-<aside class="warning"><p> 本ハンズオンのドキュメントで掲載されているスクリーンショット (画面キャプチャ) は 2022年04月時点のもので、現在の画面とは異なる場合がございます。予めご了承ください。 </p>
+      <google-codelab-step label="はじめに" duration="0">
+        <p class="image-container"><img style="width: 624.00px" src="img\\f755787aade4c158"></p>
+<p>Amazon Web Services (AWS) を利用して、セキュアでスケーラブルなウェブサービスの構築手順を体験できるハンズオンを実施いたします。</p>
+<p>AWS を使ってより安全にサービスを運用する方法、ウェブサービスの規模に合わせて、柔軟にシステムを拡張する方法を体験できる内容です。</p>
+<aside class="special"><p><strong>本ハンズオンのドキュメントで掲載されているスクリーンショット (画面キャプチャ) は 2022年04月時点のもので、現在の画面とは異なる場合がございます。予めご了承ください。</strong></p>
 </aside>
-<h2 is-upgraded>準備事項</h2>
-<h3 is-upgraded>インターネットに接続可能な PC</h3>
-<p><img alt="PC イメージアイコン" src="img/8a18f727de870aa1.png"><br> AWS を利用するにはインターネット接続が必要です。Windows、mac、Linux をご準備ください。本ハンズオン資料は mac にて作成しています。</p>
-<h3 is-upgraded>AWS アカウント</h3>
-<p><img alt="AWS アイコン" src="img/a06b78e541fcc9f.png"> AWS アカウントを事前にご準備ください。</p>
-<h3 is-upgraded>ブラウザ</h3>
-<p><img alt="ブラウザ イメージアイコン" src="img/67c5707b04520011.png"> Firefox もしくは Google Chrome を推奨します。本ハンズオン資料は Google Chrome にて検証しています。</p>
+<h2 is-upgraded><strong>準備事項</strong></h2>
+<p>インターネットに接続可能な PC</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\73c30bd98efd4cca"></p>
+<p>AWS を利用するにはインターネット接続が必要です。Windows、mac、Linux をご準備ください。本ハンズオン資料は mac にて作成しています。</p>
+<h2 is-upgraded><strong>AWS アカウント</strong></h2>
+<p class="image-container"><img style="width: 624.00px" src="img\\1247d411e78073e8"></p>
+<p>AWS アイコン AWS アカウントを事前にご準備ください。</p>
+<h2 is-upgraded><strong>ブラウザ</strong></h2>
+<p class="image-container"><img style="width: 624.00px" src="img\\32d9ad7bb8d38a03"></p>
+<p>ブラウザ イメージアイコン Firefox もしくは Google Chrome を推奨します。本ハンズオン資料は Google Chrome にて検証しています。</p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="座学 - Amazon VPC (Virtual Private Cloud)" duration="2">
-        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 1/6</strong><img alt="VPC のアイコン" src="img/3a54948ea72e5cb9.png"> VPC はプライベートな仮想ネットワークサービスです。VPC  を使うと AWS クラウド内にお客様専用のプライベートアドレスの空間を構築できます。<br> 社内ネットワークとインターネット VPN やキャリアの閉域網で接続ができます。</p>
-<p class="image-container"><img alt="VPC のイメージ画像" src="img/fc692d5337f61f45.png"></p>
-<h2 is-upgraded>VPCとサブネットについて</h2>
-<ul>
-<li>1 つの VPC は、1 つのネットワークアドレス (CIDR) で定義します。</li>
-<li>1 つの VPC 内には、複数のサブネットを作成することができます。</li>
-<li>サブネットは特定のアベイラビリティーゾーン内に配置します。</li>
-</ul>
-<p class="image-container"><img alt="VPC とサブネットのイメージ画像" src="img/1dd5c3c8310c0881.png"></p>
+      <google-codelab-step label="座学 - Amazon VPC (Virtual Private Cloud)" duration="0">
+        <p>AWS のセキュリティやスケーラビリティを 高める機能・サービス 1/6</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\96dc386d9a821e26"></p>
+<p>VPC はプライベートな仮想ネットワークサービスです。VPC を使うと AWS クラウド内にお客様専用のプライベートアドレスの空間を構築できます。</p>
+<p>社内ネットワークとインターネット VPN やキャリアの閉域網で接続ができます。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\31b9625da159b3be"></p>
+<h2 is-upgraded><strong>VPCとサブネットについて</strong></h2>
+<p>1 つの VPC は、1 つのネットワークアドレス (CIDR) で定義します。</p>
+<p>1 つの VPC 内には、複数のサブネットを作成することができます。</p>
+<p>サブネットは特定のアベイラビリティーゾーン内に配置します。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\6f5ddf2c15f13059"></p>
 <table>
-<tr><td colspan="1" rowspan="1"><p><strong>CIDR</strong></p>
-</td><td colspan="1" rowspan="1"><p><strong>IP アドレス数</strong></p>
+<tr><td colspan="1" rowspan="1"><p>CIDR</p>
+</td><td colspan="1" rowspan="1"><p>IP アドレス数</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>xxx.xxx.xxx.xxx/16</p>
 </td><td colspan="1" rowspan="1"><p>65,531</p>
@@ -70,7 +75,8 @@
 </td><td colspan="1" rowspan="1"><p>11</p>
 </td></tr>
 </table>
-<p>上記は払い出される IP アドレス数から、AWS の予約 IP 数を抜いた「ユーザーが利用できる IP 数」です。<br> 各サブネットにおいて先頭の 4 IP アドレスと最後の 1 IP アドレスは AWS 側で確保されます</p>
+<p>上記は払い出される IP アドレス数から、AWS の予約 IP 数を抜いた「ユーザーが利用できる IP 数」です。</p>
+<p>各サブネットにおいて先頭の 4 IP アドレスと最後の 1 IP アドレスは AWS 側で確保されます</p>
 <ul>
 <li>AWS &gt; ドキュメント &gt; Amazon VPC &gt; ユーザーガイド &gt; VPC とサブネットの概要 - <a href="https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing" target="_blank">IPv4 用の VPC とサブネットのサイズ設定</a></li>
 </ul>
@@ -80,23 +86,25 @@
     
       <google-codelab-step label="座学 - リージョンとアベイラビリティゾーン (AZ)" duration="0">
         <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 2/6</strong></p>
-<h2 is-upgraded>リージョン</h2>
+<h3 is-upgraded><strong>リージョン</strong></h3>
 <p>AWS クラウドは、2022年4月現在、全世界 26 の地域にある 84 のアベイラビリティーゾーンにまたがっており、24 アベイラビリティーゾーンと 8 AWS リージョンを追加する計画が発表されています。</p>
 <p>AWS のリージョンは必ず複数のデータセンタークラスタ（=AZ）で構成されています。 各 AZ 間は数十キロ離れ、電源やネットワークが独立しており、高い耐障害性を提供できる設計になっています。</p>
 <p><a href="https://aws.amazon.com/jp/about-aws/global-infrastructure/" target="_blank">AWS グローバルインフラストラクチャマップ</a></p>
-<p class="image-container"><img alt="ルートテーブルのアイコン" src="img/1d06a553c563f54f.gif"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\f90e3d1e5d66e853.gif"></p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="座学 - ルートテーブル" duration="1">
-        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 3/6</strong><img alt="ルートテーブルのアイコン" src="img/7f8506b356d8a160.png"></p>
-<p>各サブネットにはルートテーブルがアタッチされます。<br> ルートテーブルの設定を変更することでデータの流れを制御できます。</p>
-<h2 is-upgraded>パブリックサブネット</h2>
+      <google-codelab-step label="座学 - ルートテーブル" duration="0">
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 3/6ルートテーブルのアイコン</strong></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\469adc1f652df34b"></p>
+<p>各サブネットにはルートテーブルがアタッチされます。</p>
+<p>ルートテーブルの設定を変更することでデータの流れを制御できます。</p>
+<h2 is-upgraded><strong>パブリックサブネット</strong></h2>
 <p>ルートテーブル: rtb-XXXXXXXX</p>
 <table>
-<tr><td colspan="1" rowspan="1"><p><strong>送信先</strong></p>
-</td><td colspan="1" rowspan="1"><p><strong>ターゲット</strong></p>
+<tr><td colspan="1" rowspan="1"><p>送信先</p>
+</td><td colspan="1" rowspan="1"><p>ターゲット</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>10.0.0.0/16</p>
 </td><td colspan="1" rowspan="1"><p>local</p>
@@ -105,32 +113,32 @@
 </td><td colspan="1" rowspan="1"><p>igw-XXXXXXXX</p>
 </td></tr>
 </table>
-<aside class="special"><p> ルーティングテーブルに IGW (インターネット ゲートウェイ) へのルーティングを設定すると、外部とのアクセスが可能になります。 </p>
+<aside class="special"><p><strong>ルーティングテーブルに IGW (インターネット ゲートウェイ) へのルーティングを設定すると、外部とのアクセスが可能になります。</strong></p>
 </aside>
-<h2 is-upgraded>プライベートサブネット</h2>
+<h2 is-upgraded><strong>プライベートサブネット</strong></h2>
 <p>ルートテーブル: rtb-XXXXXXXX</p>
 <table>
-<tr><td colspan="1" rowspan="1"><p><strong>送信先</strong></p>
-</td><td colspan="1" rowspan="1"><p><strong>ターゲット</strong></p>
+<tr><td colspan="1" rowspan="1"><p>送信先</p>
+</td><td colspan="1" rowspan="1"><p>ターゲット</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>10.0.0.0/16</p>
 </td><td colspan="1" rowspan="1"><p>local</p>
 </td></tr>
 </table>
-<p class="image-container"><img alt="ルートテーブルのイメージ画像" src="img/eb1de3cde87262e9.png"></p>
+<p class="image-container"><img alt="ルートテーブルのイメージ画像" style="width: 624.00px" src="img\\eb1de3cde87262e9"></p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="座学 - セキュリティグループ" duration="2">
-        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 4/6</strong><img alt="Firewall イメージアイコン" src="img/e251e418ca5598ae.png"> インターネットからのトラフィック (インバウンド) をブロックするだけでなく、EC2 からのトラフィック (アウトバウンド) も制限できるファイアウォール機能です。 <img alt="セキュリティグループイメージ画像" src="img/f052e2651edb7e5d.gif"> 個々のインスタンスごとに、インバウンド、アウトバウンドに対して下記の許可ルールを定義できます。ルールは <strong>ステートフル</strong> で扱われ、明示ルールが無い通信は拒否されます。</p>
-<p><strong>インバウンド</strong></p>
+      <google-codelab-step label="座学 - セキュリティグループ" duration="0">
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 4/6</strong><img alt="Firewall イメージアイコン" style="width: 624.00px" src="img\\e251e418ca5598ae"> インターネットからのトラフィック (インバウンド) をブロックするだけでなく、EC2 からのトラフィック (アウトバウンド) も制限できるファイアウォール機能です。 <img alt="セキュリティグループイメージ画像" style="width: 624.00px" src="img\\f052e2651edb7e5d"> 個々のインスタンスごとに、インバウンド、アウトバウンドに対して下記の許可ルールを定義できます。ルールは ステートフル で扱われ、明示ルールが無い通信は拒否されます。</p>
+<h3 is-upgraded><strong>インバウンド</strong></h3>
 <ul>
 <li>プロトコル (TCP/UDP/ICMP)</li>
 <li>ポート範囲 (ポート番号の範囲)</li>
 <li>送信元 (アクセス元の IP アドレス)</li>
 </ul>
-<p><strong>アウトバウンド</strong></p>
+<h3 is-upgraded><strong>アウトバウンド</strong></h3>
 <ul>
 <li>プロトコル (TCP/UDP/ICMP)</li>
 <li>ポート範囲 (ポート番号の範囲)</li>
@@ -140,14 +148,16 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="座学 - NACL (Network Access Control List)" duration="1">
-        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 5/6</strong><img alt="NACL のアイコン" src="img/33455e4245ef96fc.png"></p>
-<aside class="special"><p> 本日のハンズオンでは、NACL は使いません。 </p>
+      <google-codelab-step label="座学 - NACL (Network Access Control List)" duration="0">
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 5/6</strong></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\68e755e2cc788061"></p>
+<aside class="special"><p><strong>本日のハンズオンでは、NACL は使いません。</strong></p>
 </aside>
-<p>制御可能な項目はセキュリティグループと同じです。<br> セキュリティグループは、ステートフルで動作し、NACL はステートレスで動作します。</p>
-<p class="image-container"><img alt="セキュリティグループと NACL のイメージ画像" src="img/18fe3e06a186e2b5.png"></p>
-<h2 is-upgraded>Network Access Control List</h2>
-<ul>
+<p>制御可能な項目はセキュリティグループと同じです。</p>
+<p>セキュリティグループは、ステートフルで動作し、NACL はステートレスで動作します。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\749299291fb020f3"></p>
+
+        <ul>
 <li>個々のサブネットごとにアクセス制御が可能</li>
 <li>インバウンド、アウトバウンドに対して下記の設定が可能</li>
 </ul>
@@ -164,13 +174,16 @@
 <li>Allow/Deny</li>
 </ul>
 
+      </google-codelab-step>
+
 
       </google-codelab-step>
     
-      <google-codelab-step label="座学 - AWS IAM" duration="1">
+      <google-codelab-step label="座学 - AWS IAM" duration="0">
         <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 6/6</strong></p>
-<p class="image-container"><img alt="IAM のアイコン" src="img/52a5b64cfe33128c.png"></p>
-<p>AWS 自体のリソース操作をよりセキュアに扱うための認証・認可の仕組みです。<br> AWS 利用者の認証とアクセスポリシーを「グループ」「ユーザー」「ロール」で管理します。</p>
+<p class="image-container"><img alt="IAM のアイコン" style="width: 624.00px" src="img\\52a5b64cfe33128c"></p>
+<p>AWS 自体のリソース操作をよりセキュアに扱うための認証・認可の仕組みです。</p>
+<p>AWS 利用者の認証とアクセスポリシーを「グループ」「ユーザー」「ロール」で管理します。</p>
 <ul>
 <li>実行出来る操作を IAM ポリシーで設定</li>
 <li>ユーザーごとに認証情報の設定が可能</li>
@@ -178,67 +191,74 @@
 <li>API にはアクセスキーとシークレットキーを使用</li>
 </ul>
 <h2 is-upgraded>IAM ポリシーで必要最小限のみ付与</h2>
-<p class="image-container"><img alt="IAM のイメージ画像" src="img/d67cdb514107ddc3.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\f5c72394d3a82364"></p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="座学 - MFA (多要素認証) で認証の安全性を高める" duration="1">
+      <google-codelab-step label="座学 - MFA (多要素認証) で認証の安全性を高める" duration="0">
         <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス - 備考</strong></p>
-<h2 is-upgraded>AWS アカウント (ルートアカウント) の保護</h2>
-<p>AWS アカウント (ルートアカウント) は、ハードウェアトークンで保護することが推奨されています。<br> また、ハードウェアトークンは金庫などで管理することが推奨されています。</p>
-<p class="image-container"><img alt="IAM のアイコン" src="img/42bf5ecb502dd20b.jpg"></p>
-<h2 is-upgraded>IAM アカウントの保護</h2>
-<p>IAM アカウントは、個人で利用するアカウントです。<br> こちらは、仮想 MFA 対応のスマホアプリにて保護すると効率的にご利用いただけます。</p>
-<p class="image-container"><img alt="IAM のアイコン" src="img/997264992b77e6ea.jpg"></p>
+<h2 is-upgraded><strong>AWS アカウント (ルートアカウント) の保護</strong></h2>
+<p>AWS アカウント (ルートアカウント) は、ハードウェアトークンで保護することが推奨されています。</p>
+<p>また、ハードウェアトークンは金庫などで管理することが推奨されています。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\38b70880a98eea81"></p>
+<h2 is-upgraded><strong>IAM アカウントの保護</strong></h2>
+<p>IAM アカウントは、個人で利用するアカウントです。</p>
+<p>こちらは、仮想 MFA 対応のスマホアプリにて保護すると効率的にご利用いただけます。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\e2879f65f79222d6"></p>
 <p>MFA (多要素認証) を設定すると、AWS アカウントサインイン時に <strong>6 桁</strong> のコードを求められるようになります。</p>
-<p class="image-container"><img alt="IAM のアイコン" src="img/b4f8900749472245.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\f8cb6c8d4702dd25"></p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="ハンズオン" duration="1">
-        <h2 is-upgraded>ハンズオンの流れ</h2>
-<h3 is-upgraded>フェーズ 1</h3>
-<p>WordPress サイトを最小構成でスタートする。</p>
+      <google-codelab-step label="ハンズオン" duration="0">
+        <h2 is-upgraded><strong>ハンズオンの流れ</strong></h2>
+<h3 is-upgraded><strong>フェーズ 1</strong></h3>
+<p>WordPress サイトを最小構成でスタートします。</p>
 <ul>
 <li>サーバー 1 台構成</li>
 </ul>
-<p>パブリックサブネットに <strong>Amazon EC2</strong> インスタンス (サーバー) を起動します。<br> サーバーには SSH ではなく、<strong>AWS Systems Manager</strong> の <strong>セッションマネージャー</strong> 経由でセキュアに接続します。<br> WordPress をホスティングして、ユーザーがブラウザ経由で Web サイトを閲覧できるようにします。<br> フェーズ 1 は、サーバー 1 台構成のため、スケールするには <strong>インスタンスファミリー</strong> を変更してサイズアップする必要があります。</p>
-<p class="image-container"><img alt="Phase1 完成図" src="img/6eefc7b858788b64.png"></p>
-<h3 is-upgraded>フェーズ  2</h3>
-<p>スケールできるアーキテクチャーに移行する準備をする。</p>
-<ul>
-<li>Web + DB (サーバー 2 台構成)</li>
-</ul>
-<p><strong>Amazon Aurora MySQL</strong> インスタンスを起動して、データベースにします。<br> サーバーにて稼働させていたデータベースを停止して、Aurora データベースに切り替えます。 フェーズ 2 の状態はまだスケールするための準備で、スケールはインスタンスファミリーを変更してサイズアップする必要があります。</p>
-<p class="image-container"><img alt="Phase2 完成図" src="img/23bb216d9e7c5fcf.png"></p>
-<h3 is-upgraded>フェーズ 3</h3>
-<p>Web サーバーがスケールできる構成にする。</p>
+<p>パブリックサブネットに <strong>Amazon EC2</strong> インスタンス (サーバー) を起動します。</p>
+<p>サーバーには SSH ではなく、<strong>AWS Systems Manager</strong> の セッションマネージャー 経由でセキュアに接続します。</p>
+<p>WordPress をホスティングして、ユーザーがブラウザ経由で Web サイトを閲覧できるようにします。</p>
+<p>フェーズ 1 は、サーバー 1 台構成のため、スケールするには<strong> インスタンスファミリー</strong> を変更してサイズアップする必要があります。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\549ae683c1afbf6e"></p>
+<h3 is-upgraded><strong>フェーズ 2</strong></h3>
+<p>スケールできるアーキテクチャに移行する準備します。</p>
+<h3 is-upgraded><strong>Web + DB (サーバー 2 台構成)</strong></h3>
+<p><strong>Amazon Aurora MySQL</strong> インスタンスを起動して、データベースにします。</p>
+<p>サーバーにて稼働させていたデータベースを停止して、Aurora データベースに切り替えます。 フェーズ 2 の状態はまだスケールするための準備で、スケールはインスタンスファミリーを変更してサイズアップする必要があります。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\807c2e96aa8f02fd"></p>
+<h3 is-upgraded><strong>フェーズ 3</strong></h3>
+<p>Web サーバーがスケールできる構成にします。</p>
 <ul>
 <li>LB + Web x 2 + DB (サーバー 3 台構成)</li>
 </ul>
-<p>Web サーバーを複製できるように <strong>Amazon Machine Image (AMI)</strong> を取得します。<br> AMI から Web サーバーを複製して 2 台構成にします。<br> 2 台のサーバーに Web リクエストがバランシングされるように、前段に <strong>Application Load Balancer</strong> を起動します。<br> フェーズ 3 になると、Web リクエストが増えた際に 1 台のサーバーをスペックアップする方法 (スケールアップ) に加えて、台数を増やす (スケールアウト) ができるようになります。</p>
-<p class="image-container"><img alt="Phase3 完成図" src="img/28cac83a6e8aff35.png"></p>
-<h3 is-upgraded>オプション</h3>
-<p>DB サーバーを冗長化された構成にする。</p>
+<p>Web サーバーを複製できるように <strong>Amazon Machine Image (AMI)</strong> を取得します。</p>
+<p>AMI から Web サーバーを複製して 2 台構成にします。</p>
+<p>2 台のサーバーに Web リクエストがバランシングされるように、前段に <strong>Application Load Balancer </strong>を起動します。</p>
+<p>フェーズ 3 になると、Web リクエストが増えた際に 1 台のサーバーをスペックアップする方法 (スケールアップ) に加えて、台数を増やす (スケールアウト) ができるようになります。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\d11cfd66c223453a"></p>
+<h3 is-upgraded><strong>オプション</strong></h3>
+<p>DB サーバーを冗長化された構成にします。</p>
 <ul>
 <li>LB + Web x 2 + DB x 2 (サーバー 4 台構成)</li>
 </ul>
 <p>データベースに障害が発生した際に、フェイルオーバーするようにスタンバイインスタンスを起動して、Multi-AZ 構成にします。</p>
-<p class="image-container"><img alt="Phase オプション完成図" src="img/c9f49d0b34c17034.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\7e23aa04f26177be"></p>
 <h3 is-upgraded>最終構成図</h3>
-<p class="image-container"><img alt="最終構成図" src="img/1a4b2e6047a262fc.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\5d2572298003dfa2"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="無料利用枠について" duration="0">
-        <p>【補足】無料利用枠 (個人アカウントでご参加の方向け)</p>
-<aside class="warning"><p> 注意: IAM ユーザーではなく、個人のアカウントでご参加されている方への補足 </p>
+        <h2 is-upgraded><strong>【補足】無料利用枠 (個人アカウントでご参加の方向け)</strong></h2>
+<aside class="warning"><p><strong>注意: IAM ユーザーではなく、個人のアカウントでご参加されている方への補足</strong></p>
 </aside>
 <p>ハンズオンの一部は AWS 無料利用枠の範囲で進めることができます。また、ハンズオンが終了した後で、作成したリソースを全て削除すると課金はされません。</p>
-<h2 is-upgraded>&lt;1年間、以下範囲が毎月無料で利用できます&gt;</h2>
+<h3 is-upgraded><strong>&lt;1年間、以下範囲が毎月無料で利用できます&gt;</strong></h3>
 <ul>
 <li>EC2: Windows/Linux/RedHat など の t2.micro インスタンスを合計約 1ヶ月分</li>
 <li>EBS: 合計 30GB の General Purpose (SSD) と 1GB のスナップショットを合計約 1ヶ月分</li>
@@ -246,173 +266,191 @@
 <li>ELB: 合計約 1ヶ月分、15GB の処理 トラフィック:インターネットへのデータ送信 15GB</li>
 </ul>
 <p><a href="https://aws.amazon.com/jp/free/" target="_blank">AWS 無料利用枠</a></p>
-<h2 is-upgraded>【補足】 IAM でのハンズオンについて</h2>
-<aside class="warning"><p> 注意: 予め払い出された IAM ユーザーを利用してハンズオンにご参加されている方への補足 </p>
+<h2 is-upgraded>【補足】 IAM でのハンズオンについて<br></h2>
+<aside class="warning"><p><strong>注意: 予め払い出された IAM ユーザーを利用してハンズオンにご参加されている方への補足</strong></p>
 </aside>
-<p>このハンズオンは 1 つの AWS アカウント内に複数の IAM ユーザーを作成して、IAM ユーザーで実施することが可能です。<br> 同じアカウント内なので、他の IAM ユーザーが作成した EC2 インスタンスなどが一覧に表示されます。<br> 他のユーザーが作成したリソースと、自分のリソースを区別するため、ハンズオン内では各ユーザーで異なる名前をつけるようにしましょう。</p>
-<h3 is-upgraded>命名規則の例</h3>
-<p class="image-container"><img alt="少し前のコンソール" src="img/4db77ad4b9b0595c.png"></p>
+<p>このハンズオンは 1 つの AWS アカウント内に複数の IAM ユーザーを作成して、IAM ユーザーで実施することが可能です。</p>
+<p>同じアカウント内なので、他の IAM ユーザーが作成した EC2 インスタンスなどが一覧に表示されます。</p>
+<p>他のユーザーが作成したリソースと、自分のリソースを区別するため、ハンズオン内では各ユーザーで異なる名前をつけるようにしましょう。</p>
+<h3 is-upgraded><strong>命名規則の例</strong></h3>
+<p class="image-container"><img style="width: 624.00px" src="img\\cf998cc0f75d4b34"></p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="始める前に" duration="2">
+      <google-codelab-step label="始める前に" duration="0">
         <h2 is-upgraded>スクリーンキャプチャに表示されている情報について</h2>
-<p>リソースの各種 ID (vpc-XXXXXX、subnet-XXXXXX、i-XXXXXX など) は AWS 全体で ユニークとなっており、スクリーンキャプチャに記載の ID と実際に操作されて作成される ID は各自で異なります。<br> Elastic IP (固定IPアドレス) なども各自で異なります。</p>
+<p>リソースの各種 ID (vpc-XXXXXX、subnet-XXXXXX、i-XXXXXX など) は AWS 全体で ユニークとなっており、スクリーンキャプチャに記載の ID と実際に操作されて作成される ID は各自で異なります。</p>
+<p>Elastic IP (固定IPアドレス) なども各自で異なります。</p>
 <h2 is-upgraded>GUI インターフェイスデザインの変更について</h2>
 <p>画面のデザイン等が変更されて実際とは異なっていることがあります。画面の項目名等から判断して操作下さい。</p>
 <p>ホーム画面は、少し前まで ↓ のデザインでしたが、</p>
-<p class="image-container"><img alt="少し前のコンソール" src="img/2c8c2811cbc00fe9.png"></p>
+<p class="image-container"><img alt="少し前のコンソール" style="width: 624.00px" src="img\\2c8c2811cbc00fe9"></p>
 <p>↓ のようなデザインに変わりました。</p>
-<p class="image-container"><img alt="2022年4月の最新コンソール" src="img/17640a1f7d422d7f.png"></p>
+<p class="image-container"><img alt="2022年4月の最新コンソール" style="width: 624.00px" src="img\\17640a1f7d422d7f"></p>
 <p>↓ もっと前はこのような画面の頃もありました。</p>
-<p class="image-container"><img alt="随分前のコンソール" src="img/d16aa47064933e34.png"></p>
+<p class="image-container"><img alt="随分前のコンソール" style="width: 624.00px" src="img\\d16aa47064933e34"></p>
 <h2 is-upgraded>コマンドライン</h2>
-<p>コマンドライン文は、なるべくコピペするようにしてください。<br> 例えば、以下の SQL コードは <strong>wp_option</strong> テーブルにある <strong>option_name</strong> のカラムが「siteurl」か「home」のレコードだけ表示するコマンドですが、</p>
-<pre><code>select * from wp_options where option_name=&#39;siteurl&#39; or option_name=&#39;home&#39;;
-</code></pre>
+<p>コマンドライン文は、なるべくコピペするようにしてください。</p>
+<p>例えば、以下の SQL コードは wp_option テーブルにある option_name のカラムが「siteurl」か「home」のレコードだけ表示するコマンドですが、</p>
+<pre><code>select * from wp_options where option_name=&#39;siteurl&#39; or option_name=&#39;home&#39;;</code></pre>
 <p>誤って以下のように入力してしまうと、テーブルのデータが全部表示されてしまいます。</p>
-<pre><code>select * from wp_options;
-</code></pre>
+<pre><code>select * from wp_options;</code></pre>
+</google-codelab-step>
 
+<google-codelab-step label="フェーズ1 - サインイン" duration="0">
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="フェーズ1　- サインイン" duration="2">
-        <h2 is-upgraded>サーバー 1 台構成</h2>
+<h2 is-upgraded>サーバー 1 台構成</h2>
 <p>最小構成で最も低コストですが、拡張性が低く、性能を一定以上上げることができません。</p>
-<p class="image-container"><img alt="Phase1 完成図" src="img/6eefc7b858788b64.png"></p>
-<h3 is-upgraded>拡張性: 低</h3>
+<p class="image-container"><img alt="Phase1 完成図" style="width: 624.00px" src="img\\6eefc7b858788b64"></p>
+<h3 is-upgraded><strong>拡張性: 低</strong></h3>
 <p>拡張するには 1 台のインスタンスタイプを大きくします。</p>
-<h3 is-upgraded>冗長性: 低</h3>
+<h3 is-upgraded><strong>冗長性: 低</strong></h3>
 <p>インスタンスが稼働する物理サーバが壊れると一旦停止になりますが、同じアベイラビリティーゾーン内の問題の無いサーバですぐ起動できます。</p>
-<h2 is-upgraded>AWSマネジメントコンソールへのログイン</h2>
+<h2 is-upgraded><strong>AWSマネジメントコンソールへのログイン</strong></h2>
 <p>ログイン方法は利用するアカウント種類によって異なります。</p>
 <h4 is-upgraded>▼ IAM アカウントをご利用の場合</h4>
-<aside class="special"><p> 本ハンズオン用に、会社などで IAM アカウントを払い出された場合はこちらを進めてください。 </p>
+<aside class="special"><p><strong>本ハンズオン用に、会社などで IAM アカウントを払い出された場合はこちらを進めてください。</strong></p>
 </aside>
 <p>事前にログイン情報が記載された csv ファイル (user1.csv 等) を確認してください。そのファイルに、ログイン用の URL、User Name、パスワードが記載されていますので、 それに従ってログインしてください。</p>
 <h4 is-upgraded>▼ AWS のルートアカウント(個人アカウント)をご利用の場合</h4>
-<aside class="special"><p> 個人でご参加いただいている方はこちらになります。 </p>
+<aside class="special"><p><strong>個人でご参加いただいている方はこちらになります。</strong></p>
 </aside>
-<p><a href="https://console.aws.amazon.com" target="_blank">https://console.aws.amazon.com</a> にブラウザでアクセスして、アカウントの E メールアドレスとパスワードでログインしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/a4dc7a53baf24c00.png"></p>
+<p><a href="https://console.aws.amazon.com/" target="_blank">https://console.aws.amazon.com</a> にブラウザでアクセスして、アカウントの E メールアドレスとパスワードでログインしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\a4dc7a53baf24c00"></p>
 <p>サインインするとホーム画面が表示されます。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール ホーム画面" src="img/360b910866c6647b.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール ホーム画面" style="width: 624.00px" src="img\\360b910866c6647b"></p>
 <p>左上の AWS アイコンをクリックするとホームに戻ります。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール ホーム画面 - ホーム" src="img/d492d116952953d4.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール ホーム画面 - ホーム" style="width: 624.00px" src="img\\d492d116952953d4"></p>
 <p>サービスをクリックすると、EC2 や RDS といった各種 AWS サービス名へのリンクにアクセスできます。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール ホーム画面 - サービス" src="img/4415c30de8e351ca.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール ホーム画面 - サービス" style="width: 624.00px" src="img\\4415c30de8e351ca"></p>
 <p>テキストボックスにサービス名を入力することで候補が表示されるので便利です。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール ホーム画面 - テキスト検索ボックス" src="img/863b1ad0ced8d09b.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール ホーム画面 - テキスト検索ボックス" style="width: 624.00px" src="img\\863b1ad0ced8d09b"></p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="フェーズ1　- リージョンを変更" duration="2">
-        <h2 is-upgraded>リージョンを変更する (シンガポール)</h2>
-<p>AWS マネジメントコンソールに初めてサインインすると、「<strong>バージニア北部</strong>」リージョンが表示されます。練習で、シンガポールリージョンに移動してみたいと思います。<br> このリージョン名をクリックして候補から、<strong>アジアパシフィック (シンガポール) ap-southeast-1</strong> を選択してください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール リージョン移動 - シンガポール" src="img/565e22e02420af65.png"></p>
-<h2 is-upgraded>リージョンを変更する (シドニー)</h2>
-<p>画面遷移して「<strong>シンガポール</strong>」リージョンが表示されたら、次は「<strong>シドニー</strong>」リージョンに移動してみてください。「<strong>シンガポール</strong>」をクリックし、「<strong>アジアパシフィック (シドニー) ap-southeast-2</strong>」を選択してください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール リージョン移動 - シドニー" src="img/3b1bd16d070886df.png"></p>
-<h2 is-upgraded>リージョンを変更する (東京)</h2>
-<p>リージョンの移動は完璧でしょうか。<br> それでは、本日構築する「<strong>東京</strong>」リージョンに移動してください。「<strong>シドニー</strong>」をクリックし、「<strong>アジアパシフィック (東京) ap-northeast-1</strong>」を選択してください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール  リージョン移動 - 東京" src="img/3089ed7774828837.png"></p>
-<h2 is-upgraded>デフォルトリージョンを設定する</h2>
-<p>AWS マネジメントコンソールは「<strong>最後に利用したリージョン</strong>」を表示するようになっています。<br> これを変更するには、[<strong>設定</strong>] を開き、<strong>デフォルトリージョン</strong> の「<strong>最後に使用したリージョン</strong>」から希望のリージョンに変更してください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール  リージョン移動 - 東京" src="img/51d0e2b20f88baf6.png"></p>
+      <google-codelab-step label="フェーズ1 - リージョンを変更" duration="0">
+        <h2 is-upgraded><strong>リージョンを変更する (シンガポール)</strong></h2>
+<p>AWS マネジメントコンソールに初めてサインインすると、「バージニア北部」リージョンが表示されます。練習で、シンガポールリージョンに移動してみたいと思います。</p>
+<p>このリージョン名をクリックして候補から、アジアパシフィック (シンガポール) ap-southeast-1 を選択してください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール リージョン移動 - シンガポール" style="width: 624.00px" src="img\\565e22e02420af65"></p>
+<h2 is-upgraded><strong>リージョンを変更する (シドニー)</strong></h2>
+<p>画面遷移して「シンガポール」リージョンが表示されたら、次は「シドニー」リージョンに移動してみてください。「シンガポール」をクリックし、「アジアパシフィック (シドニー) ap-southeast-2」を選択してください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール リージョン移動 - シドニー" style="width: 624.00px" src="img\\3b1bd16d070886df"></p>
+<h2 is-upgraded><strong>リージョンを変更する (東京)</strong></h2>
+<p>リージョンの移動は完璧でしょうか。</p>
+<p>それでは、本日構築する「東京」リージョンに移動してください。「シドニー」をクリックし、「アジアパシフィック (東京) ap-northeast-1」を選択してください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール  リージョン移動 - 東京" style="width: 624.00px" src="img\\3089ed7774828837"></p>
+<h2 is-upgraded><strong>デフォルトリージョンを設定する</strong></h2>
+<p>AWS マネジメントコンソールは「最後に利用したリージョン」を表示するようになっています。</p>
+<p>これを変更するには、[設定] を開き、デフォルトリージョン の「最後に使用したリージョン」から希望のリージョンに変更してください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール  リージョン移動 - 東京" style="width: 624.00px" src="img\\51d0e2b20f88baf6"></p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="フェーズ1　- VPC" duration="2">
-        <h2 is-upgraded>VPC コンソールにアクセス</h2>
-<p>左上の <strong>サービス</strong> をクリックして、表示されたメニューから <strong>ネットワーキングとコンテンツ配信</strong> をクリック、表示された <strong>VPC</strong> を選択します。</p>
+      <google-codelab-step label="フェーズ1 - VPC" duration="0">
+        <h2 is-upgraded><strong>VPC コンソールにアクセス</strong></h2>
+<p>左上の サービス をクリックして、表示されたメニューから ネットワーキングとコンテンツ配信 をクリック、表示された VPC を選択します。</p>
 <p>VPC コンソールに画面遷移します。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/366e3a210703c49b.png"></p>
-<h2 is-upgraded>VPC ウィザードで VPC コンポーネントを作成する</h2>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\366e3a210703c49b"></p>
+<h2 is-upgraded><strong>VPC ウィザードで VPC コンポーネントを作成する</strong></h2>
 <p>VPC コンソールが表示されたら、[VPC ウィザードを起動] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/f89e2003ff5312eb.png"></p>
-<h3 is-upgraded>VPC ウィザード - 全貌</h3>
-<p>VPC ウィザードは文字通り、画面の手順に沿ってクリックして進めていくと VPC が構築できる便利なウィザード機能です。<br> 以前は画面が遷移していく形でしたが、2022年4月現在はリニューアルして 1 ページで収まらないほど大きな画面になりました。全貌は以下の画像の通りですが、順番に設定していきます。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/60165b219bb29bba.png"></p>
-<p>まず <strong>作成するリソース</strong> は「VPC、サブネットなど」を選択します。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/2a7d7f7d32b93ed5.png"></p>
-<h3 is-upgraded>VPC ウィザード - 名前タグ</h3>
-<p>次に、名前タグを設定します。「handsonyyyymmdd(今日の日付)」などの名前を入力してみてください。<br> 右側に表示された VPC やサブネット、ルートテーブル、インターネットゲートウェイ、エンドポイントなどの名前タグが動的に設定されます。<br> 以前のウィザードでは手入力だったので便利になりました。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/8f88d3ab5bfccdea.png"></p>
-<h3 is-upgraded>VPC ウィザード - IPv4 CIDR ブロック</h3>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\f89e2003ff5312eb"></p>
+<h2 is-upgraded><strong>VPC ウィザード - 全貌</strong></h2>
+<p>VPC ウィザードは文字通り、画面の手順に沿ってクリックして進めていくと VPC が構築できる便利なウィザード機能です。</p>
+<p>以前は画面が遷移していく形でしたが、2022年4月現在はリニューアルして 1 ページで収まらないほど大きな画面になりました。全貌は以下の画像の通りですが、順番に設定していきます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\60165b219bb29bba"></p>
+<p>まず 作成するリソース は「VPC、サブネットなど」を選択します。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\2a7d7f7d32b93ed5"></p>
+<h2 is-upgraded><strong>VPC ウィザード - 名前タグ</strong></h2>
+<p>次に、名前タグを設定します。「handsonyyyymmdd(今日の日付)」などの名前を入力してみてください。</p>
+<p>右側に表示された VPC やサブネット、ルートテーブル、インターネットゲートウェイ、エンドポイントなどの名前タグが動的に設定されます。</p>
+<p>以前のウィザードでは手入力だったので便利になりました。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\8f88d3ab5bfccdea"></p>
+<h2 is-upgraded><strong>VPC ウィザード - IPv4 CIDR ブロック</strong></h2>
 <p>本ハンズオンで作成する VPC のレンジは 10.0.0.0/16 にしますので、</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/2ae0a0d48b76f53d.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\2ae0a0d48b76f53d"></p>
 <p>デフォルトで入力されている「10.0.0.0/16」のまま、次に進んでください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/9a9386f6efe57a26.png"></p>
-<h3 is-upgraded>VPC ウィザード - アベイラビリティーゾーン</h3>
-<p>アベイラビリティーゾーンは <strong>2</strong> のままで大丈夫です。AZ のカスタマイズから、どのアベイラビリティーゾーンを利用するか決めることができます。本ハンズオンでは、AZ-a と AZ-c を利用します。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/98f6b161179c37f8.png"></p>
-<p>本ハンズオンでは、パブリックサブネットを二つ作ります。<br> それぞれ、10.0.0.0/24、10.0.1.0/24 のアドレス空間を利用しますので、</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/46201651d7f0cc65.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\9a9386f6efe57a26"></p>
+<h2 is-upgraded><strong>VPC ウィザード - アベイラビリティーゾーン</strong></h2>
+<p>アベイラビリティーゾーンは 2 のままで大丈夫です。AZ のカスタマイズから、どのアベイラビリティーゾーンを利用するか決めることができます。本ハンズオンでは、AZ-a と AZ-c を利用します。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\98f6b161179c37f8"></p>
+<p>本ハンズオンでは、パブリックサブネットを二つ作ります。</p>
+<p>それぞれ、10.0.0.0/24、10.0.1.0/24 のアドレス空間を利用しますので、</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\46201651d7f0cc65"></p>
 <p>ap-northeast-1a の IP アドレスを「10.0.0.0/24」に、ap-northeast-1c の IP アドレスを「10.0.1.0/24」と入力してください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/a8707e548ec6f1ae.png"></p>
-<p>続いて、プライベートサブネットの IP アドレスも二つ作ります。<br> それぞれ、10.0.2.0/24、10.0.1.3/24 のアドレス空間を利用しますので、</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/a5196b73f373ed6b.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\a8707e548ec6f1ae"></p>
+<p>続いて、プライベートサブネットの IP アドレスも二つ作ります。</p>
+<p>それぞれ、10.0.2.0/24、10.0.1.3/24 のアドレス空間を利用しますので、</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\a5196b73f373ed6b"></p>
 <p>ap-northeast-1a の IP アドレスを「10.0.2.0/24」に、ap-northeast-1c の IP アドレスを「10.0.3.0/24」と入力してください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/c65095181c7516b9.png"></p>
-<h3 is-upgraded>VPC ウィザード - NAT ゲートウェイ、VPC エンドポイント</h3>
-<p>NAT ゲートウェイは利用しません。<br> VPC エンドポイントも今回は利用しないので <strong>なし</strong> にしてください。<br> DNS オプションはどちらもチェックを入れてください。<br> [VPC を作成] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ca25ed25f658b57f.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\c65095181c7516b9"></p>
+<h2 is-upgraded><strong>VPC ウィザード - NAT ゲートウェイ、VPC エンドポイント</strong></h2>
+<p>NAT ゲートウェイは利用しません。</p>
+<p>VPC エンドポイントも今回は利用しないので なし にしてください。</p>
+<p>DNS オプションはどちらもチェックを入れてください。</p>
+<p>[VPC を作成] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\ca25ed25f658b57f"></p>
 <p>プレビューにも表示されている通り VPC、サブネット、ルートテーブル、インターネットゲートウェイが作成されます。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/7a7b3986441c0990.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\7a7b3986441c0990"></p>
 <p>VPC が作成されたら [VPC を表示] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/9f19aa9b2622a031.png"></p>
-<h3 is-upgraded>ウィザードで作成された　VPC を確認</h3>
-<aside class="special"><p> 操作する VPC をフィルタリングしておくことで、他の VPC を操作する間違いを防ぐことができます。 </p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\9f19aa9b2622a031"></p>
+<h2 is-upgraded><strong>ウィザードで作成された VPC を確認</strong></h2>
+<aside class="special"><p><strong>操作する VPC をフィルタリングしておくことで、他の VPC を操作する間違いを防ぐことができます。</strong></p>
 </aside>
-<p>[VPC を表示] ボタンをクリックすると、作成された VPC の詳細画面に遷移するので、左のメニューペインににある <strong>VPC</strong> のリンクをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/c062c8c5e85c9f3f.png"></p>
-<p>左のメニューペインににある <strong>VPC でフィルタリング:</strong> のテキストボックスをクリックすると、候補が表示されますので、作成した VPC を選択してください。</p>
-<aside class="warning"><p> 既存のVPC と間違わないように注意:  VPC 作成後は表示されないケースもあるので、[F5] キーで画面更新していただくか、自分の VPC が特定できれば作業を割愛して OK です。 </p>
+<p>[VPC を表示] ボタンをクリックすると、作成された VPC の詳細画面に遷移するので、左のメニューペインににある VPC のリンクをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\c062c8c5e85c9f3f"></p>
+<p>左のメニューペインににある VPC でフィルタリング: のテキストボックスをクリックすると、候補が表示されますので、作成した VPC を選択してください。</p>
+<aside class="warning"><p><strong>既存のVPC と間違わないように注意: VPC 作成後は表示されないケースもあるので、[F5] キーで画面更新していただくか、自分の VPC が特定できれば作業を割愛して OK です。</strong></p>
 </aside>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/6d45a800474a3122.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\6d45a800474a3122"></p>
 <p>作成した VPC だけがフィルタリングされて表示されます。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/4c81036370f58598.png"></p>
-<aside class="special"><p> メニューペインとの境界線にある ◀︎ アイコンをクリックすると、メニューペインを非表示にして操作画面を大きく表示できます。▶︎ アイコンをクリックすると、メニューペインを再表示できます。 </p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\4c81036370f58598"></p>
+<aside class="special"><p><strong>メニューペインとの境界線にある ◀︎ アイコンをクリックすると、メニューペインを非表示にして操作画面を大きく表示できます。▶︎ アイコンをクリックすると、メニューペインを再表示できます。</strong></p>
 </aside>
-<p> 先ほど作成した VPC が存在するか (正しく絞り込めているか) を確認してください。   この VPC の IPv4 CIDR が 10.0.0.0/16 であることを確認してください。 </p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/a809eef72bd67a75.png"></p>
-<h3 is-upgraded>ウィザードで作成されたサブネットを確認</h3>
-<p>左のメニューペインにあるサブネットをクリックします。<br> サブネット一覧が表示されますので、AZ-a の名前が記載されたリソースにチェックを入れてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/9e3cc576f4f4d0b1.png"></p>
+<p>先ほど作成した VPC が存在するか (正しく絞り込めているか) を確認してください。 この VPC の IPv4 CIDR が 10.0.0.0/16 であることを確認してください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\a809eef72bd67a75"></p>
+<h2 is-upgraded><strong>ウィザードで作成されたサブネットを確認</strong></h2>
+<p>左のメニューペインにあるサブネットをクリックします。</p>
+<p>サブネット一覧が表示されますので、AZ-a の名前が記載されたリソースにチェックを入れてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\9e3cc576f4f4d0b1"></p>
 <p>ページ下部のペインに詳細が表示されますので、アベイラビリティゾーンが ap-northeast-1a であること、IPv4 CIDR が 10.0.0.0/24 であることを確認してください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/7c4f169850c53c58.png"></p>
-<h3 is-upgraded>ウィザードで作成されたルートテーブルを確認</h3>
-<p>詳細ペインで、<strong>ルートテーブル</strong> のタブをクリックしてください。<br> VPC のネットワークアドレス 10.0.0.0/16 のターゲットが local に、 デフォルトルートの 0.0.0.0/0 のターゲットがインターネットゲートウェイ (igw-XXXX) になっており、インターネットと通信できる設定になっています。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/6871c5e065c7dff9.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\7c4f169850c53c58"></p>
+<h2 is-upgraded><strong>ウィザードで作成されたルートテーブルを確認</strong></h2>
+<p>詳細ペインで、ルートテーブル のタブをクリックしてください。</p>
+<p>VPC のネットワークアドレス 10.0.0.0/16 のターゲットが local に、 デフォルトルートの 0.0.0.0/0 のターゲットがインターネットゲートウェイ (igw-XXXX) になっており、インターネットと通信できる設定になっています。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\6871c5e065c7dff9"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="フェーズ1 - IAM ロールを作成する" duration="0">
-        <h2 is-upgraded>EC2 インスタンスにアタッチする IAM ロールを作成する</h2>
+        <h2 is-upgraded><strong>EC2 インスタンスにアタッチする IAM ロールを作成する</strong></h2>
 <p>EC2 インスタンスには、Linux OS の場合は SSH で、Windows OS の場合は RDP で接続しますが、本ハンズオンでは SSH ポートを開放せずに AWS Systems Manager のセッションマネージャー経由で接続をします。</p>
-<aside class="special"><p> セッションマネージャーを利用するには、IAM ロールが必要です。   </p>
+<aside class="special"><p><strong>セッションマネージャーを利用するには、IAM ロールが必要です。</strong></p>
 </aside>
 <p><strong>サービス</strong> から、<strong>セキュリティ、ID、およびコンプライアンス</strong> をクリックし、<strong>IAM</strong> を選択します。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/c4ea69a292628bea.png"></p>
-<p>IAM コンソールに画面遷移したら、左側のメニューメインから <strong>ロール</strong> をクリックします。<br> ロール画面に遷移したら [<strong>ロールを作成</strong>] ボタンをクリックします。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/894e0ad1017259a6.png"></p>
-<p>信頼されたエンティティタイプが <strong>AWS のサービス</strong> が選択されていること、ユースケースは <strong>EC2</strong> が選択されていることを確認して、[<strong>次へ</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/6e25ab2b8ba0d3ff.png"></p>
-<p><strong>許可を追加</strong> 画面に推移するので、テキストボックスに <code>AmazonSSMManagedInstanceCore</code> を入力し、表示された <strong>AmazonSSMManagedInstanceCore</strong> のチェックボックスにチェックを入れて、[<strong>次へ</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/c1a4a6165b0831d3.png"></p>
-<p><strong>ロール名</strong> には識別しやすい任意のロール名を入力してください。<br> ここでは、<code>handson-ec2-role</code> とします。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/bc7b5a458fff7ca2.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\c4ea69a292628bea"></p>
+<p>IAM コンソールに画面遷移したら、左側のメニューメインから <strong>ロール</strong> をクリックします。</p>
+<p>ロール画面に遷移したら [<strong>ロールを作成</strong>] ボタンをクリックします。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\894e0ad1017259a6"></p>
+<p>信頼されたエンティティタイプが <strong>AWS のサービス</strong> が選択されていること、ユースケースは EC2 が選択されていることを確認して、[<strong>次へ</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\6e25ab2b8ba0d3ff"></p>
+<p>許可を追加 画面に推移するので、テキストボックスに AmazonSSMManagedInstanceCore を入力し、表示された <strong>AmazonSSMManagedInstanceCore</strong> のチェックボックスにチェックを入れて、[次へ] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\c1a4a6165b0831d3"></p>
+<p><strong>ロール名</strong> には識別しやすい任意のロール名を入力してください。</p>
+<p>ここでは、handson-ec2-role とします。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\bc7b5a458fff7ca2"></p>
 <p>最下部まで進み、[<strong>ロールを作成</strong>] ボタンをクリックします。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/c9d370c09e58830d.png"></p>
-<p>ロールが作成されたら、本ロールを SSM Agent が利用できるように設定します。<br> テキストボックスにロール名を入力し、ENTER キーを押下します。<br> ロールが表示されたら、リンクをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/5df67c1147cdb46.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\c9d370c09e58830d"></p>
+<p>ロールが作成されたら、本ロールを SSM Agent が利用できるように設定します。</p>
+<p>テキストボックスにロール名を入力し、ENTER キーを押下します。</p>
+<p>ロールが表示されたら、リンクをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\5df67c1147cdb46"></p>
 <p>ロールの詳細画面に遷移したら、[<strong>信頼関係</strong>] タブをクリックし、[<strong>信頼ポリシーを編集</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/784dd0669cc9d50f.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\784dd0669cc9d50f"></p>
 <p>以下のような形でポリシーが表示されるので、</p>
 <pre><code>＜変更前＞
 {
@@ -426,22 +464,22 @@
             &#34;Action&#34;: &#34;sts:AssumeRole&#34;
         }
     ]
-}
-</code></pre>
-<p><code>	"Service": ["ec2.amazonaws.com","ssm.amazonaws.com"]</code> に書き換えてください。</p>
+}</code></pre>
+<p>&#34;Service&#34;: [&#34;ec2.amazonaws.com&#34;,&#34;ssm.amazonaws.com&#34;] に書き換えてください。</p>
 <pre><code>＜変更後＞
 {
-	&#34;Version&#34;: &#34;2012-10-17&#34;,
-	&#34;Statement&#34;: [
-		{
-			&#34;Effect&#34;: &#34;Allow&#34;,
-			&#34;Principal&#34;: {
-				&#34;Service&#34;: [&#34;ec2.amazonaws.com&#34;,&#34;ssm.amazonaws.com&#34;]
-			},
-			&#34;Action&#34;: &#34;sts:AssumeRole&#34;
-		}
-	]
+        &#34;Version&#34;: &#34;2012-10-17&#34;,
+        &#34;Statement&#34;: [
+                {
+                        &#34;Effect&#34;: &#34;Allow&#34;,
+                        &#34;Principal&#34;: {
+                                &#34;Service&#34;: [&#34;ec2.amazonaws.com&#34;,&#34;ssm.amazonaws.com&#34;]
+                        },
+                        &#34;Action&#34;: &#34;sts:AssumeRole&#34;
+                }
+        ]
 }
+
 </code></pre>
 
 
@@ -449,45 +487,53 @@
     
       <google-codelab-step label="フェーズ1 - EC2 インスタンスの作成" duration="0">
         <h2 is-upgraded>EC2 コンソールを開く</h2>
-<p>左上のサービスボタンをクリックして、コンピューティングから EC2 を選択してください。<br> テキストボックスに入れていただいても候補が表示されます。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/6792d39b7b405b87.png"></p>
-<p>EC2 コンソールに画面遷移したら [<strong>インスタンスを起動</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/f01162ae06e9b0b4.png"></p>
-<p>[<strong>インスタンスを起動</strong>] のボタンが展開されるのでクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/3b98d2bcebe99726.png"></p>
+<p>左上のサービスボタンをクリックして、コンピューティングから EC2 を選択してください。</p>
+<p>テキストボックスに入れていただいても候補が表示されます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\6792d39b7b405b87"></p>
+<p>EC2 コンソールに画面遷移したら [インスタンスを起動] ボタンをクリックしてください。</p>
+<p>EC2 コンソールは旧いコンソールと新しいコンソールがあり、表示の仕方が異なる場合があります。ハンズオンは新しいコンソールで進めますので、左上のトグルボタンを下記の通りにして新しいコンソールになっていることを確認してください。</p>
+<p class="image-container"><img style="width: 452.00px" src="img\\7d904885e745480d"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\f01162ae06e9b0b4"></p>
+<p>[インスタンスを起動] のボタンが展開されるのでクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\3b98d2bcebe99726"></p>
 <h2 is-upgraded>ステップ1: Amazon マシンイメージ(AMI)</h2>
-<p>本ハンズオンでは、Amazon Linux 2022 の AMI を利用します。<br> テキストボックスに以下 AMI ID を入力して、ENTER キーをクリックしてください。</p>
+<p>本ハンズオンでは、Amazon Linux 2022 の AMI を利用します。</p>
+<p>テキストボックスに以下のAMI ID を入力して、ENTER キーをクリックしてください。</p>
 <pre><code>AMI 名:
 al2022-ami-2022.0.20220315.0-kernel-5.15-x86_64
 AMI ID:
 ami-082c70eb5ed5441a1
-※ 東京リージョンの AMI ID です。
-</code></pre>
-<p>左側のペインで <strong>コミュニティ AMI (1)</strong> をクリックして、左側の詳細ペインに表示された [<strong>選択</strong>] ボタンをクリックしてください。</p>
-<aside class="special"><p> クイックスタートカタログ で &#34;ami-082c70eb5ed5441a1&#34; に一致する結果が見つかりませんでした。が表示された場合は、コミュニティ AMI が選択されているか確認してください。東京リージョンの AMI ID なので、別リージョンで作業されている場合は、AMI 名で検索してみてください。 </p>
+※ 東京リージョンの AMI ID です。</code></pre>
+<p>左側のペインで コミュニティ AMI (1) をクリックして、左側の詳細ペインに表示された [選択] ボタンをクリックしてください。</p>
+<aside class="special"><p><strong>クイックスタートカタログ で &#34;ami-082c70eb5ed5441a1&#34; に一致する結果が見つかりませんでした。が表示された場合は、コミュニティ AMI が選択されているか確認してください。東京リージョンの AMI ID なので、別リージョンで作業されている場合は、AMI 名で検索してみてください。</strong></p>
 </aside>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/b7ee9e5d88e459f2.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\b7ee9e5d88e459f2"></p>
 <h2 is-upgraded>ステップ2: インスタンスタイプの選択</h2>
-<p>インスタンスタイプが <strong>t2.micro</strong> であることを確認して、[<strong>次のステップ:インスタンスの詳細の設定</strong>] ボタンをクリックしてください。</p>
-<aside class="special"><p> t2.micro は無料利用枠でご利用いただけます。 </p>
+<p>インスタンスタイプが t2.micro であることを確認して、[次のステップ:インスタンスの詳細の設定] ボタンをクリックしてください。</p>
+<aside class="special"><p><strong>t2.micro は無料利用枠でご利用いただけます。</strong></p>
 </aside>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/2e17b5fb15af1b91.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\2e17b5fb15af1b91"></p>
 <h2 is-upgraded>ステップ３: インスタンスタイプの詳細の設定</h2>
-<p>このページでは、インスタンスの詳細設定を行います。<br> ネットワークで、ご自身で作成された VPC を選択してください。<br> ネットワークにて VPC を選択すると、サブネットの項目が「選択した VPC でフィルタリング」されます。<br> 10.0.0.0/24 に設定したサブネットを選択してください。<br> 自動割り当てパブリック IP は有効にしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/37b44afb12077c73.png"></p>
-<aside class="special"><p> どちらのパブリックサブネットが 10.0.0.0/24 か、わからない場合は、新しいタブ (別ウィンドウ) で VPC コンソールを開き、サブネットから Subnet ID を確認してください。 </p>
+<p>このページでは、インスタンスの詳細設定を行います。</p>
+<p>ネットワークで、ご自身で作成された VPC を選択してください。</p>
+<p>ネットワークにて VPC を選択すると、サブネットの項目が「選択した VPC でフィルタリング」されます。</p>
+<p>10.0.0.0/24 に設定したサブネットを選択してください。</p>
+<p>自動割り当てパブリック IP は有効にしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\37b44afb12077c73"></p>
+<aside class="special"><p><strong>どちらのパブリックサブネットが 10.0.0.0/24 か、わからない場合は、新しいタブ (別ウィンドウ) で VPC コンソールを開き、サブネットから Subnet ID を確認してください。</strong></p>
 </aside>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/8ed7671ba7d0aa57.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\8ed7671ba7d0aa57"></p>
 <h3 is-upgraded>IAM ロール</h3>
-<p>中断にあるロールは、先の手順で作成したロールを選択してください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/66b2f9cc36991203.png"></p>
+<p>中断にある <strong>ロール </strong>は、先の手順で作成したロールを選択してください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\66b2f9cc36991203"></p>
 <h3 is-upgraded>CPU クレジット</h3>
-<p>少し下段まで進み、<strong>クレジット仕様</strong> の □無制限 のチェックボックスのチェックを外してください。<br> このチェックが入っていると、t 系インスタンスで CPU クレジットが枯渇した際に予想以上のコストがかかる場合があります。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/d5f664d6de614225.png"></p>
+<p>少し下段まで進み、クレジット仕様 の □無制限 のチェックボックスのチェックを外してください。</p>
+<p>このチェックが入っていると、t 系インスタンスで CPU クレジットが枯渇した際に予想以上のコストがかかる場合があります。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\d5f664d6de614225"></p>
 <h3 is-upgraded>ユーザーデータ</h3>
 <p>ページ下部まで進み、ユーザーデータに...</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/c927249d459cc048.png"></p>
-<p>以下のユーザーデータを流し込んだら、[<strong>次のステップ:ストレージの追加</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\c927249d459cc048"></p>
+<p>以下のユーザーデータを流し込んだら、[次のステップ:ストレージの追加] ボタンをクリックしてください。</p>
 <pre><code>#!/bin/bash
 dnf -y update
 # WordPress のインストールを完了させるため、SELinux を一時的にPermissive に変更
@@ -561,109 +607,16 @@ EOS
 
 # Nginx スタート
 systemctl enable nginx.service
-systemctl start nginx.service
-</code></pre>
+systemctl start nginx.service</code></pre>
 <h2 is-upgraded>ステップ4: ストレージの追加</h2>
-<p>選択した AMI は、8GB のストレージを利用します。<br> また、汎用 SSD (gp3) が選択されます。<br> ストレージは、特に変更せずに、次に進みます。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/4e18a35f88d53930.png"></p>
+<p>選択した AMI は、8GB のストレージを利用します。</p>
+<p>また、汎用 SSD (gp3) が選択されます。</p>
+<p>ストレージは、特に変更せずに、次に進みます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\4e18a35f88d53930"></p>
 <h2 is-upgraded>ステップ5: タグの追加</h2>
-<p>インスタンスを区別できるようにタグに名前を設定します。<br> IAM ユーザを利用している場合、他ユーザと区別が付くように -user1 等ユーザ名を付けると良いでしょう。</p>
-<p>ここでは、<code>handson-ec2-wordpress-1</code> とします。</p>
-<table>
-<tr><td colspan="1" rowspan="1"><p><strong>キー</strong></p>
-</td><td colspan="1" rowspan="1"><p><strong>値</strong></p>
-</td></tr>
-<tr><td colspan="1" rowspan="1"><p>Name</p>
-</td><td colspan="1" rowspan="1"><p>handson-ec2-wordpress-1</p>
-</td></tr>
-</table>
-<p><img alt="AWS マネジメントコンソール サインイン画面" src="img/d3c33afbf0e89fe2.png"> □ <strong>インスタンス</strong> と<br> □ <strong>ボリューム</strong> と<br> □ <strong>ネットワークインターフェイス</strong></p>
-<p>のチェックボックスにチェックを入れると、それぞれのリソースに名前タグが設定されます。<br> [<strong>次のステップ:セキュリティグループの設定</strong>] をクリックしてください。</p>
-<h2 is-upgraded>ステップ6: セキュリティグループの設定</h2>
-<p><strong>新しいセキュリティグループを作成する</strong> のオプションボタンにチェックが入っていることを確認してください。<br> セキュリティグループ名と説明は任意の名称を設定してください。本ハンズオンでは、<code>web-sg</code> とします。</p>
-<p><strong>タイプ</strong> を「SSH」から「HTTP」に変更して、ソースを「<strong>マイ IP</strong>」にしてください。<br> 下部に警告メッセージが表示されますが、セッションマネージャー経由で接続するので問題ありません。</p>
-<p><strong>ソース</strong> を「任意の場所」にしたら [<strong>確認と作成</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/8f54b7fddf929fae.png"></p>
-<h2 is-upgraded>ステップ7: インスタンス作成の確認</h2>
-<p>確認画面が表示されます。内容確認して間違えなければ [<strong>起動</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/d72c29ee435f2492.png"></p>
-<h3 is-upgraded>キーペア</h3>
-<p>キーペアを指定する画面になります。セッションマネージャーを利用するため、本ハンズオンでは利用しません。<br> [<strong>キーペアなしで続行</strong>] を選択し、チェックボックスにチェックを入れて、[<strong>インスタンスの作成</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/5b7d55458bc6fde9.png"></p>
-<p>EC2 インスタンスの作成が始まりました。<br> [<strong>インスタンスの表示</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/13652e520a9ce569.png"></p>
-<p>インスタンスの作成が完了するのを待ちます。<br> ステータスが「利用可能」になるまで数分かかります。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール  リージョン移動 - 東京" src="img/39f48ad0d48e1537.png"></p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="フェーズ1 - セッションマネージャー" duration="0">
-        <h2 is-upgraded>セッションマネージャー経由で EC2 インスタンスにアクセスする</h2>
-<p>起動したインスタンスは、AMI (Amazon マシンイメージ) から復元されたあと、ユーザーデータに入力したスクリプトによって、インストールが行われていきます。<br> 下図の通り、</p>
-<ul>
-<li>インスタンスの状態が <strong>実行中</strong> になること</li>
-<li>ステータスチェックが 2/2 のチェックに合格しました</li>
-</ul>
-<p>になることを確認してください。(これには数分かかります。)</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/683d80064eff149a.png"></p>
-<p>また、バックグラウンドでは並行してユーザーデータによるインストールが進行していきます。<br> インストールが完了まで少し時間がかかりますが、このインストールの途中でセッションマネージャーが利用できる状態になります。</p>
-<aside class="warning"><p> Amazon Linux 2022 には 2022 年 4 月の段階で、セッションマネージャーを利用するための Systems Manager Agent がプリインストールされていません。そのため、本ハンズオンではユーザーデーターを使って Agent をインストールしています。 </p>
-</aside>
-<h2 is-upgraded>ユーザーデータで行う処理</h2>
-<ol type="1">
-<li><strong>SELinux 無効化<br></strong> Amazon Linux 2022 は Fedora ベースの OS で SELinux が有効になっています。<br> SELinux が有効だとセットアップ時に Nginx が正しく動作しません。<br> 本番環境では SELinux を有効化して http などのポリシーの設定を行う必要がありますが、本ハンズオンでは無効化します。</li>
-<li><strong>タイムゾーンを東京に変更<br></strong> Amazon Linux 2022 の AMI は UTC 時刻にて稼働します。そのため、起動後にタイムゾーンを Asia/Tokyo にします。</li>
-<li><strong>ロケールを日本語に変更</strong></li>
-<li><strong>SSM エージェントのインストール<br></strong> SSM エージェントをインストールすると、セッションマネージャーが利用できるようになります。</li>
-<li><strong>Nginx インストール<br></strong> Web サーバーとして稼働させるため、Nginx をインストールします。</li>
-<li><strong>php インストール<br></strong> WordPress の稼働に必要な PHP と PHP モジュールをインストールします。</li>
-<li><strong>MariaDB インストール<br></strong> WordPress で利用する MariaDB をインストールします。</li>
-<li><strong>WordPress インストール<br></strong> 最新版の WordPress をダウンロードしてインストールします。</li>
-</ol>
-<aside class="special"><p>SELinux は、Passive という警告モードにしています。</p>
-</aside>
-<h2 is-upgraded>セッションマネージャーによる接続</h2>
-<p>インスタンスが起動したらセッションマネージャーで接続してみましょう。<br> EC2 コンソールの左側のメニューペインにある <strong>インスタンス</strong> をクリックして、右側に表示されるインスタンス一覧から、起動したインスタンスを見つけてください。<br> インスタンスの左側にあるチェックボックスにチェックを入れて、[<strong>接続</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/1bd36727d14fa10f.png"></p>
-<p>インスタンスが複数表示されている場合は、テキストボックスにインスタンス名を入れたり、ステータスを <strong>running</strong> でフィルタリングするなどすると効率的に見つけることができます。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/b34e06d3965d7296.png"></p>
-<p>[<strong>セッションマネージャー</strong>] タブを選択し、[<strong>接続</strong>] ボタンをクリックします。</p>
-<aside class="warning"><p> 接続ボタンがアクティブでない場合は、IAM ロールをアタッチし損ねたか、パブリック IP アドレスをつけ忘れたか、SSM エージェントのインストールがまだ完了していないなどの可能性があります。 </p>
-</aside>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/720d7102152fe523.png"></p>
-<p>接続が成功すると、ブラウザの新しいタブが開いて以下のようなプロンプトで停止します。</p>
-<pre><code>sh-5.1$
-</code></pre>
-<p>スイッチユーザーして、root ユーザーに昇格してください。</p>
-<pre><code>sh-5.1$ sudo -i
-#
-</code></pre>
-<p>本ウインドウは閉じずにそのままにしておいてください。</p>
-<aside class="warning"><p> バックグラウンドでインストールが継続している可能性があります。再起動などは実施しないでください。   次の手順 (ブラウザからアクセス) で、WordPress のウェルカム画面が表示されれば、インストールは一通り終わっています。 </p>
-</aside>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="フェーズ1 - ブラウザで http アクセスする" duration="0">
-        <p>次はブラウザから Web ページにアクセスしてみます。<br> EC2 コンソールでインスタンスを選択したら、下部の詳細ペインに表示された <strong>パブリック IPv4 アドレス</strong> を見つけて、アドレスの左側にあるアイコンをクリックしてください。IP アドレスがクリップボードにコピーされます。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/aaa17fc4445f3365.png"></p>
-<p>Chrome タブを追加して、アドレスバーに貼り付けて、ENTER キーを押下しアクセスしてください。WordPress のセットアップ・ウェルカムページが表示されます。</p>
-<aside class="warning"><p> ページが表示されない場合は、セキュリティグループの設定に誤りがある可能性があります。 </p>
-</aside>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/4889d18248777bd0.png"></p>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="フェーズ1 - Elastic IP の割り当て" duration="0">
-        <h2 is-upgraded>Elastic IP (EIP) を取得</h2>
-<aside class="warning"><p> バックグラウンドでインストールが継続している可能性があります。インストール中に ElasticIP アドレスを付与すると処理エラーが発生する可能性があります。   前の手順 (ブラウザからアクセス) で、WordPress のウェルカム画面が表示されれば、インストールは一通り終わっています。 </p>
-</aside>
-<p>インスタンスを停止/開始した後も、同じ IP アドレスが使用できるよう、固定 IP アドレスであるElastic IP を取得します。<br> EC2 コンソールにて、左側のメニューペインから <strong>Elastic IP</strong> をクリックし、ページ上部に表示された [<strong>Elastic IP アドレスを割り当てる</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/cfbc1dbc65483dec.png"></p>
-<p><strong>Elastic IP アドレスを割り当てる</strong> の画面に遷移するので、Name タグを設定してください。 ページの下部にある <strong>タグ - オプション</strong> に進み、[<strong>新規タグ追加</strong>] ボタンをクリックします。 キーと値に以下を入力してください。</p>
+<p>インスタンスを区別できるようにタグに名前を設定します。</p>
+<p>IAM ユーザを利用している場合、他ユーザと区別が付くように -user1 等ユーザ名を付けると良いでしょう。</p>
+<p>ここでは、handson-ec2-wordpress-1 とします。</p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>キー</p>
 </td><td colspan="1" rowspan="1"><p>値</p>
@@ -672,30 +625,142 @@ systemctl start nginx.service
 </td><td colspan="1" rowspan="1"><p>handson-ec2-wordpress-1</p>
 </td></tr>
 </table>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ea102acb923a2e9d.png"></p>
-<aside class="special"><p>タグは任意ですが、EC2 インスタンスのタグと揃えると識別しやすいです。 </p>
+<p><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\d3c33afbf0e89fe2"> □ インスタンス と</p>
+<p>□ ボリューム と</p>
+<p>□ ネットワークインターフェイス</p>
+<p>のチェックボックスにチェックを入れると、それぞれのリソースに名前タグが設定されます。</p>
+<p>[次のステップ:セキュリティグループの設定] をクリックしてください。</p>
+<h2 is-upgraded>ステップ6: セキュリティグループの設定</h2>
+<p><strong>新しいセキュリティグループを作成する</strong> のオプションボタンにチェックが入っていることを確認してください。</p>
+<p>セキュリティグループ名と説明は任意の名称を設定してください。本ハンズオンでは、web-sg とします。</p>
+<p>タイプ を「SSH」から「HTTP」に変更して、ソースを「マイ IP」にしてください。</p>
+<p>下部に警告メッセージが表示されますが、セッションマネージャー経由で接続するので問題ありません。</p>
+<p>ソース を「任意の場所」にしたら [確認と作成] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\8f54b7fddf929fae"></p>
+<h2 is-upgraded>ステップ7: インスタンス作成の確認</h2>
+<p>確認画面が表示されます。内容を確認して間違えなければ [起動] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\d72c29ee435f2492"></p>
+<h3 is-upgraded>キーペア</h3>
+<p>キーペアを指定する画面になります。セッションマネージャーを利用するため、本ハンズオンでは利用しません。</p>
+<p>[キーペアなしで続行] を選択し、チェックボックスにチェックを入れて、[インスタンスの作成] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\5b7d55458bc6fde9"></p>
+<p>EC2 インスタンスの作成が始まりました。</p>
+<p>[インスタンスの表示] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\13652e520a9ce569"></p>
+<p>インスタンスの作成が完了するのを待ちます。</p>
+<p>ステータスが「利用可能」になるまで数分かかります。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール  リージョン移動 - 東京" style="width: 624.00px" src="img\\39f48ad0d48e1537"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ1 - セッションマネージャー" duration="0">
+        <h2 is-upgraded><strong>セッションマネージャー経由で EC2 インスタンスにアクセスする</strong></h2>
+<p>起動したインスタンスは、AMI (Amazon マシンイメージ) から復元されたあと、ユーザーデータに入力したスクリプトによって、インストールが行われていきます。</p>
+<p>下図の通り、</p>
+<ul>
+<li>インスタンスの状態が 実行中 になること</li>
+<li>ステータスチェックが 2/2 のチェックに合格しました</li>
+</ul>
+<p>になることを確認してください。(これには数分かかります。)</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\9d07b7e47a063e8"></p>
+<p>また、バックグラウンドでは並行してユーザーデータによるインストールが進行していきます。</p>
+<p>インストールが完了するまで少し時間がかかりますが、このインストールの途中でセッションマネージャーが利用できる状態になります。</p>
+<aside class="warning"><p><strong>Amazon Linux 2022 には 2022 年 4 月の段階で、セッションマネージャーを利用するための Systems Manager Agent がプリインストールされていません。そのため、本ハンズオンではユーザーデーターを使って Agent をインストールしています。</strong></p>
 </aside>
-<p>Elastic IP アドレスが割り当てられたら、割り当てられた IPv4 アドレスを控えておいてください。<br> メモできたら [<strong>この Elastic IP アドレスを関連づける</strong>] をクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/4b436d4566177381.png"></p>
+<h2 is-upgraded><strong>ユーザーデータで行う処理</strong></h2>
+<ol type="1" start="1">
+<li><strong>SELinux 無効化<br></strong>Amazon Linux 2022 は Fedora ベースの OS で SELinux が有効になっています。<br>SELinux が有効だとセットアップ時に Nginx が正しく動作しません。<br>本番環境では SELinux を有効化して http などのポリシーの設定を行う必要がありますが、本ハンズオンでは無効化します。</li>
+<li><strong>タイムゾーンを東京に変更<br></strong>Amazon Linux 2022 の AMI は UTC 時刻にて稼働します。そのため、起動後にタイムゾーンを Asia/Tokyo にします。</li>
+<li><strong>ロケールを日本語に変更</strong></li>
+<li><strong>SSM エージェントのインストール<br></strong>SSM エージェントをインストールすると、セッションマネージャーが利用できるようになります。</li>
+<li><strong>Nginx インストール<br></strong>Web サーバーとして稼働させるため、Nginx をインストールします。</li>
+<li><strong>php インストール<br></strong>WordPress の稼働に必要な PHP と PHP モジュールをインストールします。</li>
+<li><strong>MariaDB インストール<br></strong>WordPress で利用する MariaDB をインストールします。</li>
+<li><strong>WordPress インストール<br></strong>最新版の WordPress をダウンロードしてインストールします。</li>
+</ol>
+<aside class="special"><p><strong>SELinux は、Passive という警告モードにしています。</strong></p>
+</aside>
+
+        <h2 is-upgraded><strong>セッションマネージャーによる接続</strong></h2>              
+        <p>インスタンスが起動したらセッションマネージャーで接続してみましょう。</p>
+<p>EC2 コンソールの左側のメニューペインにある インスタンス をクリックして、右側に表示されるインスタンス一覧から、起動したインスタンスを見つけてください。</p>
+<p>インスタンスの左側にあるチェックボックスにチェックを入れて、[接続] ボタンをクリックしてください。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\161dfbb3c8556583"></p>
+<p>インスタンスが複数表示されている場合は、テキストボックスにインスタンス名を入れたり、ステータスを <strong>running</strong> でフィルタリングするなどすると効率的に見つけることができます。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\bfd47040537e6316"></p>
+<p>[<strong>セッションマネージャー</strong>] タブを選択し、[<strong>接続</strong>] ボタンをクリックします。</p>
+<aside class="warning"><p><strong>接続ボタンがアクティブでない場合は、IAM ロールをアタッチし損ねたか、パブリック IP アドレスをつけ忘れたか、SSM エージェントのインストールがまだ完了していないなどの可能性があります。</strong></p>
+</aside>
+<h3 is-upgraded><img style="width: 624.00px" src="img\\a20ceeba4c2c1a49"></h3>
+<p>接続が成功すると、ブラウザの新しいタブが開いて以下のようなプロンプトで停止します。</p>
+<pre><code>sh-5.1$</code></pre>
+<p>スイッチユーザーして、root ユーザーに昇格してください。</p>
+<pre><code>sh-5.1$ sudo -i
+#
+
+</code></pre>
+<p>本ウインドウは閉じずにそのままにしておいてください。</p>
+<aside class="warning"><p><strong>バックグラウンドでインストールが継続している可能性があります。再起動などは実施しないでください。 次の手順 (ブラウザからアクセス) で、WordPress のウェルカム画面が表示されれば、インストールは一通り終わっています。</strong></p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ1 - ブラウザで http アクセスする" duration="0">
+        <p>次はブラウザから Web ページにアクセスしてみます。</p>
+<p>EC2 コンソールでインスタンスを選択したら、下部の詳細ペインに表示された <strong>パブリック IPv4 アドレス</strong> を見つけて、アドレスの左側にあるアイコンをクリックしてください。IP アドレスがクリップボードにコピーされます。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\4f1618064567a6a"></p>
+<p>Chrome タブを追加して、アドレスバーに貼り付けて、ENTER キーを押下しアクセスしてください。WordPress のセットアップ・ウェルカムページが表示されます。</p>
+<aside class="warning"><p><strong>ページが表示されない場合は、セキュリティグループの設定に誤りがある可能性があります。</strong></p>
+</aside>
+<p class="image-container"><img style="width: 624.00px" src="img\\229b2cecadc578c9"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ1 - Elastic IP の割り当て" duration="0">
+        <h2 is-upgraded><strong>Elastic IP (EIP) を取得</strong></h2>
+<aside class="warning"><p><strong>バックグラウンドでインストールが継続している可能性があります。インストール中に ElasticIP アドレスを付与すると処理エラーが発生する可能性があります。 前の手順 (ブラウザからアクセス) で、WordPress のウェルカム画面が表示されれば、インストールは一通り終わっています。</strong></p>
+</aside>
+<p>インスタンスを停止/開始した後も、同じ IP アドレスが使用できるよう、固定 IP アドレスであるElastic IP を取得します。</p>
+<p>EC2 コンソールにて、左側のメニューペインから <strong>Elastic IP</strong> をクリックし、ページ上部に表示された [<strong>Elastic IP アドレスを割り当てる</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\6aa90055d6f13889"></p>
+<p><strong>Elastic IP アドレスを割り当てる</strong> の画面に遷移するので、Name タグを設定してください。<strong> ページの下部にある タグ - オプション</strong> に進み、[<strong>新規タグ追加</strong>] ボタンをクリックします。 キーと値に以下を入力してください。</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>キー</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>値</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Name</p>
+</td><td colspan="1" rowspan="1"><p>handson-ec2-wordpress-1</p>
+</td></tr>
+</table>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\ea102acb923a2e9d"></p>
+<aside class="special"><p><strong>タグは任意ですが、EC2 インスタンスのタグと揃えると識別しやすいです。</strong></p>
+</aside>
+<p>Elastic IP アドレスが割り当てられたら、割り当てられた IPv4 アドレスを控えておいてください。</p>
+<p>メモできたら [<strong>この Elastic IP アドレスを関連づける</strong>] をクリックしてください。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\bd094f74e9e195c6"></p>
 <p><strong>インスタンス</strong> に起動した EC2 インスタンスを指定し、プライベート IP アドレスを選択して、[<strong>関連付ける</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ce18a47aaa9bd2ed.png"></p>
-<aside class="warning"><p> 前述の作業で取得した自分の IP アドレスが表示されている事を確認の上、選択してください。 EC2 インスタンスが複数ある場合は誤ったインスタンスにアタッチしないようにご注意ください。 </p>
+<p class="image-container"><img style="width: 624.00px" src="img\\d00f05761dec9e27"></p>
+<aside class="warning"><p><strong>前述の作業で取得した自分の IP アドレスが表示されている事を確認の上、選択してください。 EC2 インスタンスが複数ある場合は誤ったインスタンスにアタッチしないようにご注意ください。</strong></p>
 </aside>
 <p>アタッチしたアドレスは、EC2 の詳細画面からも確認できますので再度チェックしておいてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/aaa17fc4445f3365.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\4f1618064567a6a"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="フェーズ1 - WordPress の構成" duration="0">
-        <h2 is-upgraded>MySQL と Nginx が動いていることを確認</h2>
-<p>先ほど接続したセッションマネージャーのブラウザタブに戻り、MySQL と Nginx が動いていることを確認したいと思います。<br> 以下の root 権限にて、</p>
+        <h2 is-upgraded><strong>MySQL と Nginx が動いていることを確認</strong></h2>
+<p>先ほど接続したセッションマネージャーのブラウザタブに戻り、MySQL と Nginx が動いていることを確認したいと思います。</p>
+<p>以下の root 権限にて、</p>
 <pre><code>sh-5.1$ sudo -i
-#
-</code></pre>
+#</code></pre>
 <p>以下コマンドを入力してください。</p>
-<p><code>systemctl status mariadb</code></p>
-<p>以下のような <code>running</code> ステータスが返れば正常に起動しています。<br> [Q] キーを押下すると、抜けることができます。</p>
+<p>systemctl status mariadb</p>
+<p>以下のような running ステータスが返れば正常に起動しています。</p>
+<p>[Q] キーを押下すると、抜けることができます。</p>
 <pre><code># systemctl status mariadb
 ● mariadb.service - MariaDB 10.5 database server
      Loaded: loaded (/usr/lib/systemd/system/mariadb.service; disabled; vendor preset: disabled)
@@ -715,11 +780,12 @@ systemctl start nginx.service
  (中略)
 
  4月 06 21:16:03 ip-10-0-0-44.ap-northeast-1.compute.internal systemd[1]: Started MariaDB 10.5 database server.
-lines 1-23/23 (END)
-</code></pre>
-<p>続いて、Nginx サーバーを確認します。<br> 以下コマンドを入力してください。</p>
-<p><code>systemctl status nginx</code></p>
-<p>以下のような <code>running</code> ステータスが返れば正常に起動しています。<br> [Q] キーを押下すると、抜けることができます。</p>
+lines 1-23/23 (END)</code></pre>
+<p>続いて、Nginx サーバーを確認します。</p>
+<p>以下コマンドを入力してください。</p>
+<p>systemctl status nginx</p>
+<p>以下のような running ステータスが返れば正常に起動しています。</p>
+<p>[Q] キーを押下すると、抜けることができます。</p>
 <pre><code># systemctl status nginx
 ● nginx.service - The nginx HTTP and reverse proxy server
      Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; vendor preset: disabled)
@@ -743,141 +809,635 @@ lines 1-23/23 (END)
  (中略)
  
  4月 06 21:16:16 ip-10-0-0-44.ap-northeast-1.compute.internal systemd[1]: Started The nginx HTTP and reverse proxy server.
-lines 1-21/21 (END)
-</code></pre>
-<h2 is-upgraded>セッションマネージャーによる接続がうまくいかない場合</h2>
-<ul>
-<li>インスタンスは完全に起動完了していますでしょうか。ステータスチェックは 2/2 になっていますか？</li>
-<li>起動時に指定した内容どおりに起動しているでしょうか?</li>
-<li>接続先のインスタンス ID は正しいですか？</li>
-</ul>
+lines 1-21/21 (END)</code></pre>
+<h2 is-upgraded><strong>セッションマネージャーによる接続がうまくいかない場合</strong></h2>
+<p>インスタンスは完全に起動完了していますでしょうか。ステータスチェックは 2/2 になっていますか？</p>
+<p>起動時に指定した内容どおりに起動しているでしょうか?</p>
+<p>接続先のインスタンス ID は正しいですか？</p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="フェーズ1 - WordPress の初期設定" duration="0">
-        <p>http://&lt;Elastic IPアドレス&gt;/wordpress/ を開いて、WordPressの初期設定を始めます。<br> 上記 URL にアクセスすると、自動で setup-config.php にリダイレクトします。</p>
+        <p>http://&lt;Elastic IPアドレス&gt;/wordpress/ を開いて、WordPressの初期設定を始めます。</p>
+<p>上記 URL にアクセスすると、自動で setup-config.php にリダイレクトします。</p>
 <p>[さあ、始めましょう!] ボタンをクリックします。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/7ad69039a6b76952.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\45ec6dc8d287f67a"></p>
 <h2 is-upgraded>作成した MySQL の DB 設定に基づき、設定します。</h2>
 <table>
-<tr><td colspan="1" rowspan="1"><p>項目</p>
-</td><td colspan="1" rowspan="1"><p>値</p>
+<tr><td colspan="1" rowspan="1"><p><strong>項目</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>値</strong></p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p><strong>データベース名</strong></p>
+<tr><td colspan="1" rowspan="1"><p>データベース名</p>
 </td><td colspan="1" rowspan="1"><p>wp_database</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p><strong>ユーザー名</strong></p>
+<tr><td colspan="1" rowspan="1"><p>ユーザー名</p>
 </td><td colspan="1" rowspan="1"><p>wp_admin</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p><strong>パスワード</strong></p>
+<tr><td colspan="1" rowspan="1"><p>パスワード</p>
 </td><td colspan="1" rowspan="1"><p>wordpress</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p><strong>データベースのホスト名</strong></p>
+<tr><td colspan="1" rowspan="1"><p>データベースのホスト名</p>
 </td><td colspan="1" rowspan="1"><p>localhost</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p><strong>テーブル接頭辞</strong></p>
+<tr><td colspan="1" rowspan="1"><p>テーブル接頭辞</p>
 </td><td colspan="1" rowspan="1"><p>wp_</p>
 </td></tr>
 </table>
 <p>以下の画面が表示されるので、上記の値を入力して、[<strong>送信</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/83194f3776a544e1.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\206af0938320277d"></p>
 <p>以下画面に遷移するので、[<strong>インストール実行</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/592c12573ebca0a4.png"></p>
-<p>以下画面に遷移するので、画像の通り入力してください。<br> [<strong>WordPress をインストール</strong>] ボタンをクリックしたあと、20 秒程度かかります。<br> ブラウザのローディングが終わるまで、リロードなど行わずに少々お待ちください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/3acdc45d40ef1337.png"></p>
-<p>以下の画面が表示されたらセットアップ完了です。<br> [<strong>ログイン</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/6862e74858626cb4.png"></p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\592c12573ebca0a4"></p>
+<p>以下画面に遷移するので、画像の通り入力してください。</p>
+<p>[<strong>WordPress をインストール</strong>] ボタンをクリックしたあと、20 秒程度かかります。</p>
+<p>ブラウザのローディングが終わるまで、リロードなど行わずに少々お待ちください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\3acdc45d40ef1337"></p>
+<p>以下の画面が表示されたらセットアップ完了です。</p>
+<p>[<strong>ログイン</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\6862e74858626cb4"></p>
 <h2 is-upgraded>WordPress ログイン画面</h2>
-<p>以下、ログイン画面が表示されるので先ほど入力したユーザー名とパスワードを入力してください。<br> [<strong>ログイン</strong>] ボタンをクリックしてください。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/1373a94d6c1078f3.png"></p>
+<p>以下、ログイン画面が表示されるので先ほど入力したユーザー名とパスワードを入力してください。</p>
+<p>[<strong>ログイン</strong>] ボタンをクリックしてください。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\1373a94d6c1078f3"></p>
 <h2 is-upgraded>WordPress 管理者画面</h2>
 <p>ユーザー名とパスワードが正しく入力され、認証が通れば WordPress の管理者画面が表示されます。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/59f33d2f7d793db5.png"></p>
-<ol type="1">
-<li>[<strong>投稿</strong>] をクリックして、任意の新規ブログポストを書くことができます。<br><img alt="AWS マネジメントコンソール サインイン画面" src="img/44f40a96071d1cdc.png"></li>
-<li>ブログタイトルをクリックするとブログが表示できます。<br><img alt="AWS マネジメントコンソール サインイン画面" src="img/97d0ac91af2d5c06.png"></li>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\59f33d2f7d793db5"></p>
+<ol type="1" start="1">
+<li>[<strong>投稿</strong>] をクリックして、任意の新規ブログポストを書くことができます。<br><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\44f40a96071d1cdc"></li>
+<li>ブログタイトルをクリックするとブログが表示できます。<br><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\97d0ac91af2d5c06"></li>
 </ol>
 <h2 is-upgraded>ブログの起動確認</h2>
-<p>Wordpress ブログが実行できていることを確認します。<br> (nginxの画面が出る場合はリロードしてみてください)<br> 前ページの管理画面に戻るには <code>http://EIPアドレス/wp-admin/</code> にアクセスします。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/6070997e65add016.png"></p>
+<p>Wordpress ブログが実行できていることを確認します。</p>
+<p>(nginxの画面が出る場合はリロードしてみてください)</p>
+<p>前ページの管理画面に戻るには http://EIPアドレス/wp-admin/ にアクセスします。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\6070997e65add016"></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="座学 - Amazon Aurora RDS" duration="0">
-        <h2 is-upgraded>Amazon Aurora</h2>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/834f3a8671e444f1.png"></p>
-<p>Amazon Aurora は、標準的な MySQL データベースと比べて最大で 5 倍、標準的な PostgreSQL データベースと比べて最大で 3 倍高速です。また、商用データベースと同等のセキュリティ、可用性、信頼性を、10 分の 1 のコストで実現します。</p>
-<h2 is-upgraded>Amazon RDS</h2>
-<p>Amazon Relational Database Service (RDS) は、AWS にて運用管理されるマネージドRDBMS サービスです。　　 MySQL、Oracle、SQL Server、PostgreSQL、MariaDB、Aurora が提供されています。<br> バックアップやフェイルオーバーに対応した DB を数クリックで利用可能にします。<br> メンテナンスフリーで、自動バックアップや、パッチ当てなどが自動で行われます。</p>
+        <p class="image-container"><img style="width: 76.50px" src="img\\4a494155f5977ea6"></p>
+<p>Amazon Aurora RDSは、クラウド向けにAWSが構築したデータベースです。</p>
+<p>MySQLとPostgreSQLと互換性があります。</p>
+<p>AuroraのDBクラスターは1つ以上のDBインスタンスと、データを管理するクラスターボリュームで構成され、データボリュームは3AZに3個ずつ計6個のコピーが作成され、高い耐障害性を持ちます。</p>
+<p>また、通常のRDS同様にバックアップやフェイルオーバーに対応した DB を数クリックで利用可能にします。</p>
+<p>メンテナンスフリーで、自動バックアップや、パッチ当てなどが自動で行われます。</p>
+<p class="image-container"><img style="width: 695.50px" src="img\\bb05d0531ca1039b"></p>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="更に拡張性を高める" duration="0">
-        <p>ハンズオン構築ここまでお疲れ様でした！<br> ここからは、一旦、WordPress を考慮せずに一般的な更に拡張性を高める方法を解説します。</p>
+      <google-codelab-step label="フェーズ2" duration="0">
+        <h2 is-upgraded>フェーズ2の作成範囲について</h2>
+<p>フェーズ2は以下の範囲の作成を実施します。</p>
+<p class="image-container"><img style="width: 700.50px" src="img\\c25977e23e65624f"></p>
+<h2 is-upgraded><strong>フェーズ2：Web + DB (サーバ 2台構成)</strong></h2>
+<p>拡張性が少し高くなり、DBの運用が楽になります。</p>
+<p>◆拡張性：中</p>
+<p>拡張方法はフェーズ１と変わらず、インスタンスタイプを大きくします。</p>
+<p>2台構成のため、フェーズ１よりも最大構成で対応できる規模が大きくなります。</p>
+<p>◆冗長性：中</p>
+<p>Amazon Aurora自体はシングルAZ上で構成されるものの、データそのものはデータクラスターの単位で各AZ上に分割される為、データの冗長性は向上します。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ2 - RDSセキュリティグループを作成" duration="0">
+        <h2 is-upgraded><strong>DB用のセキュリティグループ</strong></h2>
+<p>DBへのアクセスを許可するソースには、IPアドレスではなくWebサーバ用のセキュリティグループを指定します。</p>
+<p>こうする事でDBはWebサーバからのアクセスのみ許可されます。</p>
+<p class="image-container"><img style="width: 699.60px" src="img\\c0399b06be6c1e25"></p>
+<h2 is-upgraded><strong>DB用のセキュリティグループを作成</strong></h2>
+<p>EC2のウィザードからセキュリティグループを選択し、以下の手順で実施します。</p>
+<p class="image-container"><img style="width: 710.27px" src="img\\25d7112c7daacfc3"></p>
+<p>セキュリティグループ作成画面で以下を入力します。</p>
+<p>・セキュリティグループ名：db-sg</p>
+<p>・説明：Aurora for MySQL</p>
+<p>・VPC：自分で作成したVPCを選択します。</p>
+<p class="image-container"><img style="width: 703.11px" src="img\\7bb6de95f6e3792"></p>
+<p>インバウンドルールに[MySQL/Aurora]を選択し、web-sgを対象として選択し、セキュリティグループを作成します。</p>
+<p class="image-container"><img style="width: 693.50px" src="img\\cac0ed872d4eabe7"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ2 - DBサブネットグループを作成" duration="0">
+        <h2 is-upgraded><strong>RDS管理ページを開く</strong></h2>
+<p>サービスからデータベースを選択し、RDSをクリックします。</p>
+<p class="image-container"><img style="width: 696.50px" src="img\\880c0a2310dcbc62"></p>
+<h2 is-upgraded><strong>DBサブネットグループを作成</strong></h2>
+<p>RDSの管理画面からサブネットグループを選択し、DBサブネットグループの作成をクリックします。</p>
+<p class="image-container"><img style="width: 703.69px" src="img\\77edbc2c08b54635"></p>
+<p>DBサブネットグループの作成画面で以下を入力します。</p>
+<p>・名前：db-subnet</p>
+<p>・説明：Aurora for MySQL</p>
+<p>・VPC：作成したVPCを選択します。</p>
+<p class="image-container"><img style="width: 694.50px" src="img\\2848484e792f093b"></p>
+<p>サブネットを追加の項目では、</p>
+<p>アベイラビリティゾーンでは、[ap-northeast-1a]と[ap-northeast-1c]を選択します。</p>
+<p>サブネットでは、[10.0.2.0/24]と[10.0.3.0/24]の2つを選択します。</p>
+<p class="image-container"><img style="width: 706.50px" src="img\\29cd1183b185701e"></p>
+<p>作成したサブネットグループが存在する事を確認します。</p>
+<p class="image-container"><img style="width: 709.91px" src="img\\1266479f0e4947e0"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ2 - RDSインスタンスを作成" duration="0">
+        <h2 is-upgraded><strong>Aurora RDSを作成</strong></h2>
+<p>Aurora RDSを作成します。RDSの管理画面からデータベースをクリックし、データベースの作成をクリックします。</p>
+<p class="image-container"><img style="width: 707.50px" src="img\\ebf5c8f6b3e33a42"></p>
+<p>データベースの作成で以下を選択、入力します。</p>
+<p>・データベースの作成方法：標準作成</p>
+<p>・エンジンのオプション：Amazon Aurora</p>
+<p>・エディション：MySQL互換エディション</p>
+<p class="image-container"><img style="width: 696.50px" src="img\\358d3d02a04a221e"></p>
+<p>続けて以下の内容を選択します。</p>
+<p>・キャパシティータイプ：<strong>[プロビジョニング済み]</strong>を選択します。</p>
+<p>・利用可能なバージョン：<strong>[Aurora(MySQL 5.7) 2.10.2]</strong>を選択します。(デフォルトで設定されているバージョンではないので注意してください)</p>
+<p>・テンプレート：開発/テストを選択します。<img style="width: 706.50px" src="img\\ce04e7d599c68719"></p>
+<p>続けて、設定画面において、以下を入力します。</p>
+<p>・DBクラスター識別子：aurora-mysql-db</p>
+<p>・マスターユーザー名：admin</p>
+<p>・パスワード：wordpress</p>
+<p class="image-container"><img style="width: 708.50px" src="img\\4758b869ee7ceea1"></p>
+<p>DBインスタンスクラスはバースト可能クラスを選択し、db.t3.smallを選択します。</p>
+<p>可用性と耐久性の箇所では「Auroraレプリカを作成しない」を選択します。</p>
+<p class="image-container"><img style="width: 701.50px" src="img\\d0748adeb266d544"></p>
+<p>接続の箇所は以下のように入力します。</p>
+<p>・VPC：作成したVPCを選択します。</p>
+<p>・サブネットグループ：db-subnetを選択します。</p>
+<p>・パブリックアクセス：なし</p>
+<p>・VPCセキュリティグループ：既存の選択を選び、db-sgのみを選択します。</p>
+<p class="image-container"><img style="width: 711.50px" src="img\\185b257a6f367567"></p>
+<p>アベイラビリティゾーンは[ap-northeast-1a]を選択し、</p>
+<p>データベース認証はパスワード認証を選択します。</p>
+<p>追加設定から最初のデータベース名に「wp_database」を入力します。</p>
+<p>「DBクラスターのパラメータグループ」以下、メンテナンスウインドウの設定まではデフォルト設定のままとしてください。</p>
+<p class="image-container"><img style="width: 704.50px" src="img\\43f07c2ac4b466c5"></p>
+<p>設定画面の最下部にある削除保護の有効化のチェックを外し、</p>
+<p>データベースの作成をクリックし、Aurora RDSを作成します。</p>
+<p class="image-container"><img style="width: 717.73px" src="img\\635204050191800e"></p>
+<p>インスタンスの作成が完了するのを待ちます。</p>
+<p>ステータスが「利用可能」になるまで、数分かかります。</p>
+<p class="image-container"><img style="width: 704.28px" src="img\\39f48ad0d48e1537"></p>
+<h2 is-upgraded><strong>作成したAurora RDSを確認</strong></h2>
+<p>インスタンスの作成が完了するのを待ちます。</p>
+<p>ステータスが「利用可能」になるまで数分かかります。</p>
+<p class="image-container"><img style="width: 704.05px" src="img\\41e2379f029b300f"></p>
+<p>利用可能となったAurora RDSのリージョン別クラスターを選択する</p>
+<p class="image-container"><img style="width: 702.48px" src="img\\46c5a05d9d9d36bb"></p>
+<p>ライターインスタンスのエンドポイント名をコピーしてメモする</p>
+<p class="image-container"><img style="width: 705.50px" src="img\\baf7289052d4113d"></p>
+<h2 is-upgraded><strong>作成したAurora RDSへの接続確認</strong></h2>
+<p>WebサーバのEC2インスタンスからAurora RDSに接続出来る事を確認します。</p>
+<pre><code>$ mysql -u admin -p -h ライターインスタンスのエンドポイント名
+Enter password:指定したRDSの管理者パスワード
+
+mysql&gt; show databases;
+
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.004 sec)
+
+mysql&gt; exit</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ2 - MySQLのデータを移行" duration="0">
+        <h2 is-upgraded><strong>EC2上のMySQLのデータをエクスポート</strong></h2>
+<p>EC2インスタンス上にインストールされているMySQLからデータをエクスポートします。</p>
+<pre><code>$ cd /tmp/
+$ pwd
+/tmp
+$ sudo mysqldump -u root -p wp_database &gt; export.sql
+Enter password:指定したMySQLの管理者パスワード</code></pre>
+<p>EC2インスタンス上のMySQLは今後使わないため停止</p>
+<pre><code>$ sudo systemctl stop mariadb
+$ sudo systemctl disable mariadb</code></pre>
+<h2 is-upgraded><strong>EC2上のMySQLのデータをインポート</strong></h2>
+<p>エクスポートしたデータ(export.sql)をAurora RDSにインポートします。</p>
+<pre><code>$ mysql -u admin -p -h メモしたAurora RDS Endpointのホスト名部分 wp_database &lt; export.sql
+Enter password:指定したAurora RDSの管理者パスワード
+
+※エラーが出る場合はAurora RDSログイン後、[create database wp_database;]を実行して再試行してください</code></pre>
+<p>インポートされた事を確認します。</p>
+<pre><code>$ mysql -u admin -p -h メモしたAurora RDS Endpointのホスト名部分 
+ wp_database
+Enter password:指定したAurora RDSの管理者パスワード
+
+mysql&gt; show tables;
+（wp_から始まるテーブルが複数表示されます）
+
+mysql&gt; exit
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ2 - WordPressのDB接続設定" duration="0">
+        <h2 is-upgraded><strong>WordPressのDB接続設定を削除</strong></h2>
+<p>再設定をWebから行うため、DB接続設定を初期化します。</p>
+<p>設定ファイル(wp-config.php)をホームディレクトリに移動させます。こうすることで/var/www/htmlから設定ファイルが消え、設定が初期化されます。</p>
+<pre><code>$ sudo mv /usr/share/nginx/html/wordpress/wp-config.php ~/</code></pre>
+<h2 is-upgraded><strong>WordPressの再設定</strong></h2>
+<p>http://&lt;Elastic IPアドレス&gt;/ を開いて、WordPressの初期設定を始めます。</p>
+<p class="image-container"><img style="width: 703.50px" src="img\\3ace787597f2edf"></p>
+<p>作成したAurora RDSのDB設定に基づき、設定します。</p>
+<p>フェーズ１との違いはデータベースのホスト名でAurora RDSのエンドポイント名を指定している部分です。</p>
+<p>・データベース名：wp_database</p>
+<p>・ユーザー名：admin</p>
+<p>・パスワード：wordpress</p>
+<p>・データベースのホスト名：Aurora RDSのエンドポイント名</p>
+<p class="image-container"><img style="width: 704.50px" src="img\\d50ae1b5c4e3cc63"></p>
+<p>画面が切り替わったら、インストールの実行をクリックしてください</p>
+<p class="image-container"><img style="width: 705.50px" src="img\\61d116fbe8bc4510"></p>
+<p>以下の画面となりますが、正しい状態です。(Aurora RDSにはすでにデータがインポートされている為)</p>
+<p class="image-container"><img style="width: 714.50px" src="img\\953d18e1069446cb"></p>
+<p>フェーズ１で設定したブログのユーザ名とパスワードを入力します。</p>
+<p class="image-container"><img style="width: 710.50px" src="img\\929195978e723058"></p>
+<p>WordPressの管理者画面が表示されます。データベースをRDSに切り替えてもフェーズ１と同様にWordPressが動いていることを確認してください。</p>
+<p class="image-container"><img style="width: 710.50px" src="img\\15679705fc8b5429"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ3" duration="0">
+        <h2 is-upgraded><strong>フェーズ3の作成範囲</strong></h2>
+<p>フェーズ３では、新しく以下のリソースを追加します。</p>
+<p>・既存のEC2のAMIを取得します。</p>
+<p>・Availability Zone CにEC2を立てる</p>
+<p>・上段にALBを配置し、冗長構成とします。</p>
+<p class="image-container"><img style="width: 697.50px" src="img\\264a8c3c2ceca11"></p>
+<h2 is-upgraded><strong>フェーズ3：LB + Web ×2 + DB構成</strong></h2>
+<p>◆拡張性：高</p>
+<p>本構成ではWebサーバを自由に増減でき、拡張性が高い構成です。</p>
+<p>DBサーバについては変更がなく、1台ですのでインスタンスタイプを大きくして拡張することになります。</p>
+<p>◆冗長性：中</p>
+<p>Webサーバが複数台あり、ロードバランサ(ELB) が停止したWebサーバにはアクセスを振り分けなくなるため冗長性が高まります。</p>
+<p>DBサーバはフェーズ１・２と同じく１台構成ですが、Aurora RDSで作成しているので、データ自体の可用性はAz毎にデータクラスターに分散され、担保されておりますが、マルチAZに比べると冗長性は無い状態です。</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ3：WEBサーバのAMI作成" duration="0">
+        <h2 is-upgraded><strong>EC2管理ページを開く</strong></h2>
+<p>サービスから[コンピューティング]を選択し、[EC2]をクリックします。</p>
+<p class="image-container"><img style="width: 695.50px" src="img\\13f8f4abe233cb71"></p>
+<h2 is-upgraded><strong>WEBサーバのAMI作成</strong></h2>
+<p>EC2の管理画面から左ペインから[インスタンス]をクリックし、インスタンス一覧画面から作成したインスタンスを選択し、アクションから[イメージ]-[イメージの作成]をクリックします。</p>
+<p><img style="width: 705.02px" src="img\\b7d7e18342c88042">イメージの作成画面にて、[handson-ec2-wordpress-image]など分かりやすい名前をイメージ名として入力後、[イメージ]の作成をクリック</p>
+<p class="image-container"><img style="width: 709.50px" src="img\\7bc86606f8ce25ae"></p>
+<p>イメージの作成リクエストが飛びますので、保留中のイメージの表示をクリックしてください。</p>
+<p class="image-container"><img style="width: 703.50px" src="img\\43890d1bc63500d7"></p>
+<p>AMIの画面で作成を待ちます。完了するまで数分かかります。</p>
+<p class="image-container"><img style="width: 705.50px" src="img\\39f48ad0d48e1537"></p>
+<p>AMIの作成画面で状態が[pending]から[available]になる事を確認します。</p>
+<p class="image-container"><img style="width: 716.96px" src="img\\f4c2c292ad7030da"></p>
+<h2 is-upgraded><strong>2個目のEC2インスタンスを作成</strong></h2>
+<p>EC2の管理画面で、作成したAMIを選択し、起動をクリックしてください。</p>
+<p class="image-container"><img style="width: 711.50px" src="img\\41a3b3660b71af96"></p>
+<p>インスタンスタイプが t2.micro であることを確認して、[次のステップ:インスタンスの詳細の設定] ボタンをクリックしてください。</p>
+<p class="image-container"><img style="width: 709.50px" src="img\\a4f3e14049b09982"></p>
+<p>このページでは、インスタンスの詳細設定を行います。</p>
+<p>ネットワークで、ご自身で作成された VPC を選択してください。</p>
+<p>ネットワークにて VPC を選択すると、サブネットの項目が「選択した VPC でフィルタリング」されます。</p>
+<p>今回作成する2つ目のインスタンスでは<strong>パブリックサブネット1cの10.0.1.0/24 に設定したサブネットを選択してください。</strong></p>
+<p>自動割り当てパブリック IP は有効にしてください。</p>
+<p class="image-container"><img style="width: 707.50px" src="img\\640e94b206634f13"></p>
+<p>中段にあるロールは、すでに作成している[handson-ec2-role] ロールを選択してください。</p>
+<p class="image-container"><img style="width: 707.50px" src="img\\f95bdc47bf06d29"></p>
+<p>選択した AMI は、8GB のストレージを利用します。</p>
+<p>また、汎用 SSD (gp3) が選択されます。</p>
+<p>ストレージは、特に変更せずに、次に進みます。</p>
+<p class="image-container"><img style="width: 718.50px" src="img\\df33e3ef70e3990e"></p>
+<p>インスタンスを区別できるようにタグに名前を設定します。</p>
+<p>IAM ユーザを利用している場合、他ユーザと区別が付くように -user1 等ユーザ名を付けると良いでしょう。</p>
+<p>ここでは、handson-ec2-wordpress-2 とします。</p>
+<p>□ インスタンス と</p>
+<p>□ ボリューム と</p>
+<p>□ ネットワークインターフェイス</p>
+<p>のチェックボックスにチェックを入れると、それぞれのリソースに名前タグが設定されます。</p>
+<p>[次のステップ:セキュリティグループの設定] をクリックしてください。</p>
+<p class="image-container"><img style="width: 717.50px" src="img\\f394a76f043b5f55"></p>
+<p>セキュリティグループの設定で、<strong>[既存のセキュリティグループを選択する]</strong>を選択し、作成済の<strong>[web-sg]</strong>のセキュリティグループを選択し、<strong>[確認と作成]</strong>をクリック</p>
+<p class="image-container"><img style="width: 717.50px" src="img\\ceb66658c1ad87e6"></p>
+<p>確認画面が表示されます。内容を確認して問題なければ<strong> [起動]</strong> ボタンをクリックしてください。</p>
+<p class="image-container"><img style="width: 701.50px" src="img\\c416101e57c4ab0"></p>
+<p>キーペアを指定する画面になります。セッションマネージャーを利用するため、本ハンズオンでは利用しません。</p>
+<p><strong>[キーペアなしで続行]</strong> を選択し、チェックボックスにチェックを入れて、<strong>[インスタンスの作成]</strong> ボタンをクリックしてください。</p>
+<p class="image-container"><img style="width: 701.50px" src="img\\efec93fc02f138c"></p>
+<p>EC2 インスタンスの作成が始まりました。</p>
+<p>[インスタンスの表示] ボタンをクリックしてください。</p>
+<p class="image-container"><img style="width: 705.50px" src="img\\c9daf0089c0d63e3"></p>
+<p>インスタンスの表示画面で2つの異なるアベイラビリティゾーンで起動している事を確認します。</p>
+<p class="image-container"><img style="width: 710.13px" src="img\\1422452cf0b6131c"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ3：ELBを作成" duration="0">
+        <h2 is-upgraded><strong>ELBのセキュリティグループ</strong></h2>
+<p>以下のようにWebサーバのフロントにELBを作成します。</p>
+<p>ELB用のセキュリティグループは任意のIPアドレスから80番ポートへのアクセスを受け付けるように登録します。また、後続の手順でWEBサーバのセキュリティグループはELBからのみ受け付けるように変更します。</p>
+<p class="image-container"><img style="width: 704.48px" src="img\\71e35e2dee294c7c"></p>
+<h2 is-upgraded><strong>ELBを作成</strong></h2>
+<p>2台のWebサーバへのアクセスを振り分けるELBを作成します。</p>
+<p>サービスから[コンピューティング]を選択し、[EC2]をクリックします。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\13f8f4abe233cb71"></p>
+<p>EC2のコンソールに移動したら、左ペインより [ロードバランサー] を選択し、[ロードバランサーの作成] をクリックします。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\43952093134961e8"></p>
+<p>[ロードバランサーの選択] では[Application Load Balancer] の [作成] を選択してください。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\2942036961087906"></p>
+<p>データベースの作成で以下を選択、入力します。[基本的な設定] は以下のように設定してください。</p>
+<p>・ロードバランサー名：[elb-handson]</p>
+<p>・スキーム：インターネット向け</p>
+<p>・IPアドレスタイプ：IPv4</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\75e6cdda42e2d005"></p>
+<p>[ネットワークマッピンング]は以下のように設定してください。</p>
+<p>・VPC：作成したVPCを選択(VPC名もしくはvpcID)</p>
+<p>・マッピング：各アベイラビリティゾーンごとにフェーズ1で作成したパブリックサブネットを選択。</p>
+<p>        ハンズオンの通りに命名している場合、以下となります。</p>
+<p>        ・ap-northeast-1a:  handson20220425-subnet-public1-ap-northeast-1a</p>
+<p>・ap-northeast-1c<strong>：</strong>handson20220425-subnet-public2-ap-northeast-1c</p>
+<p>・IPアドレスタイプ：IPv4</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\22be1a0ab052ed03"></p>
+<h3 is-upgraded><strong>セキュリティグループの設定</strong></h3>
+<p>[新しいセキュリティグループの作成]をクリックすると、作成ウィザードが別タブで開きます。<img style="width: 624.00px" src="img\\b1eaae3f09a518ec"></p>
+<p>[基本的な詳細] は以下のように設定してください。</p>
+<p>・セキュリティグループ名：[elb-sg]</p>
+<p>・説明：[elb-sg]</p>
+<p>・VPC：フェーズ1で作成したVPC</p>
+<p>ハンズオンの通りに命名している場合、以下となります。</p>
+<p>        handson20220425-vpc</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\cd09e90b5ef66d95"></p>
+<p>[インバウンドルール] は[ルールを追加]をクリックして以下のように設定してください。</p>
+<p>・タイプ：HTTP</p>
+<p>・ソース：マイIP</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\9ed3a125ef3e88c4"></p>
+<p>アウトバウンドルール、タグはデフォルト設定のまま変更しません。</p>
+<p>最後に[セキュリティグループを作成] をクリックします。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\e580803e38384f12"></p>
+<p>セキュリティーグループを作成したら、ロードバランサー作成途中のタブに戻ります。</p>
+<p>下図の更新ボタンをクリックすると、前項で作成したセキュリティグループが表示されます。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\90b12f3088ba58f9"></p>
+<p>デフォルトのセキュリティグループを外して、先ほど作成したセキュリティグループ[elb-sg]を選択します。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\2afae502e2e0cdcb"></p>
+<h3 is-upgraded><strong>ターゲットグループの作成</strong></h3>
+<p>[リスナーとルーティング]のセクションで、[ターゲットグループの作成]をクリックすると、別タブでターゲットグループの作成ウィザードが別タブで開きます。[プロトコル]、[ポート]、[プロトコルバージョン]の設定はデフォルトのままとしてください。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\d0357e55056c9187"></p>
+<p>別タブでターゲットグループの作成ウィザードが開いたら、[基本的な設定] を以下のように設定します。</p>
+<p>・ターゲットタイプの選択：インスタンス</p>
+<p>・ターゲットグループ名：elb-target</p>
+<p>・VPC：フェーズ1で作成したVPC</p>
+<p>[プロトコル]、[ポート]、[プロトコルバージョン]はデフォルトの設定のままとしてください。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\48d6a6ec9bc2453"></p>
+<p>ヘルスチェックプロトコル、ヘルスチェックパスの設定はデフォルトのままとして、▷をクリックして、ヘルスチェックの詳細設定を開きます。</p>
+<p>以下のように設定してください。</p>
+<p>・正常のしきい値：2</p>
+<p>その他の設定はデフォルトのままとしてください。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\ba944492ede5e494"></p>
+<p>画面右下の [次へ] をクリックします。</p>
+<h3 is-upgraded><strong>ターゲットの登録</strong></h3>
+<p>ELBからのトラフィックを分散する先として、フェーズ2で作成したEC2インスタンスの登録を行います。VPCが正しく選択されていれば、作成したEC2インスタンスが表示されるので、チェックを入れて、[保留中として以下を含める] をクリックします。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\a67e952f1ed0df9"></p>
+<p>ターゲット登録するインスタンスを確認したら[ターゲットグループの作成]をクリックします。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\4d0370903aeb47dc"></p>
+<p>再びロードバランサーの作成ウィザードのタブに戻ります。</p>
+<p>更新ボタンをクリックすると、作成したターゲットグループが表示されるので選択します。<img style="width: 624.00px" src="img\\49ef97b7f942f9e9"></p>
+<p>概要で各設定が間違っていないか確認して、[ロードバランサーの作成]をクリックしてください。 <img style="width: 624.00px" src="img\\b85466f9c9c543"></p>
+<h2 is-upgraded><strong>WEBサーバのセキュリティグループの編集</strong></h2>
+<p>ELBからWEBサーバへ接続する為、既存のWEBサーバのセキュリティグループを編集します。</p>
+<h2 is-upgraded><img style="width: 624.00px" src="img\\d27dff491a3b31c7"></h2>
+<p class="image-container"><img style="width: 624.00px" src="img\\603dc43399c49fde"></p>
+<p>下記のエラーが起きた場合は、既存のインバウンドルールを一旦削除してから、新たにタイプHTTP、ソースをelb-sgとしてルールを追加してください。</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\2e01023641dc098e"></p>
+<h2 is-upgraded><strong>作成したELBの動作確認</strong></h2>
+<p>作成されたELBのDNS名をメモします。</p>
+<p class="image-container"><img style="width: 709.50px" src="img\\60faf9486675e55"></p>
+<p>ロードバランサーのリスナーをチェックして、作成したターゲットグループを開きます。</p>
+<p class="image-container"><img style="width: 705.50px" src="img\\4b13646c7e31743c"></p>
+<p>ターゲットグループを開き、状態が[healthy]に変わる事を確認する</p>
+<p class="image-container"><img style="width: 704.33px" src="img\\b5f104c992692aa0"></p>
+<h2 is-upgraded><strong>WordPressの設定変更</strong></h2>
+<p>WordPressが生成するHTML内のホスト名は初期セットアップ時に使用していたパブリック</p>
+<p>アドレスが指定されており、ELBのDNS名でアクセスできるように変更が必要です。</p>
+<p>[handson-ec2-wordpress]、[handson-ec2-wordpress-2]の2つのサーバに</p>
+<p>セッションマネージャで接続し、以下のコマンドを実行して更新します。</p>
+<pre><code>$ mysql -u admin -p -h メモしたRDS Endpointのホスト名部分 wp_database
+Enter password: 指定したRDSの管理者パスワード
+
+mysql&gt; update wp_options set option_value=&#39;http://メモしたELBのDNS名&#39; where option_name=&#39;siteurl&#39; or option_name=&#39;home&#39;;
+
+mysql&gt; exit;
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="フェーズ3：ELB経由でのアクセス" duration="0">
+        <h2 is-upgraded><strong>アクセス確認</strong></h2>
+<p>http://&lt;ELBのDNS名&gt;/ を開いて、WordPressが表示されることを確認します。</p>
+<p class="image-container"><img style="width: 700.50px" src="img\\72e7de54e5eb7e79"></p>
+<p>http://&lt;EC2サーバr#1,#2のグローバルIP&gt;/ にはアクセスできなくなっている事を確認します。</p>
+<p class="image-container"><img style="width: 645.50px" src="img\\290e94fb59cc1ac2"></p>
+<h2 is-upgraded>両方のサーバにアクセスがされているか確認</h2>
+<p>WEBサーバ#1,WEBサーバ#2のそれぞれにセッションマネージャでログインし、以下のコマンドを実行してアクセスログを表示させることが可能です。</p>
+<p>ELBの定期的なヘルスチェックが実行されたり、Wordpressでページをリロードするたびに双方のEC2へアクセスされている状況を確認できます。</p>
+<pre><code>$ sudo tail -f /var/log/nginx/access.log
+Ctrl + C で終了</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Option：LB &#43; Web x2 &#43; DB x2 構成（サーバ４台構成）" duration="0">
+        <h2 is-upgraded><strong>【オプションハンズオン】LB + Web x2 + DB x2 構成（サーバ４台構成）</strong></h2>
+<p><strong>◆拡張性：高</strong></p>
+<p>データベースがMulti-AZ構成になります。Activeで動作するDBサーバは変わらず１台ですが、インスタンスタイプの変更時は先にスタンバイ側を変更してからフェイルオーバする動作になるため変更時の停止時間を短く抑えることができます。</p>
+<p><strong>◆冗長性：高</strong></p>
+<p>DBサーバがアベイラビリティゾーンにまたがって2台構成となり、障害時には自動的にフェイルオーバする構成となり、冗長性が高まります。</p>
+<h2 is-upgraded><strong>Option：RDSをMulti-AZ構成に変更</strong></h2>
+<h3 is-upgraded><strong>本フェーズでの作成範囲</strong></h3>
+<p class="image-container"><img style="width: 699.50px" src="img\\932a4651ad0bb2e5"></p>
+<h2 is-upgraded><strong>Aurora RDSの設定変更でマルチAZ構成に変更する</strong></h2>
+<p>サービスからデータベースを選択し、RDSをクリックします。</p>
+<p class="image-container"><img style="width: 702.50px" src="img\\880c0a2310dcbc62"></p>
+<p class="image-container"><img style="width: 713.34px" src="img\\f58ca4a3bb2d2b3e"></p>
+<p class="image-container"><img style="width: 709.50px" src="img\\f7dbdf713a376264"></p>
+<p class="image-container"><img style="width: 705.50px" src="img\\b5988983167474df"></p>
+<p class="image-container"><img style="width: 692.50px" src="img\\39f48ad0d48e1537"></p>
+<p class="image-container"><img style="width: 712.50px" src="img\\5a74ba83383879c4"></p>
+<h2 is-upgraded><strong>Aurora RDSのフェイルオーバーを実施する</strong></h2>
+<p>フェイルオーバーする前に事前に各クラスターのIPアドレスを取得し、メモします。</p>
+<p class="image-container"><img style="width: 709.29px" src="img\\23efdedb47802db4"></p>
+<p>上記のライターインスタンスとリーダーインスタンスのエンドポイントをコピーし、</p>
+<p>セッションマネージャーからEC2インスタンスにログインして以下コマンドを実行してください。</p>
+<p>ライターインスタンスとリーダーインスタンスの応答されたIPアドレスをメモします。</p>
+<pre><code>$ dig aurora-mysql-db.cluster-cfqns4hpf8id.ap-northeast-1.rds.amazonaws.com
+※上記は例の為、自分のライターインスタンスのDNS名でdigを叩いてください
+
+&lt;省略&gt;
+
+aurora-mysql-db-instance-1.cfqns4hpf8id.ap-northeast-1.rds.amazonaws.com. 5 IN A 10.0.2.247
+
+
+$ dig aurora-mysql-db.cluster-ro-cfqns4hpf8id.ap-northeast-1.rds.amazonaws.com
+※上記は例の為、自分のリーダーインスタンスのDNS名でdigを叩いてください
+
+&lt;省略&gt;
+
+aurora-mysql-db-reader.cfqns4hpf8id.ap-northeast-1.rds.amazonaws.com. 5 IN A 10.0.3.253
+</code></pre>
+<p>対象のAurora RDSのインスタンス側にチェックを入れ、アクションからフェイルオーバーを選択してください。<img style="width: 704.50px" src="img\\80734d545b014f4c"></p>
+<p>フェイルオーバーをクリックします。</p>
+<p class="image-container"><img style="width: 709.43px" src="img\\306721b967f7754c"></p>
+<p>フェイルオーバー実施後、改めてライターインスタンスとリーダーインスタンスのIPアドレスを改めて確認し、フェイルオーバーによってIPアドレスが変更され、インスタンスが移動している事を確認する。</p>
+<pre><code>$ dig aurora-mysql-db.cluster-cfqns4hpf8id.ap-northeast-1.rds.amazonaws.com
+
+&lt;省略&gt;
+
+aurora-mysql-db-instance-1.cfqns4hpf8id.ap-northeast-1.rds.amazonaws.com. 5 IN A 10.0.3.253
+
+
+$ dig 
+aurora-mysql-db.cluster-ro-cfqns4hpf8id.ap-northeast-1.rds.amazonaws.com
+
+&lt;省略&gt;
+
+aurora-mysql-db-reader.cfqns4hpf8id.ap-northeast-1.rds.amazonaws.com. 5 IN A 10.0.2.247
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="さらに拡張性を高める" duration="0">
+        <p>ハンズオン構築ここまでお疲れ様でした！</p>
+<p>ここからは、一旦、WordPress を考慮せずに一般的な更に拡張性を高める方法を解説します。</p>
 <h2 is-upgraded>Web サーバーとしての拡張性</h2>
 <h3 is-upgraded>▼ Auto Scaling を実装して負荷調整を自動で行う</h3>
-<p>Auto Scaling は CPU 負荷やリクエスト数上昇などをトリガーに、需要に合わせてインスタンスを自動で起動したり、削除したりする機能です。<br> フェーズ2 で作成した Amazon マシンイメージを使って、インスタンスを起動することができます。</p>
+<p>Auto Scaling は CPU 負荷やリクエスト数上昇などをトリガーに、需要に合わせてインスタンスを自動で起動したり、削除したりする機能です。</p>
+<p>フェーズ2 で作成した Amazon マシンイメージを使って、インスタンスを起動することができます。</p>
 <h3 is-upgraded>▼ 静的コンテンツに Amazon S3 の Web サイト希望を使用する</h3>
-<p>Amazon S3 はオブジェクトストレージとしてファイルを保存するだけでなく、静的ウェブホスティング html ファイルといった静的コンテンツを使って Web サイトを配信できます。<br> Amazon S3 は 99.99% の可用性があり、堅牢なサイトを低コストで提供できます。 <strong>静的ウェブホスティング</strong> は s3 バケットのプロパティにあります。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ed4bee18952bf80.png"></p>
+<p>Amazon S3 はオブジェクトストレージとしてファイルを保存するだけでなく、静的ウェブホスティング html ファイルといった静的コンテンツを使って Web サイトを配信できます。</p>
+<p>Amazon S3 は 99.99% の可用性があり、堅牢なサイトを低コストで提供できます。 静的ウェブホスティング は s3 バケットのプロパティにあります。</p>
+<p class="image-container"><img style="width: 712.50px" src="img\\ed4bee18952bf80.png"></p>
 <h3 is-upgraded>▼ CloudFront でコンテンツをキャッシュする</h3>
-<p>CloudFront は Web サーバーの前段でコンテンツをキャッシュする CDN (コンテンツデリバリーネットワーク) サービスです。<br> 世界中にある Amazon の Edge サーバーにてコンテンツをキャッシュするので、高速で安全なウェブサイトを提供できます。<br> ALB の前段に配置することで、ALB と EC2 へのアクセス負荷を軽減することができますし、ALB や EC2 に直接アクセスするルートを遮断して、CloudFront からの経路に限定することでオリジンコンテンツを保護できます。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/9fa026ef00ddab0b.png"></p>
+<p>CloudFront は Web サーバーの前段でコンテンツをキャッシュする CDN (コンテンツデリバリーネットワーク) サービスです。</p>
+<p>世界中にある Amazon の Edge サーバーにてコンテンツをキャッシュするので、高速で安全なウェブサイトを提供できます。</p>
+<p>ALB の前段に配置することで、ALB と EC2 へのアクセス負荷を軽減することができますし、ALB や EC2 に直接アクセスするルートを遮断して、CloudFront からの経路に限定することでオリジンコンテンツを保護できます。</p>
+<p class="image-container"><img style="width: 712.50px" src="img\\9fa026ef00ddab0b.png"></p>
+      </google-codelab-step>
+    
+      <google-codelab-step label="さらに安全性を高める" duration="0">
+        <h2 is-upgraded><strong>IAMを利用する</strong></h2>
+<h2 is-upgraded><strong>SSH等の管理接続を制限する</strong></h2>
+<h3 is-upgraded><strong>Security Groupで接続元を制限</strong></h3>
+<h3 is-upgraded><strong>VPCのVPN経由のみに限定</strong></h3>
+<h2 is-upgraded><strong>監視を行う</strong></h2>
+<h3 is-upgraded><strong>CloudWatchで監視</strong></h3>
+<h3 is-upgraded><strong>サードパーティ製品・サービスで監視</strong></h3>
+<h2 is-upgraded>CloudTrailで監査ログを残す</h2>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="WordPress を実際に複数台で構成する場合の留意点" duration="0">
-        <p>本ハンズオンで構築したアーキテクチャーでは、複数台構成の WordPress を適切に使用できない点があります。</p>
+        <p>本ハンズオンで構築したアーキテクチャでは、複数台構成の WordPress を適切に使用できない点があります。</p>
 <h2 is-upgraded>アップロードしたファイルの表示</h2>
-<p>アップロードされたメディアファイルは各サーバのローカルに保存されます。<br> 例えば、以下の図のようにユーザーがクライアント PC から写真をアップロードしたとします。このとき、1 台の WordPress サーバーにデータをアップロードされますが、もう一台の WordPress サーバーには写真がない状態になります。<br> この状態でクライアント PC からブラウザでページにアクセスすると、画像が表示されたり、されなかったりといった不具合が起きます。</p>
-<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" src="img/ce0f38ca2a6a26a3.gif"></p>
+<p>アップロードされたメディアファイルは各サーバのローカルに保存されます。</p>
+<p>例えば、以下の図のようにユーザーがクライアント PC から写真をアップロードしたとします。このとき、1 台の WordPress サーバーにデータをアップロードされますが、もう一台の WordPress サーバーには写真がない状態になります。</p>
+<p>この状態でクライアント PC からブラウザでページにアクセスすると、画像が表示されたり、されなかったりといった不具合が起きます。</p>
+<p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\ce0f38ca2a6a26a3"></p>
 <p>解決法としては以下が挙げられます。</p>
-<ol type="1">
-<li>WordPress のプラグインを利用する<br> 「<strong>Amazon S3 and Cloudfront</strong>」などの WordPress プラグインを使って、メディアファイルを S3 に保管するような仕組みを導入します。</li>
-<li><strong>EFS を利用する<br></strong> Amazon EFS を利用して、各サーバで共有ストレージとしてマウントします。<br> この方法は読み込みのオーバーヘッドが発生するため、キャッシュ設定を考慮する必要があります。<br><img alt="AWS マネジメントコンソール サインイン画面" src="img/fd8fb4359898ef83.png"></li>
-<li><strong>EBS 間で rsync を実装する<br></strong> EC2 サーバーで rsync を設定して、別サーバーにデータを送信するようにします。<br> この場合は、データが削除された場合の考慮が必要です。 <img alt="AWS マネジメントコンソール サインイン画面" src="img/a53d5802ea236bf0.png"></li>
+<ol type="1" start="1">
+<li>WordPress のプラグインを利用する<br>「Amazon S3 and Cloudfront」などの WordPress プラグインを使って、メディアファイルを S3 に保管するような仕組みを導入します。</li>
+<li>EFS を利用する<br>Amazon EFS を利用して、各サーバで共有ストレージとしてマウントします。<br>この方法は読み込みのオーバーヘッドが発生するため、キャッシュ設定を考慮する必要があります。<br><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\fd8fb4359898ef83"></li>
+<li>EBS 間で rsync を実装する<br>EC2 サーバーで rsync を設定して、別サーバーにデータを送信するようにします。<br>この場合は、データが削除された場合の考慮が必要です。 <img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\a53d5802ea236bf0"></li>
 </ol>
 <h2 is-upgraded>サーバー間のアップグレードが同期できない</h2>
-<p>各サーバーの WordPress 管理画面からプラグイン、テーマのバージョンアップや変更を行えますが、変更内容が各サーバのローカルディスク上に反映されて、そのサーバー以外の全サーバーに適用されない課題があります。解決方法としては、以下が挙げられます。</p>
-<ol type="1">
-<li><strong>Web サーバ間のローカルディスクを同期する仕組みを実装する<br></strong> 例えば、管理機能部分を特定の Web サーバ 1 台に Proxy して、rsyncd + lsyncd で残りのサーバーに配布する方法が考えられます。<br> ALB のルールで <strong>管理画面の URL パス</strong> (/wp-admin/*) が含まれた場合はマスターサーバーにルーティングする。といった実装も可能です。<br><img alt="AWS マネジメントコンソール サインイン画面" src="img/3cf26fc5455bb77e.png"></li>
-<li><strong>変更したプログラム・コンテンツをイメージとして別途作成してデプロイする方式にする<br></strong> ゴールデンイメージを作成して、展開する方法です。手間ですが、Auto Scaling を実装する場合は有効です。</li>
-<li><strong>Amazon EFS を利用して、各サーバで共有ストレージをマウントする<br></strong> こちらも読み込みのオーバーヘッドを考慮して、キャッシュ設定を考慮する必要があります。</li>
+<p>各サーバーの WordPress 管理画面からプラグイン、テーマのバージョンアップや変更を行えますが、変更内容が各サーバーのローカルディスク上に反映されて、そのサーバー以外の全サーバーに適用されない課題があります。解決方法としては、以下が挙げられます。</p>
+<ol type="1" start="1">
+<li>Web サーバ間のローカルディスクを同期する仕組みを実装する<br>例えば、管理機能部分を特定の Web サーバー 1 台に Proxy して、rsyncd + lsyncd で残りのサーバーに配布する方法が考えられます。<br>ALB のルールで 管理画面の URL パス (/wp-admin/*) が含まれた場合はマスターサーバーにルーティングする。といった実装も可能です。<br><img alt="AWS マネジメントコンソール サインイン画面" style="width: 624.00px" src="img\\3cf26fc5455bb77e"></li>
+<li>変更したプログラム・コンテンツをイメージとして別途作成してデプロイする方式にする<br>ゴールデンイメージを作成して、展開する方法です。手間ですが、Auto Scaling を実装する場合は有効です。</li>
+<li>Amazon EFS を利用して、各サーバで共有ストレージをマウントする<br>こちらも読み込みのオーバーヘッドを考慮して、キャッシュ設定を考慮する必要があります。</li>
 </ol>
 <h2 is-upgraded>WordPress の cron 機能が全体で実行されてしまう</h2>
 
 
       </google-codelab-step>
     
+      <google-codelab-step label="環境の削除" duration="0">
+        <p>ハンズオンで作成したリソースを以下の手順で削除します。そのままにしておくと<strong>課金が発生する</strong>ものがあるため確実に作業を実施してください</p>
+<h2 is-upgraded><strong>EC2のコンソールから</strong></h2>
+<ol type="1" start="1">
+<li>左ペインよりロードバランサーのコンソールに移動。作成したロードバランサー(elb-handson)を右クリック → 「削除」</li>
+<li>同様にターゲットグループのコンソールに移動。作成したターゲットグループ(elb-target)にチェックを入れて、「アクション」 →「削除」</li>
+<li>左ペインよりインスタンスのコンソールに移動。作成したインスタンス(dea-ec2-wordpress1、dea-ec2-wordpress2)にチェックを入れる。「インスタンスの状態」→「インスタンスを終了」</li>
+</ol>
+<ol type="1" start="1">
+<li>「インスタンスの状態」が「terminated」になっていることを確認。</li>
+</ol>
+<ol type="1" start="4">
+<li>左ペインよりElastic IPに移動。使用していたIPアドレス(handson-ec2-wordpress-1)にチェックを入れて「Elastic IPアドレスの関連付けの開放」</li>
+<li>左ペインよりAMIに移動。作成したAMI(handson-ec2-wordpress-image)にチェックを入れて「AMI の登録解除」を実施</li>
+<li>左ペインよりElastic Block Store のスナップショットに移動。作成したスナップショットにチェックを入れて「アクション」→ 削除</li>
+</ol>
+<h2 is-upgraded><strong>RDSのコンソールから</strong></h2>
+<ol type="1" start="1">
+<li>左ペインのデータベースを選び、リーダインスタンス(aurora-mysql-db-instance-1)にチェックを入れてアクションから削除を選択します。本当に削除して良いか確認のため、入力ボックスに、delete me と入力します。(削除は5分程度かかります)</li>
+<li>ライターインスタンス(aurora-mysql-db-reader)にチェックを入れて、アクションから削除を選択します。バックアップのため、「最終スナップショットを作成しますか?」と表示されますが、今回は不要なのでチェックボックスを外し、同様にdelete meと入力して削除します。</li>
+</ol>
+<p class="image-container"><img style="width: 624.00px" src="img\\9db7177ba1ab4de6"></p>
+<ol type="1" start="3">
+<li>ライターインスタンスとリーダーインスタンスの削除処理が実行されると、リージョン別クラスターも自動で削除が実行されます。</li>
+<li>完全に削除が完了すると以下のような表記になります。課金を避けるためにも必ず時間をおいて削除されていることを確認しましょう。</li>
+</ol>
+<p class="image-container"><img style="width: 624.00px" src="img\\9fb93bb024d5ce1d"></p>
+<h2 is-upgraded><strong>IAMコンソールから</strong></h2>
+<p>(課金対象ではないので、リソースを再利用したい方は実施しなくても問題ありません)</p>
+<ol type="1" start="1">
+<li>左ペインより[ロール]を選択します。</li>
+<li>検索ボックスにフェーズ1で作成したロール名を入力します。</li>
+<li>チェックボックスにチェックを入れて削除をクリックします。</li>
+<li>削除を確認するモーダルが開きますので、ロール名を再び入力</li>
+</ol>
+<p class="image-container"><img style="width: 624.00px" src="img\\ebd4b2f65b1f1e7b"></p>
+<h2 is-upgraded><strong>VPCコンソールから</strong></h2>
+<p>(課金対象ではないので、リソースを再利用したい方は実施しなくても問題ありません)</p>
+<ol type="1" start="1">
+<li>左ペインより[VPC]を選択します。</li>
+<li>[アクション]から[VPCの削除]を選択します。</li>
+<li>VPC内にあるセキュリティグループ、サブネット、ルートテーブル、インターゲットウェイが同時削除対象として表示されます。</li>
+<li>削除して問題なければ入力ボックスに [削除] と入力してから右下の[削除]]をクリックして実行してください。</li>
+</ol>
+<p class="image-container"><img style="width: 624.00px" src="img\\58d01d326e9baedc"></p>
+
+
+      </google-codelab-step>
+    
       <google-codelab-step label="補足 - MySQL の root パスワードを忘れた場合の復旧方法" duration="0">
         <p>MariaDB の root パスワードを忘れた場合は、以下の手順で root パスワードを更新できます。</p>
-<ol type="1">
-<li>MariaDB が稼働しているサーバーにログインします。</li>
-<li>以下の手順を実行します。</li>
-<li>MariaDB をセーフモードで起動します。</li>
-</ol>
+<h2 is-upgraded><strong>MariaDB が稼働しているサーバーにログインします。</strong></h2>
+<h2 is-upgraded><strong>以下の手順を実行します。</strong></h2>
+<h2 is-upgraded><strong>MariaDB をセーフモードで起動します。</strong></h2>
 <pre><code>$ sudo service mysqld stop
-$ mysqld_safe --skip-grant-tables &amp;
-</code></pre>
-<ol type="1" start="4">
-<li>MySQL に接続して、root のパスワードを変更します。</li>
-</ol>
+$ mysqld_safe --skip-grant-tables &amp;</code></pre>
+<h2 is-upgraded><strong>MySQL に接続して、root のパスワードを変更します。</strong></h2>
 <pre><code>$ mysql -u root
 mysql&gt; use mysql;
 mysql&gt; update user set password=PASSWORD(&#34;ここに新しいパスワードを指定&#34;) where User=&#39;root&#39;; mysql&gt; commit;
 mysql&gt; flush privileges;
-mysql&gt; ¥q
-</code></pre>
-<ol type="1" start="5">
-<li>MariaDB を再起動します。</li>
-</ol>
+mysql&gt; ¥q</code></pre>
+<h2 is-upgraded><strong>MariaDB を再起動します。</strong></h2>
 <pre><code>$ sudo systemctl stop mariadb
-$ sudo systemctl start mariadb
-</code></pre>
+$ sudo systemctl start mariadb</code></pre>
 
 
       </google-codelab-step>
