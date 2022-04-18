@@ -1,4 +1,3 @@
-
 <!doctype html>
 
 <html>
@@ -39,14 +38,23 @@
 <p>AWS を利用するにはインターネット接続が必要です。Windows、mac、Linux をご準備ください。本ハンズオン資料は mac にて作成しています。</p>
 <h2 is-upgraded><strong>AWS アカウント</strong></h2>
 <p class="image-container"><img style="width: 624.00px" src="img\\1247d411e78073e8"></p>
-<p>AWS アイコン AWS アカウントを事前にご準備ください。</p>
-<h2 is-upgraded><strong>ブラウザ</strong></h2>
+<p>AWS アカウントを事前にご準備ください。</p>
+<p>ブラウザ</p>
 <p class="image-container"><img style="width: 624.00px" src="img\\32d9ad7bb8d38a03"></p>
-<p>ブラウザ イメージアイコン Firefox もしくは Google Chrome を推奨します。本ハンズオン資料は Google Chrome にて検証しています。</p>
-
-
+<p>Firefox もしくは Google Chrome を推奨します。本ハンズオン資料は Google Chrome にて検証しています。</p>
       </google-codelab-step>
-    
+
+      <google-codelab-step label="座学 - リージョンとアベイラビリティゾーン (AZ)" duration="0">
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 2/6</strong></p>
+<h3 is-upgraded><strong>リージョン</strong></h3>
+<p>AWS クラウドは、2022年4月現在、全世界 26 の地域にある 84 のアベイラビリティーゾーンにまたがっており、24 アベイラビリティーゾーンと 8 AWS リージョンを追加する計画が発表されています。</p>
+<p>AWS のリージョンは必ず複数のデータセンタークラスタ（=AZ）で構成されています。 各 AZ 間は数十キロ離れ、電源やネットワークが独立しており、高い耐障害性を提供できる設計になっています。</p>
+<p><a href="https://aws.amazon.com/jp/about-aws/global-infrastructure/" target="_blank">AWS グローバルインフラストラクチャマップ</a></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\f90e3d1e5d66e853.gif"></p>
+
+
+      </google-codelab-step>      
+
       <google-codelab-step label="座学 - Amazon VPC (Virtual Private Cloud)" duration="0">
         <p>AWS のセキュリティやスケーラビリティを 高める機能・サービス 1/6</p>
 <p class="image-container"><img style="width: 624.00px" src="img\\96dc386d9a821e26"></p>
@@ -54,7 +62,7 @@
 <p>社内ネットワークとインターネット VPN やキャリアの閉域網で接続ができます。</p>
 <p class="image-container"><img style="width: 624.00px" src="img\\31b9625da159b3be"></p>
 <h2 is-upgraded><strong>VPCとサブネットについて</strong></h2>
-<p>1 つの VPC は、1 つのネットワークアドレス (CIDR) で定義します。</p>
+<p>1 つの VPC は、1 つのネットワークアドレスを CIDR (Classless Inter-Domain Routing) で定義します。</p>
 <p>1 つの VPC 内には、複数のサブネットを作成することができます。</p>
 <p>サブネットは特定のアベイラビリティーゾーン内に配置します。</p>
 <p class="image-container"><img style="width: 624.00px" src="img\\6f5ddf2c15f13059"></p>
@@ -80,23 +88,11 @@
 <ul>
 <li>AWS &gt; ドキュメント &gt; Amazon VPC &gt; ユーザーガイド &gt; VPC とサブネットの概要 - <a href="https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing" target="_blank">IPv4 用の VPC とサブネットのサイズ設定</a></li>
 </ul>
-
-
       </google-codelab-step>
     
-      <google-codelab-step label="座学 - リージョンとアベイラビリティゾーン (AZ)" duration="0">
-        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 2/6</strong></p>
-<h3 is-upgraded><strong>リージョン</strong></h3>
-<p>AWS クラウドは、2022年4月現在、全世界 26 の地域にある 84 のアベイラビリティーゾーンにまたがっており、24 アベイラビリティーゾーンと 8 AWS リージョンを追加する計画が発表されています。</p>
-<p>AWS のリージョンは必ず複数のデータセンタークラスタ（=AZ）で構成されています。 各 AZ 間は数十キロ離れ、電源やネットワークが独立しており、高い耐障害性を提供できる設計になっています。</p>
-<p><a href="https://aws.amazon.com/jp/about-aws/global-infrastructure/" target="_blank">AWS グローバルインフラストラクチャマップ</a></p>
-<p class="image-container"><img style="width: 624.00px" src="img\\f90e3d1e5d66e853.gif"></p>
 
-
-      </google-codelab-step>
-    
       <google-codelab-step label="座学 - ルートテーブル" duration="0">
-        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 3/6ルートテーブルのアイコン</strong></p>
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 3/6</strong></p>
 <p class="image-container"><img style="width: 624.00px" src="img\\469adc1f652df34b"></p>
 <p>各サブネットにはルートテーブルがアタッチされます。</p>
 <p>ルートテーブルの設定を変更することでデータの流れを制御できます。</p>
@@ -113,7 +109,7 @@
 </td><td colspan="1" rowspan="1"><p>igw-XXXXXXXX</p>
 </td></tr>
 </table>
-<aside class="special"><p><strong>ルーティングテーブルに IGW (インターネット ゲートウェイ) へのルーティングを設定すると、外部とのアクセスが可能になります。</strong></p>
+<aside class="special"><p><strong>ルーティングテーブルに IGW (インターネット ゲートウェイ) へのルーティングを設定すると、外部とのアクセスが可能になります。これを"パブリックサブネット"といいます、IGWのルーティングがないものは"プライベートサブネット"といいます。</strong></p>
 </aside>
 <h2 is-upgraded><strong>プライベートサブネット</strong></h2>
 <p>ルートテーブル: rtb-XXXXXXXX</p>
@@ -131,7 +127,10 @@
       </google-codelab-step>
     
       <google-codelab-step label="座学 - セキュリティグループ" duration="0">
-        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 4/6</strong><img alt="Firewall イメージアイコン" style="width: 624.00px" src="img\\e251e418ca5598ae"> インターネットからのトラフィック (インバウンド) をブロックするだけでなく、EC2 からのトラフィック (アウトバウンド) も制限できるファイアウォール機能です。 <img alt="セキュリティグループイメージ画像" style="width: 624.00px" src="img\\f052e2651edb7e5d"> 個々のインスタンスごとに、インバウンド、アウトバウンドに対して下記の許可ルールを定義できます。ルールは ステートフル で扱われ、明示ルールが無い通信は拒否されます。</p>
+        <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 4/6</strong></p>
+        <p><img alt="Firewall イメージアイコン" style="width: 624.00px" src="img\\e251e418ca5598ae"></p>
+        <p>インターネットからのトラフィック (インバウンド) をブロックするだけでなく、EC2 からのトラフィック (アウトバウンド) も制限できるファイアウォール機能です。 <img alt="セキュリティグループイメージ画像" style="width: 624.00px" src="img\\f052e2651edb7e5d"></p>
+        <p>個々のインスタンスごとに、インバウンド、アウトバウンドに対して下記の許可ルールを定義できます。ルールは ステートフル で扱われ、明示ルールが無い通信は拒否されます。</p>
 <h3 is-upgraded><strong>インバウンド</strong></h3>
 <ul>
 <li>プロトコル (TCP/UDP/ICMP)</li>
@@ -163,15 +162,15 @@
 </ul>
 <h2 is-upgraded>インバウンド</h2>
 <ul>
-<li>Port range (ポート番号)</li>
-<li>Source (アクセス元 IP アドレス)</li>
-<li>Allow/Deny</li>
+<li>ポート範囲 (ポート番号の範囲)</li>
+<li>送信元 (アクセス元の IP アドレス)</li>
+<li>Allow（許可）/Deny（否定）</li>
 </ul>
 <h2 is-upgraded>アウトバウンド</h2>
 <ul>
-<li>Port range (ポート番号)</li>
-<li>Destination (アクセス先 IP アドレス)</li>
-<li>Allow/Deny</li>
+<li>ポート範囲 (ポート番号の範囲)</li>
+<li>送信先 (アクセス先の IP アドレス)</li>
+<li>Allow（許可）/Deny（否定）</li>
 </ul>
 
       </google-codelab-step>
@@ -183,7 +182,7 @@
         <p><strong>AWS のセキュリティやスケーラビリティを 高める機能・サービス 6/6</strong></p>
 <p class="image-container"><img alt="IAM のアイコン" style="width: 624.00px" src="img\\52a5b64cfe33128c"></p>
 <p>AWS 自体のリソース操作をよりセキュアに扱うための認証・認可の仕組みです。</p>
-<p>AWS 利用者の認証とアクセスポリシーを「グループ」「ユーザー」「ロール」で管理します。</p>
+<p>AWS 利用者の認証とアクセスポリシーを「ユーザーグループ」「ユーザー」「ロール」で管理します。</p>
 <ul>
 <li>実行出来る操作を IAM ポリシーで設定</li>
 <li>ユーザーごとに認証情報の設定が可能</li>
@@ -235,7 +234,7 @@
 <ul>
 <li>LB + Web x 2 + DB (サーバー 3 台構成)</li>
 </ul>
-<p>Web サーバーを複製できるように <strong>Amazon Machine Image (AMI)</strong> を取得します。</p>
+<p>Web サーバーを複製できるように <strong>Amazon Machine Images (AMI)</strong> を取得します。</p>
 <p>AMI から Web サーバーを複製して 2 台構成にします。</p>
 <p>2 台のサーバーに Web リクエストがバランシングされるように、前段に <strong>Application Load Balancer </strong>を起動します。</p>
 <p>フェーズ 3 になると、Web リクエストが増えた際に 1 台のサーバーをスペックアップする方法 (スケールアップ) に加えて、台数を増やす (スケールアウト) ができるようになります。</p>
@@ -255,7 +254,7 @@
     
       <google-codelab-step label="無料利用枠について" duration="0">
         <h2 is-upgraded><strong>【補足】無料利用枠 (個人アカウントでご参加の方向け)</strong></h2>
-<aside class="warning"><p><strong>注意: IAM ユーザーではなく、個人のアカウントでご参加されている方への補足</strong></p>
+<aside class="warning"><p><strong>注意: ご自身の個人AWSアカウントでご参加されている方への補足</strong></p>
 </aside>
 <p>ハンズオンの一部は AWS 無料利用枠の範囲で進めることができます。また、ハンズオンが終了した後で、作成したリソースを全て削除すると課金はされません。</p>
 <h3 is-upgraded><strong>&lt;1年間、以下範囲が毎月無料で利用できます&gt;</strong></h3>
@@ -267,7 +266,7 @@
 </ul>
 <p><a href="https://aws.amazon.com/jp/free/" target="_blank">AWS 無料利用枠</a></p>
 <h2 is-upgraded>【補足】 IAM でのハンズオンについて<br></h2>
-<aside class="warning"><p><strong>注意: 予め払い出された IAM ユーザーを利用してハンズオンにご参加されている方への補足</strong></p>
+<aside class="warning"><p><strong>注意: 企業などから予め払い出された IAM ユーザーを利用してハンズオンにご参加されている方への補足</strong></p>
 </aside>
 <p>このハンズオンは 1 つの AWS アカウント内に複数の IAM ユーザーを作成して、IAM ユーザーで実施することが可能です。</p>
 <p>同じアカウント内なので、他の IAM ユーザーが作成した EC2 インスタンスなどが一覧に表示されます。</p>
