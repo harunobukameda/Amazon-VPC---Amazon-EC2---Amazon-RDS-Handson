@@ -756,7 +756,7 @@ systemctl start nginx.service</code></pre>
 <p>以下の root 権限にて、</p>
 <pre><code>sh-5.1$ sudo -i
 #</code></pre>
-<p>以下コマンドを入力してください。</p>
+<p>以下のコマンドを入力してください。</p>
 <p>systemctl status mariadb</p>
 <p>以下のような running ステータスが返れば正常に起動しています。</p>
 <p>[Q] キーを押下すると、抜けることができます。</p>
@@ -1023,22 +1023,36 @@ Enter password:指定したMySQLの管理者パスワード</code></pre>
 $ sudo systemctl disable mariadb</code></pre>
 <h2 is-upgraded><strong>EC2上のMySQLのデータをインポート</strong></h2>
 <p>エクスポートしたデータ(export.sql)をAurora RDSにインポートします。</p>
-<pre><code>$ mysql -u admin -p -h メモしたAurora RDS Endpointのホスト名部分 wp_database &lt; export.sql
+<aside class="special"><p><strong>endpoint は先ほどメモした Aurora RDS Endpoint のホスト名部分を入れてください。</strong></p>
+<pre><code>$ mysql -u admin -p -h endpoint wp_database &lt; export.sql
 Enter password:指定したAurora RDSの管理者パスワード
 
 ※エラーが出る場合はAurora RDSログイン後、[create database wp_database;]を実行して再試行してください</code></pre>
 <p>インポートされた事を確認します。</p>
-<pre><code>$ mysql -u admin -p -h メモしたAurora RDS Endpointのホスト名部分 
- wp_database
+<pre><code>$ mysql -u admin -p -h endpoint wp_database
 Enter password:指定したAurora RDSの管理者パスワード
 
-mysql&gt; show tables;
-（wp_から始まるテーブルが複数表示されます）
+mysql> show tables;
++-----------------------+
+| Tables_in_wp_database |
++-----------------------+
+| wp_commentmeta        |
+| wp_comments           |
+| wp_links              |
+| wp_options            |
+| wp_postmeta           |
+| wp_posts              |
+| wp_term_relationships |
+| wp_term_taxonomy      |
+| wp_termmeta           |
+| wp_terms              |
+| wp_usermeta           |
+| wp_users              |
++-----------------------+
+12 rows in set (0.001 sec)
 
 mysql&gt; exit
 </code></pre>
-
-
       </google-codelab-step>
     
       <google-codelab-step label="フェーズ2 - WordPressのDB接続設定" duration="0">
@@ -1156,7 +1170,7 @@ mysql&gt; exit
 <p>[ロードバランサーの選択] では[Application Load Balancer] の [作成] を選択してください。</p>
 <p class="image-container"><img style="width: 624.00px" src="img\\2942036961087906"></p>
 <p>データベースの作成で以下を選択、入力します。[基本的な設定] は以下のように設定してください。</p>
-<p>・ロードバランサー名：[elb-handson]</p>
+<p>・ロードバランサー名：elb-handson</p>
 <p>・スキーム：インターネット向け</p>
 <p>・IPアドレスタイプ：IPv4</p>
 <p class="image-container"><img style="width: 624.00px" src="img\\75e6cdda42e2d005"></p>
