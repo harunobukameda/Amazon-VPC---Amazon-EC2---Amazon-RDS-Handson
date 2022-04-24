@@ -529,7 +529,7 @@ ami-082c70eb5ed5441a1
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>サブネット</p>
 </td><td colspan="1" rowspan="1"><p>*-public1-ap-northeast-1aと記載されたサブネットを設定下さい</p>
-<p>手順書通りなら「handson20220425-public1-ap-northeast-1a」となります。</p>
+<p>手順書通りなら「handson20220425-subnet-public1-ap-northeast-1a」となります。</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>パブリックIPの自動割り当て</p>
 </td><td colspan="1" rowspan="1"><p>有効化</p>
@@ -680,7 +680,7 @@ systemctl start nginx.service</code></pre>
 <h2 is-upgraded><strong>ユーザーデータで行う処理</strong></h2>
 <ol type="1" start="1">
 <li><strong>SELinux 無効化<br></strong>Amazon Linux 2022 は Fedora ベースの OS で SELinux が有効になっています。<br>SELinux が有効だとセットアップ時に Nginx が正しく動作しません。<br>本番環境では SELinux を有効化して http などのポリシーの設定を行う必要がありますが、本ハンズオンでは無効化します。</li>
-<li><strong>タイムゾーンを東京に変更<br></strong>Amazon Linux 2022 の AMI は UTC 時刻にて稼働します。そのため、起動後にタイムゾーンを Asia/Tokyo にします。</li>
+<li><strong>タイムゾーンを東京に変更<br></strong>Amazon Linux 2022 の AMI は UTC 時刻にて稼働します。そのため、起動後にタイムゾーンを UTC+9 (Asia/Tokyo) にします。</li>
 <li><strong>ロケールを日本語に変更</strong></li>
 <li><strong>SSM エージェントのインストール<br></strong>SSM エージェントをインストールすると、セッションマネージャーが利用できるようになります。</li>
 <li><strong>Nginx インストール<br></strong>Web サーバーとして稼働させるため、Nginx をインストールします。</li>
@@ -769,10 +769,9 @@ systemctl start nginx.service</code></pre>
 <pre><code>sh-5.1$ sudo -i
 #</code></pre>
 <p>以下コマンドを入力してください。</p>
-<p>systemctl status mariadb</p>
+<pre><code>systemctl status mariadb</code></pre>
+
 <p>以下のような running ステータスが返れば正常に起動しています。</p>
-<p>以下のような画面で操作できない方は、[Q] キーを押下すると抜けることができます。</p>
-<p class="image-container"><img style="width: 750.00px" src="img\\70e19a85009c81bf"></p>
 <pre><code># systemctl status mariadb
 ● mariadb.service - MariaDB 10.5 database server
      Loaded: loaded (/usr/lib/systemd/system/mariadb.service; disabled; vendor preset: disabled)
@@ -793,12 +792,13 @@ systemctl start nginx.service</code></pre>
 
  4月 06 21:16:03 ip-10-0-0-44.ap-northeast-1.compute.internal systemd[1]: Started MariaDB 10.5 database server.
 lines 1-23/23 (END)</code></pre>
+<p>コマンドを投入したあとに以下のような画面で操作できない方は、キーボードの [Q] キーを押下すると抜けることができます。</p>
+<p class="image-container"><img style="width: 750.00px" src="img\\70e19a85009c81bf"></p>
+
 <p>続いて、Nginx サーバーを確認します。</p>
 <p>以下のコマンドを入力してください。</p>
-<p>systemctl status nginx</p>
+<pre><code>systemctl status nginx</code></pre>
 <p>以下のような running ステータスが返れば正常に起動しています。</p>
-<p>以下のような画面で進めない方は、[Q] キーを押下すると抜けることができます。</p>
-<p class="image-container"><img style="width: 750.00px" src="img\\70e19a85009c81bf"></p>
 <pre><code># systemctl status nginx
 ● nginx.service - The nginx HTTP and reverse proxy server
      Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; vendor preset: disabled)
@@ -823,8 +823,8 @@ lines 1-23/23 (END)</code></pre>
  
  4月 06 21:16:16 ip-10-0-0-44.ap-northeast-1.compute.internal systemd[1]: Started The nginx HTTP and reverse proxy server.
 lines 1-21/21 (END)</code></pre>
-
-
+<p>コマンドを投入したあとに以下のような画面で操作できない方は、キーボードの [Q] キーを押下すると抜けることができます。</p>
+<p class="image-container"><img style="width: 750.00px" src="img\\70e19a85009c81bf"></p>
       </google-codelab-step>
     
       <google-codelab-step label="フェーズ1 - WordPress の初期設定" duration="0">
@@ -875,7 +875,7 @@ lines 1-21/21 (END)</code></pre>
 </td><td colspan="1" rowspan="1"><p>abc@example.com</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>検索エンジンでの表示</p>
-</td><td colspan="1" rowspan="1"><p>ON</p>
+</td><td colspan="1" rowspan="1"><p>チェックを入れる</p>
 </td></tr>
 </table>
 <p>[<strong>WordPress をインストール</strong>] ボタンをクリックしたあと、20 秒程度かかります。</p>
@@ -905,7 +905,7 @@ lines 1-21/21 (END)</code></pre>
       </google-codelab-step>
     
       <google-codelab-step label="座学 - Amazon Aurora RDS" duration="0">
-        <p class="image-container"><img style="width: 76.50px" src="img\\4a494155f5977ea6"></p>
+        <p class="image-container"><img style="width: 750.00px" src="img\\834f3a8671e444f1.png"></p>
 <p>Amazon Aurora RDS は、クラウド向けに AWS が構築したデータベースです。</p>
 <p>MySQL と PostgreSQL と互換性があります。</p>
 <p>Aurora の DB クラスターは 1 つ以上の DB インスタンスと、データを管理するクラスターボリュームで構成され、データボリュームは 3 AZ に 3 個ずつ計 6 個のコピーが作成され、高い耐障害性を持ちます。</p>
@@ -1544,11 +1544,7 @@ aurora-mysql-db-reader.cfqns4hpf8id.ap-northeast-1.rds.amazonaws.com. 5 IN A 10.
 <li>左ペインよりロードバランサーの管理ページに移動。作成したロードバランサー(alb-handson) を右クリック → 「削除」</li>
 <li>同様にターゲットグループの管理ページに移動。作成したターゲットグループ(alb-target) にチェックを入れて、「アクション」 →「削除」</li>
 <li>左ペインよりインスタンスの管理ページに移動。作成したインスタンス(handson-ec2-wordpress-1、handson-ec2-wordpress-2) にチェックを入れる。「インスタンスの状態」→「インスタンスを終了」</li>
-</ol>
-<ol type="1" start="1">
 <li>「インスタンスの状態」が「terminated」になっていることを確認。</li>
-</ol>
-<ol type="1" start="4">
 <li>左ペインより Elastic IP に移動。使用していた IP アドレス (handson-ec2-wordpress-1) にチェックを入れて [<strong>アクション</strong>] ボタンから [<strong>Elastic IPアドレスの関連付けの解除</strong>]<br>※ Elastic IP アドレスの関連付けを解除できませんでした。が表示された場合は、既に関連付けが解除されています。画面を更新して [<strong>Elastic IP アドレスの解放</strong>] を選択してください。</li>
 <li>左ペインより AMI に移動。作成した AMI (handson-ec2-wordpress-image) にチェックを入れて [<strong>アクション</strong>] ボタンから [<strong>AMI を登録解除</strong>] を実施</li>
 <li>左ペインより [<strong>Elastic Block Store]</strong> の下部にある [<strong>スナップショット</strong>] を選択して移動。作成したスナップショットにチェックを入れて [<strong>アクション</strong>] ボタンから [<strong>スナップショットの削除</strong>] を実施</li>
