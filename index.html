@@ -443,7 +443,8 @@
 <p>ロールの詳細画面に遷移したら、[<strong>信頼関係</strong>] タブをクリックし、[<strong>信頼ポリシーを編集</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール サインイン画面" style="width: 750.00px" src="img\\784dd0669cc9d50f"></p>
 <p>以下のような形でポリシーが表示されるので、</p>
-<pre><code>＜変更前＞
+<p>＜変更前＞</p>
+<pre><code>
 {
     &#34;Version&#34;: &#34;2012-10-17&#34;,
     &#34;Statement&#34;: [
@@ -457,7 +458,8 @@
     ]
 }</code></pre>
 <p>&#34;Service&#34;: [&#34;ec2.amazonaws.com&#34;,&#34;ssm.amazonaws.com&#34;] に書き換えてください。</p>
-<pre><code>＜変更後＞
+<p>＜変更後＞</p>
+<pre><code>
 {
         &#34;Version&#34;: &#34;2012-10-17&#34;,
         &#34;Statement&#34;: [
@@ -752,11 +754,13 @@ systemctl start nginx.service</code></pre>
 <aside class="special"><p><strong>タグは任意ですが、EC2 インスタンスのタグと揃えると識別しやすいです。</strong></p>
 </aside>
 <p>Elastic IP アドレスが割り当てられたら、割り当てられた IPv4 アドレスを控えておいてください。</p>
-<p>メモできたら [<strong>この Elastic IP アドレスを関連づける</strong>] をクリックしてください。</p>
+<p>メモができたら、上図の緑のラインに表示されている [<strong>この Elastic IP アドレスを関連づける</strong>] をクリックしてください。</p>
 <p class="image-container"><img style="width: 750.00px" src="img\\bd094f74e9e195c6"></p>
+<aside class="special"><p>上図の緑のラインにある ([<strong>この Elastic IP アドレスを関連づける</strong>] ボタンが消えてしまった場合は) [<strong>アクション</strong>] ボタンをクリックして、[<strong>Elastic IPアドレスの関連付け</strong>] を選択してください。</p>
+</aside>
 <p><strong>インスタンス</strong> に起動した EC2 インスタンスを指定し、プライベート IP アドレスを選択して、[<strong>関連付ける</strong>] ボタンをクリックしてください。</p>
 <p class="image-container"><img style="width: 750.00px" src="img\\d00f05761dec9e27"></p>
-<aside class="warning"><p><strong>前述の作業で取得した自分の IP アドレスが表示されている事を確認の上、選択してください。 EC2 インスタンスが複数ある場合は誤ったインスタンスにアタッチしないようにご注意ください。</strong></p>
+<aside class="warning"><p>前述の作業で取得した自分の IP アドレスが表示されている事を確認の上、選択してください。 EC2 インスタンスが複数ある場合は誤ったインスタンスにアタッチしないようにご注意ください。</strong></p>
 </aside>
 <p>アタッチしたアドレスは、EC2 の詳細画面からも確認できますので再度チェックしておいてください。</p>
 <p class="image-container"><img style="width: 750.00px" src="img\\4f1618064567a6a"></p>
@@ -908,9 +912,9 @@ lines 1-21/21 (END)</code></pre>
 
       </google-codelab-step>
     
-      <google-codelab-step label="座学 - Amazon Aurora RDS" duration="0">
+      <google-codelab-step label="座学 - Amazon Aurora" duration="0">
         <p class="image-container"><img style="width: 750.00px" src="img\\834f3a8671e444f1.png"></p>
-<p>Amazon Aurora RDS は、クラウド向けに AWS が構築したデータベースです。</p>
+<p>Amazon Aurora は、クラウド向けに AWS が構築したデータベースです。</p>
 <p>MySQL と PostgreSQL と互換性があります。</p>
 <p>Aurora の DB クラスターは 1 つ以上の DB インスタンスと、データを管理するクラスターボリュームで構成され、データボリュームは 3 AZ に 3 個ずつ計 6 個のコピーが作成され、高い耐障害性を持ちます。</p>
 <p>また、通常の RDS 同様にバックアップやフェイルオーバーに対応した DB を数クリックで利用可能にします。</p>
@@ -978,9 +982,9 @@ lines 1-21/21 (END)</code></pre>
 
       </google-codelab-step>
     
-      <google-codelab-step label="フェーズ2 - RDSインスタンスを作成" duration="0">
-        <h2 is-upgraded><strong>Aurora RDSを作成</strong></h2>
-<p>Aurora RDSを作成します。RDSの管理画面からデータベースをクリックし、データベースの作成をクリックします。</p>
+      <google-codelab-step label="フェーズ2 - Aurora インスタンスを作成" duration="0">
+        <h2 is-upgraded><strong>Aurora インスタンスを作成</strong></h2>
+<p>Amazon Aurora のライターインスタンスを作成します。RDS の管理画面からデータベースをクリックし、データベースの作成をクリックします。</p>
 <p class="image-container"><img style="width: 707.50px" src="img\\ebf5c8f6b3e33a42"></p>
 <p>データベースの作成で以下を選択、入力します。</p>
 <p>・データベースの作成方法：標準作成</p>
@@ -997,7 +1001,7 @@ lines 1-21/21 (END)</code></pre>
 <p>・マスターユーザー名：admin</p>
 <p>・パスワード：wordpress</p>
 <p class="image-container"><img style="width: 708.50px" src="img\\4758b869ee7ceea1"></p>
-<p>DBインスタンスクラスは<strong>バースト可能クラス</strong>を選択し、<strong>db.t3.small</strong>を選択します。</p>
+<p>DBインスタンスクラスは <strong>バースト可能クラス</strong> を選択し、<strong>db.t3.small</strong> を選択します。</p>
 <p>可用性と耐久性の箇所では「Auroraレプリカを作成しない」を選択します。</p>
 <p class="image-container"><img style="width: 701.50px" src="img\\d0748adeb266d544"></p>
 <p>接続の箇所は以下のように入力します。</p>
@@ -1012,22 +1016,22 @@ lines 1-21/21 (END)</code></pre>
 <p>「<strong>DBクラスターのパラメータグループ</strong>」以下、メンテナンスウインドウの設定まではデフォルト設定のままとしてください。</p>
 <p class="image-container"><img style="width: 704.50px" src="img\\43f07c2ac4b466c5"></p>
 <p>設定画面の最下部にある削除保護の有効化のチェックを外し、</p>
-<p>データベースの作成をクリックし、Aurora RDSを作成します。</p>
+<p>[<strong>データベースの作成</strong>]をクリックします。</p>
 <p class="image-container"><img style="width: 717.73px" src="img\\635204050191800e"></p>
 <p>インスタンスの作成が完了するのを待ちます。</p>
 <p>ステータスが「利用可能」になるまで、数分かかります。</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール  リージョン移動 - 東京" style="width: 750.00px" src="img\\39f48ad0d48e1537"></p>
-<h2 is-upgraded><strong>作成した Aurora RDS を確認</strong></h2>
+<h2 is-upgraded><strong>作成した Aurora インスタンス を確認</strong></h2>
 <p>インスタンスの作成が完了するのを待ちます。</p>
-<p>ステータスが「利用可能」になるまで数分かかります。</p>
+<p>[<strong>データベース</strong>] に表示されるリージョン別クラスターとライターインスタンスのステータスが [<strong>利用可能</strong>] になるまで数分かかります。</p>
 <p class="image-container"><img style="width: 704.05px" src="img\\41e2379f029b300f"></p>
-<p>利用可能となった Aurora RDS のリージョン別クラスターを選択する</p>
+<p>[<strong>データベース</strong>] に表示されている利用可能となったリージョン別クラスターを選択する</p>
 <p class="image-container"><img style="width: 702.48px" src="img\\46c5a05d9d9d36bb"></p>
 <p>ライターインスタンスのエンドポイント名をコピーしてメモする</p>
 <p class="image-container"><img style="width: 705.50px" src="img\\baf7289052d4113d"></p>
-<h2 is-upgraded><strong>作成した Aurora RDS への接続確認</strong></h2>
-<p>Web サーバの EC2 インスタンスから Aurora RDS に接続出来る事を確認します。</p>
-<aside class="special"><p><strong>endpoint は先ほどメモした Aurora RDS Endpoint のホスト名部分を入れてください。</strong></p>
+<h2 is-upgraded><strong>作成した Aurora DB への接続確認</strong></h2>
+<p>Web サーバの EC2 インスタンスから Aurora DB に接続出来る事を確認します。</p>
+<aside class="special"><p><strong>endpoint は先ほどメモした Aurora クラスターのライターインスタンスのエンドポイント名部分を入れてください。</strong></p>
 </aside>
 <p>パスワードを求められるので、wordpress と入力します。</p>
 <pre><code># mysql -u admin -p -h endpoint
@@ -1070,8 +1074,8 @@ Enter password: wordpress</code></pre>
 <pre><code># systemctl stop mariadb
 # systemctl disable mariadb</code></pre>
 <h2 is-upgraded><strong>EC2 上の MySQL のデータを Aurora にインポート</strong></h2>
-<p>エクスポートしたデータ (export.sql) を Aurora RDS にインポートします。</p>
-<aside class="special"><p><strong>endpoint は先ほどメモした Aurora RDS Endpoint のホスト名部分を入れてください。</strong></p>
+<p>エクスポートしたデータ (export.sql) を Aurora にインポートします。</p>
+<aside class="special"><p><strong>endpoint は先ほどメモした Aurora クラスターのライターインスタンスのエンドポイント名部分を入れてください。</strong></p>
 </aside>
 <pre><code># mysql -u admin -p -h endpoint wp_database &lt; export.sql
 Enter password:wordpress
@@ -1079,7 +1083,7 @@ Enter password:wordpress
 <aside class="warning"><p><strong>※データベースが存在しないエラーが出た場合は、Aurora 作成時にデータベースが作成できていない可能性があります。RDS ログイン後に create database wp_database; を実行して再試行してください。</strong></p>
 </aside>
 <p>インポートされた事を確認します。</p>
-<aside class="special"><p><strong>endpoint は先ほどメモした Aurora RDS Endpoint のホスト名部分を入れてください。</strong></p>
+<aside class="special"><p><strong>endpoint は先ほどメモした Aurora クラスターのライターインスタンスのエンドポイント名部分を入れてください。</strong></p>
 </aside>
 <pre><code>$ mysql -u admin -p -h endpoint wp_database
 Enter password:wordpress
@@ -1117,16 +1121,16 @@ mysql&gt; exit
 <h2 is-upgraded><strong>WordPressの再設定</strong></h2>
 <p>http://&lt;Elastic IPアドレス&gt;/ を開いて、WordPressの初期設定を始めます。</p>
 <p class="image-container"><img style="width: 703.50px" src="img\\3ace787597f2edf"></p>
-<p>作成した Aurora RDS の DB 設定に基づき、設定します。</p>
-<p>フェーズ１との違いはデータベースのホスト名で Aurora RDS のエンドポイント名を指定している部分です。</p>
+<p>作成した Aurora の DB 設定に基づき、設定します。</p>
+<p>フェーズ１との違いはデータベースのホスト名で Aurora クラスターのライターエンドポイント名を指定している部分です。</p>
 <p>・データベース名：wp_database</p>
 <p>・ユーザー名：admin</p>
 <p>・パスワード：wordpress</p>
-<p>・データベースのホスト名：Aurora RDS のエンドポイント名</p>
+<p>・データベースのホスト名：Aurora クラスターのライターエンドポイント名</p>
 <p class="image-container"><img style="width: 704.50px" src="img\\d50ae1b5c4e3cc63"></p>
 <p>画面が切り替わったら、インストールの実行をクリックしてください</p>
 <p class="image-container"><img style="width: 705.50px" src="img\\61d116fbe8bc4510"></p>
-<p>以下の画面となりますが、正しい状態です。(Aurora RDS にはすでにデータがインポートされている為)</p>
+<p>以下の画面となりますが、正しい状態です。(Aurora にはすでにデータがインポートされている為)</p>
 <p class="image-container"><img style="width: 714.50px" src="img\\953d18e1069446cb"></p>
 <p>フェーズ１で設定したブログのユーザ名とパスワードを入力します。</p>
 <p class="image-container"><img style="width: 710.50px" src="img\\929195978e723058"></p>
@@ -1149,7 +1153,7 @@ mysql&gt; exit
 <p>DB サーバーについては変更がなく、1 台ですのでインスタンスタイプを大きくして拡張することになります。</p>
 <p>◆冗長性：中</p>
 <p>Web サーバーが複数台稼働している場合に、1 台の Web サーバーに障害が発生してリクエストを返せなくなったとします。すると、アプリケーションロードバランサー (ALB)  は応答が停止した Web サーバー宛てにリクエストを送信しなくなるため可用性が高まります。</p>
-<p>DB サーバーはフェーズ`1 / 2 と同じく 1 台構成ですが、Aurora RDS で作成しているので、データ自体の可用性はアベイラビリティゾーンごとにデータクラスターに分散され、担保されています。(Multi-AZ 構成に比べると、冗長性は無い状態です。)</p>
+<p>DB サーバーはフェーズ`1 / 2 と同じく 1 台構成ですが、Aurora で作成しているので、データ自体の可用性はアベイラビリティゾーンごとにデータクラスターに分散され、担保されています。(Multi-AZ 構成に比べると、冗長性は無い状態です。)</p>
 
 
       </google-codelab-step>
@@ -1392,7 +1396,7 @@ mysql&gt; exit
         <p>このデータベースに登録されたアドレスを、ALB の DNS 名に変更する必要があります。</p>
 <p>ひとまず、現在の設定を確認してみましょう。<br />
         [<strong>handson-ec2-wordpress</strong>]、[<strong>handson-ec2-wordpress-2</strong>] の 2 つのサーバーのどちらかにセッションマネージャーで接続し、以下のコマンドを実行します。</p>
-<aside class="special"><p><strong>endpoint は先ほどメモした Aurora RDS Endpoint のホスト名部分を入れてください。</strong></p>
+<aside class="special"><p><strong>endpoint は先ほどメモした Aurora クラスターのライターインスタンスのエンドポイント名部分を入れてください。</strong></p>
 </aside>
 
 <pre><code>sh-5.1$ sudo -i
@@ -1477,7 +1481,7 @@ Ctrl + C で終了</code></pre>
 <h2 is-upgraded><strong>Option：RDS を Multi-AZ 構成に変更</strong></h2>
 <h3 is-upgraded><strong>本フェーズでの作成範囲</strong></h3>
 <p class="image-container"><img style="width: 699.50px" src="img\\932a4651ad0bb2e5"></p>
-<h2 is-upgraded><strong>Aurora RDS の設定変更で Multi-AZ 構成に変更する</strong></h2>
+<h2 is-upgraded><strong>Aurora を Multi-AZ 構成に変更する</strong></h2>
 <p>[<strong>サービス</strong>] をクリックし、[<strong>データベース</strong>] をクリックして [<strong>RDS</strong>] を選択します。</p>
 <p class="image-container"><img style="width: 702.50px" src="img\\880c0a2310dcbc62"></p>
 <p>RDS の管理ページに遷移したら、左側のメニューペインにある [<strong>データベース</strong>] をクリックします。</p>
@@ -1492,10 +1496,10 @@ Ctrl + C で終了</code></pre>
 <p class="image-container"><img style="width: 750.00px" src="img\\76e050b37064ca2a"></p>
 <p>リーダーインスタンスが追加されるのを待ちます。(約 10 分)</p>
 <p class="image-container"><img alt="AWS マネジメントコンソール  リージョン移動 - 東京" style="width: 750.00px" src="img\\39f48ad0d48e1537"></p>
-<p>10 分ほど経過すると、対象の Aurora RDS が全て [<strong>利用可能</strong>] のステータスに変わります。</p>
+<p>10 分ほど経過すると、対象の Aurora インスタンスが全て [<strong>利用可能</strong>] のステータスに変わります。</p>
 <p>リージョンと AZ が a と c に分かれて 2 ゾーンになっていることを確認してください。</p>
 <p class="image-container"><img style="width: 712.50px" src="img\\5a74ba83383879c4"></p>
-<h2 is-upgraded><strong>Aurora RDSのフェイルオーバーを実施する</strong></h2>
+<h2 is-upgraded><strong>Aurora のフェイルオーバーを実施する</strong></h2>
 <p>フェイルオーバーする前に事前に各クラスターのIPアドレスを取得し、メモします。</p>
 <p class="image-container"><img style="width: 709.29px" src="img\\23efdedb47802db4"></p>
 <p>上記のライターインスタンスとリーダーインスタンスのエンドポイントをコピーし、</p>
@@ -1516,7 +1520,7 @@ aurora-mysql-db-instance-1.cfqns4hpf8id.ap-northeast-1.rds.amazonaws.com. 5 IN A
 
 aurora-mysql-db-reader.cfqns4hpf8id.ap-northeast-1.rds.amazonaws.com. 5 IN A 10.0.3.253
 </code></pre>
-<p>対象のAurora RDSのインスタンス側にチェックを入れ、アクションからフェイルオーバーを選択してください。<img style="width: 704.50px" src="img\\80734d545b014f4c"></p>
+<p>対象の Aurora のインスタンス側にチェックを入れ、アクションからフェイルオーバーを選択してください。<img style="width: 704.50px" src="img\\80734d545b014f4c"></p>
 <p>フェイルオーバーをクリックします。</p>
 <p class="image-container"><img style="width: 709.43px" src="img\\306721b967f7754c"></p>
 <p>フェイルオーバー実施後、改めてライターインスタンスとリーダーインスタンスのIPアドレスを改めて確認し、フェイルオーバーによってIPアドレスが変更され、インスタンスが移動している事を確認する。</p>
