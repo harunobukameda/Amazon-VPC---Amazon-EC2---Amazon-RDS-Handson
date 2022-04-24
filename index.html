@@ -717,6 +717,10 @@ systemctl start nginx.service</code></pre>
       </google-codelab-step>
     
       <google-codelab-step label="フェーズ1 - ブラウザで http アクセスする" duration="0">
+
+        <aside class="special"><p><strong>WordPress が利用可能になるまでは EC2 起動から 10〜15 分程度かかります。</strong></p>
+        </aside>
+        
         <p>次はブラウザから Web ページにアクセスしてみます。</p>
 <p>EC2 コンソールでインスタンスを選択したら、下部の詳細ペインに表示された <strong>パブリック IPv4 アドレス</strong> を見つけて、アドレスの左側にあるアイコンをクリックしてください。IP アドレスがクリップボードにコピーされます。</p>
 <p class="image-container"><img style="width: 750.00px" src="img\\4f1618064567a6a"></p>
@@ -1054,7 +1058,15 @@ mysql&gt; exit</code></pre>
 /tmp
 # mysqldump -u root -p wp_database &gt; export.sql
 Enter password: wordpress</code></pre>
-<p>EC2 インスタンス上の MySQL は今後使わないため停止します。</p>
+
+<p>エクスポートできたか確認します。</p>
+
+<pre><code>
+# ls -l export.sql
+-rw-r--r--. 1 root root 295916  4月 24 14:40 export.sql
+</code></pre>
+
+<p>export.sql がエクスポートできたら、EC2 インスタンス上の MySQL は今後使わないため停止します。</p>
 <pre><code># systemctl stop mariadb
 # systemctl disable mariadb</code></pre>
 <h2 is-upgraded><strong>EC2 上の MySQL のデータを Aurora にインポート</strong></h2>
@@ -1374,23 +1386,66 @@ mysql&gt; exit
 <p>続いて、右側のペインにある [<strong>ターゲットグループ</strong>] をクリックして、作成したターゲットグループ (手順通りであれば alb-target になっているはずです) を選択します。</p>
 <p>下部に表示された詳細ペインにある [<strong>ターゲット</strong>] タブをクリックし、ヘルスステータスが [<strong>healthy</strong>] であることを確認してください。</p>
 <p class="image-container"><img style="width: 750.00px" src="img\\35a5842ea13bcfb3"></p>
-<h2 is-upgraded><strong>WordPressの設定変更</strong></h2>
-        <p>WordPress が生成する HTML 内のホスト名は初期セットアップ時に使用していたパブリック</p>
-<p>アドレスが指定されており、ALB の DNS 名でアクセスできるように変更が必要です。</p>
-<p>[<strong>handson-ec2-wordpress</strong>]、[<strong>handson-ec2-wordpress-2</strong>] の 2 つのサーバーのどちらかにセッションマネージャーで接続し、以下のコマンドを実行して更新します。</p>
+<h2 is-upgraded><strong>WordPress の設定変更</strong></h2>
+        <p>WordPress は、初期セットアップでデータベースにパブリック IPv4 アドレスを登録します。<br />
+                先ほど初期セットアップをしたときは EC2 にアタッチした Elastic IP アドレスでアクセスしていました。なので、データベースには Elastic IP アドレスが記録されています。</p>
+        <p>このデータベースに登録されたアドレスを、ALB の DNS 名に変更する必要があります。</p>
+<p>ひとまず、現在の設定を確認してみましょう。<br />
+        [<strong>handson-ec2-wordpress</strong>]、[<strong>handson-ec2-wordpress-2</strong>] の 2 つのサーバーのどちらかにセッションマネージャーで接続し、以下のコマンドを実行します。</p>
 <aside class="special"><p><strong>endpoint は先ほどメモした Aurora RDS Endpoint のホスト名部分を入れてください。</strong></p>
-<p><strong>DNS は先ほどメモした ALB の DNS 名を入れてください。</strong></p>
 </aside>
+
 <pre><code>sh-5.1$ sudo -i
 
 # mysql -u admin -p -h endpoint wp_database
 Enter password: wordpress
 
-mysql&gt; update wp_options set option_value=&#39;http://DNS&#39; where option_name=&#39;siteurl&#39; or option_name=&#39;home&#39;;
+mysql&gt; select * from wp_options where option_name='siteurl' or option_name='home';
+</code></pre>
 
-Query OK, 2 rows affected (0.008 sec)
+コマンドを投入すると、以下のように IP アドレスが表示されます。
+
+<pre><code>
++-----------+-------------+---------------------+----------+
+| option_id | option_name | option_value        | autoload |
++-----------+-------------+---------------------+----------+
+|         2 | home        | http://13.113.94.95 | yes      |
+|         1 | siteurl     | http://13.113.94.95 | yes      |
++-----------+-------------+---------------------+----------+
+2 rows in set (0.001 sec)
+
+</code></pre>
+
+この IP アドレスを ALB の DNS 名に変更します。
+続けて、以下のようにコマンドを投入します。
+
+<aside class="special"><p><strong>"http://DNS名" の部分には先ほどメモした ALB の DNS 名を入れてください。</strong></p>
+        </aside>
+
+<pre><code>
+MySQL [wp_database]> update wp_options set option_value='http://DNS名' where option_name='siteurl' or option_name='home';
+Query OK, 2 rows affected (0.007 sec)
 Rows matched: 2  Changed: 2  Warnings: 0
 
+</code></pre>
+
+もう一度、SELECT 文を投入して、Elastic IP アドレスから、ALB の DNS 名に変わったことを確認してみてください。
+
+<pre><code>
+MySQL [wp_database]> select * from wp_options where option_name='siteurl' or option_name='home';
++-----------+-------------+---------------------------------------------------------------+----------+
+| option_id | option_name | option_value                                                  | autoload |
++-----------+-------------+---------------------------------------------------------------+----------+
+|         2 | home        | http://alb-handson-500587210.ap-northeast-1.elb.amazonaws.com | yes      |
+|         1 | siteurl     | http://alb-handson-500587210.ap-northeast-1.elb.amazonaws.com | yes      |
++-----------+-------------+---------------------------------------------------------------+----------+
+2 rows in set (0.001 sec)
+
+</code></pre>
+
+MySQL を抜けてください。
+
+<pre><code>
 mysql&gt; exit;
 </code></pre>
 
